@@ -1,0 +1,128 @@
+html, body {
+	margin: 0px;
+	padding: 0px;
+	font-family: Arial;
+	height: 100%;
+	padding-bottom: 0px;
+}
+
+.container{
+	min-height: 100%;
+	position: relative;
+}
+.content {
+	padding-top: 42px;
+	padding-bottom: 60px;
+}
+
+.top {
+	background-color: #EEEEEE;
+	position: fixed;
+	width: 100%;
+}
+
+.header {
+	margin: 0px;
+	box-shadow: rgba(0, 0, 0, 0.2) 0 5px 10px 0;
+	background-image: url('/resources/img/middle.jpg');
+	overflow: auto;
+}
+
+.logo {
+	height: 42px;
+	width: 160px;
+	background-image: url('/resources/img/logo.jpg');
+	background-position: -10px 0px;
+	float: left;
+}
+
+.right {
+	color: #FFFFFF;
+	padding-right: 20px;
+	padding-top: 10px;
+	float: right;
+}
+
+.right a {
+	margin-right: 20px;
+	float: left;
+}
+
+.learntSkills {
+	padding-right: 100px;
+}
+.learntSkills li {
+	list-style-type: none;
+}
+
+.avatar{
+	width: 64px;
+	height: 64px;
+	background-image: url('/resources/img/missing_avatar.png');
+	background-repeat: no-repeat;
+	background-position: 0px -3px;
+	float: left;
+	border: 4px solid #999999;
+	border-radius: 4px;
+	box-shadow: rgba(0, 0, 0, 0.2) 0 5px 5px 0;
+}
+
+.skill {
+	border-bottom: 1px dashed #999999;
+	padding: 10px;
+	padding-left: 90px;
+	margin-bottom: 10px;
+	height: 64px;
+}
+
+.newSkillForm {
+	padding: 30px;
+	padding-top: 20px; 
+	background-color: #EEEEEE; 
+	margin-bottom: 50px;
+	color: #48758A;
+	border-bottom: 1px solid #48758A;
+	box-shadow: rgba(0, 0, 0, 0.2) 0 5px 5px 0;
+}
+
+.newSkillForm input[type=text] {
+	border-style: none;
+	border-bottom: 1px dashed #333333;
+	background-color: transparent;
+}
+
+.footer {
+	border-top-color: #333333;
+	border-top-width: 1px;
+	border-top-style: dashed;
+	position: absolute;
+	background-color: #EEEEEE;
+	bottom: 0px;
+	height: 40px;
+	width: 100%;
+}
+
+.footer div{
+	margin: 10px;
+}
+
+.messages li {
+	list-style-type: none;
+}
+
+.messages {
+	padding-top: 20px;
+	color: #B22222;
+	background-color: #EEEEEE;
+}
+
+ul{
+	margin: 0px;
+}
+
+.encouragementMessage {
+	color: #228B22;
+	padding: 20px;
+	padding-left: 80px;
+	margin-top: 5px;
+}

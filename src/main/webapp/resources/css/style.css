@@ -1,0 +1,84 @@
+body {
+	padding: 50px;
+	font-family: Arial;
+}
+
+.content {
+	padding: 20px;
+	clear: both;
+}
+
+.logo {
+	height: 42px;
+	width: 200px;
+	background-image: url('/resources/img/logo.jpg');
+	float: left;
+}
+
+.top {
+	height: 42px;
+	background-image: url('/resources/img/middle_g.jpg');
+}
+
+.right {
+	height: 42px;
+	width: 10px;
+	background-image: url('/resources/img/right_g.jpg');
+	float: right;
+}
+
+.learntSkills li {
+	list-style-type: none;
+}
+
+.skill {
+	background-color: #EEEEEE;
+	padding: 10px;
+	margin-bottom: 5px;
+}
+
+.newSkillForm {
+	padding: 10px;
+	background-color: #ADD8E6;
+	border: 1px solid #48758A;
+	color: #48758A;
+	margin-top: 5px;
+}
+
+.newSkillForm input[type=text] {
+	border-style: none;
+	border-bottom: 1px dashed #333333;
+	background-color: transparent;
+}
+
+.newSkillForm input[type=submit] {
+	background-color: #48758A;
+	color: #FFFFFF;
+}
+
+.footer {
+	border-top-color: #333333;
+	border-top-width: 1px;
+	border-top-style: dashed;
+	padding: 15px;
+}
+
+.messages li {
+	list-style-type: none;
+}
+
+.messages {
+	background-color: #FFA07A;
+	border: 1px solid #B22222;
+	color: 	#B22222;
+	padding: 10px;
+	margin-top: 5px;
+}
+
+.encouragementMessage {
+	background-color: #90EE90;
+	border: 1px solid #228B22;
+	color: #228B22;
+	padding: 10px;
+	margin-top: 5px;
+}
