@@ -7,7 +7,7 @@ this.metaClass.mixin(cucumber.runtime.groovy.EN)
 
 After{ scenario ->
 
-	System.err.println("Clearing database...");
-	TransientSkillsRepository.clear();
+//	System.err.println("Clearing transient repositorories...");
+//	TransientSkillsRepository.clear();
 	
 }

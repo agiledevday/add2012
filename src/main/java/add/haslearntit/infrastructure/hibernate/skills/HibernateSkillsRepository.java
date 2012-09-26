@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.classic.Session;
+import org.springframework.transaction.annotation.Transactional;
 
 import add.haslearntit.domain.skills.Skill;
 import add.haslearntit.domain.skills.SkillsRepository;
@@ -17,11 +18,13 @@ public class HibernateSkillsRepository implements SkillsRepository {
 		this.sessionFactory = sessionFactory;
 	}
 
+	@Transactional
 	@Override
 	public void store(Skill skill) {
 		session().save(skill);
 	}
 
+	@Transactional(readOnly=true)
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Skill> loadAll() {
