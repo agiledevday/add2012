@@ -15,7 +15,7 @@ import cucumber.junit.Cucumber.Options;
 		)
 public class CucumberAcceptanceTest {
 
-	private static Server server;
+	public static Server server;
 
 	@BeforeClass
 	public static void startServer() throws Exception{
