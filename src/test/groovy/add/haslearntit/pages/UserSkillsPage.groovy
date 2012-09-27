@@ -5,7 +5,7 @@ import geb.*
 
 class UserSkillsPage extends Page {
 
-	static url = "http://localhost:8080/user/";
+	static url = "http://localhost:18081/user/";
 	
 	static at = { title == "Has Learnt It" }
 
