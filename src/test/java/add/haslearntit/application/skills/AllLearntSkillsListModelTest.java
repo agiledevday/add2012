@@ -9,27 +9,23 @@ import static org.mockito.Mockito.when;
 
 import java.util.List;
 
+import add.haslearntit.HasLearntItBaseTest;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import add.haslearntit.domain.skills.Skill;
-import add.haslearntit.domain.skills.SkillsRepository;
 
 @RunWith(MockitoJUnitRunner.class)
-public class AllLearntSkillsListModelTest {
-
-	@Mock
-	private SkillsRepository repository;
+public class AllLearntSkillsListModelTest extends HasLearntItBaseTest{
 
 	private SkillsListModel model;
 
 	@Before
 	public void setUp() throws Exception {
 
-		model = new AllLearntSkillsListModel(repository);
+		model = new AllLearntSkillsListModel(skillsRepository);
 	}
 	
 	@Test
@@ -58,13 +54,13 @@ public class AllLearntSkillsListModelTest {
 		model.getObject();
 		
 		// then:
-		verify(repository, times(1)).loadAll();
+		verify(skillsRepository, times(1)).loadAll();
 	}
 	
 	// --
 	
 	private void repositoryContainsSkills(Skill... someSkills) {
-		when(repository.loadAll()).thenReturn(asList(someSkills));
+		when(skillsRepository.loadAll()).thenReturn(asList(someSkills));
 	}
 	
 	private Skill aSkill(String skill) {
