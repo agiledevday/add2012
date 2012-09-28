@@ -18,7 +18,7 @@ public class UserSkillsPage extends TemplatePage {
 	private void initializeComponents() {
 		
 		SkillsRepository repository = ((HasLearntItApplication)getApplication()).getSkillsRepository();;
-		add(new NewSkillForm("newSkillForm", repository));
+		add(new NewSkillPanel("newSkillForm", repository));
 		add(new LearntSkillsList("learntSkillsList", new AllLearntSkillsListModel(repository)));
 
 	}

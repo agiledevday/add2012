@@ -49,7 +49,7 @@ public class UserSkillsPageTest {
 		// given:
 		// when:
 		// then:
-		tester.assertComponent("newSkillForm", NewSkillForm.class);
+		tester.assertComponent("newSkillForm", NewSkillPanel.class);
 	}
 	
 	@Test

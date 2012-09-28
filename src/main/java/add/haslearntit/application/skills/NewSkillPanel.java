@@ -1,6 +1,5 @@
 package add.haslearntit.application.skills;
 
-import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.RequiredTextField;
 import org.apache.wicket.markup.html.panel.Panel;
@@ -9,7 +8,7 @@ import org.apache.wicket.model.Model;
 import add.haslearntit.domain.skills.Skill;
 import add.haslearntit.domain.skills.SkillsRepository;
 
-public class NewSkillForm extends Panel{
+public class NewSkillPanel extends Panel{
 
 	private static final long serialVersionUID = 2627832833454321010L;
 
@@ -19,17 +18,17 @@ public class NewSkillForm extends Panel{
 
 	private final SkillsRepository skillsRepository;
 
-	public NewSkillForm(String id, SkillsRepository skillsRepository) {
+	public NewSkillPanel(String id, SkillsRepository skillsRepository) {
 		
 		super(id);
 		this.skillsRepository = skillsRepository;
-		add(new SkillFrom("skillForm"));
+		add(new NewSkillFrom("newSkillForm"));
 	}
 
-	private class SkillFrom extends Form {
+	private class NewSkillFrom extends Form {
 		private static final long serialVersionUID = -3821156411930577907L;
 
-		public SkillFrom(String id) {
+		public NewSkillFrom(String id) {
 			super(id);
 			initializeComponents();
 		}

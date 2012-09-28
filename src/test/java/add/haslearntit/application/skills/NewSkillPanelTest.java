@@ -22,7 +22,7 @@ import add.haslearntit.domain.skills.SkillsRepository;
 
 
 @RunWith(MockitoJUnitRunner.class)
-public class NewSkillFormTest {
+public class NewSkillPanelTest {
 
 	@Mock
 	private SkillsRepository skillsRepository;
@@ -35,9 +35,9 @@ public class NewSkillFormTest {
 	public void setUp()
 	{
 		tester = new WicketTester(new HasLearntItApplication());
-		tester.startComponentInPage(new NewSkillForm("newSkillForm",skillsRepository));
+		tester.startComponentInPage(new NewSkillPanel("newSkillPanel",skillsRepository));
 		
-		formTester = tester.newFormTester("newSkillForm:skillForm");
+		formTester = tester.newFormTester("newSkillPanel:newSkillForm");
 	}
 	
 	@Test
