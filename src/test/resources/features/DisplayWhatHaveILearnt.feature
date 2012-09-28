@@ -1,7 +1,7 @@
 Feature: Display what have I learnt
 
 Scenario: Encourage user to record what has he learnt
-	Given I havn't learnt anything
+	Given I haven't learnt anything
 	When I enter my home page
 	Then I should see encouragement message to record my skills
 

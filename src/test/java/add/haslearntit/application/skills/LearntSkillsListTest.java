@@ -45,7 +45,7 @@ public class LearntSkillsListTest {
 		tester.startComponentInPage(new LearntSkillsList(modelContainingSkills()));
 		
 		// then:
-		tester.assertContains("You havn't recorded any skills. For sure there is something you have learnt lately!");
+		tester.assertContains("You haven't recorded any skills. For sure there is something you have learnt lately!");
 	}
 	
 	@Test
@@ -57,7 +57,7 @@ public class LearntSkillsListTest {
 		tester.startComponentInPage(new LearntSkillsList(modelContainingSkills(aSkill("skuba diving"))));
 		
 		// then:
-		tester.assertContainsNot("You havn't recorded any skills. For sure there is something you have learnt lately!");
+		tester.assertContainsNot("You haven't recorded any skills. For sure there is something you have learnt lately!");
 	}
 	
 	// --

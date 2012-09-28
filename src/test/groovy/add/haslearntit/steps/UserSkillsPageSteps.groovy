@@ -72,7 +72,7 @@ this.metaClass.mixin(cucumber.runtime.groovy.EN)
 		expected.diff(actual);
 	}
 	
-	Given(~'^I havn\'t learnt anything$') { 
+	Given(~'^I haven\'t learnt anything$') { 
 		->
 		
 	}
