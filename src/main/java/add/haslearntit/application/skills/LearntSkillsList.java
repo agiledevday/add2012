@@ -14,9 +14,9 @@ public class LearntSkillsList extends Panel{
 	
 	private final SkillsListModel model;
 
-	public LearntSkillsList(SkillsListModel model) {
+	public LearntSkillsList(String id, SkillsListModel model) {
 	
-		super("learntSkillsList");
+		super(id);
 		this.model = model;
 		
 		initializeComponents();

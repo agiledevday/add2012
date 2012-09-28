@@ -18,9 +18,9 @@ public class NewSkillForm extends Panel{
 
 	private final SkillsRepository skillsRepository;
 
-	public NewSkillForm(SkillsRepository skillsRepository) {
+	public NewSkillForm(String id, SkillsRepository skillsRepository) {
 		
-		super("newSkillForm");
+		super(id);
 		this.skillsRepository = skillsRepository;
 		add(buildForm());
 	}

@@ -29,8 +29,8 @@ public class LearntSkillsListTest {
 		Skill otherSkill = aSkill("sky diving");
 		
 		// when:
-		tester.startComponentInPage(new LearntSkillsList(modelContainingSkills(someSkill, otherSkill)));
-		
+		tester.startComponentInPage(new LearntSkillsList("learntSkillsList", modelContainingSkills(someSkill, otherSkill)));
+
 		// then:
 		tester.assertContains(someSkill.asMessage());
 		tester.assertContains(otherSkill.asMessage());
@@ -38,24 +38,24 @@ public class LearntSkillsListTest {
 
 	@Test
 	public void shouldDisplayEncouragementMessageIfUserHasNoSkills() throws Exception {
-		
+
 		// given:
-		
+
 		// when:
-		tester.startComponentInPage(new LearntSkillsList(modelContainingSkills()));
-		
+		tester.startComponentInPage(new LearntSkillsList("learntSkillsList", modelContainingSkills()));
+
 		// then:
 		tester.assertContains("You haven't recorded any skills. For sure there is something you have learnt lately!");
 	}
-	
+
 	@Test
 	public void shouldHideEncouragementMessageIfUserHasAlLeastOneSkill() throws Exception {
-		
+
 		// given:
-		
+
 		// when:
-		tester.startComponentInPage(new LearntSkillsList(modelContainingSkills(aSkill("skuba diving"))));
-		
+		tester.startComponentInPage(new LearntSkillsList("learntSkillsList", modelContainingSkills(aSkill("skuba diving"))));
+
 		// then:
 		tester.assertContainsNot("You haven't recorded any skills. For sure there is something you have learnt lately!");
 	}
