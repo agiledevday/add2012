@@ -37,7 +37,7 @@ public class NewSkillFormTest {
 		tester = new WicketTester(new HasLearntItApplication());
 		tester.startComponentInPage(new NewSkillForm("newSkillForm",skillsRepository));
 		
-		formTester = tester.newFormTester("newSkillForm:form");
+		formTester = tester.newFormTester("newSkillForm:skillForm");
 	}
 	
 	@Test

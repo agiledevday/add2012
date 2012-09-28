@@ -1,5 +1,6 @@
 package add.haslearntit.application.skills;
 
+import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.RequiredTextField;
 import org.apache.wicket.markup.html.panel.Panel;
@@ -22,37 +23,37 @@ public class NewSkillForm extends Panel{
 		
 		super(id);
 		this.skillsRepository = skillsRepository;
-		add(buildForm());
+		add(new SkillFrom("skillForm"));
 	}
 
-	protected Form<Void> buildForm() {
-		
-		Form<Void> form = new Form<Void>("form"){
+	private class SkillFrom extends Form {
+		private static final long serialVersionUID = -3821156411930577907L;
 
-			private static final long serialVersionUID = -3821156411930577907L;
+		public SkillFrom(String id) {
+			super(id);
+			initializeComponents();
+		}
 
-			@Override
-			protected void onSubmit() {
-				
-				skillsRepository.store(
-						new Skill(
-								nameModel.getObject(), 
-								difficultyModel.getObject(), 
-								timeModel.getObject())
-						);
-				
-				nameModel.setObject("");
-				difficultyModel.setObject("");
-				timeModel.setObject("");
-			}
-			
-		};
-		
-		form.add(new RequiredTextField<String>("name", nameModel));
-		form.add(new RequiredTextField<String>("difficulty", difficultyModel));
-		form.add(new RequiredTextField<String>("time", timeModel));
-		
-		return form;
+		private void initializeComponents() {
+			add(new RequiredTextField<String>("name", nameModel));
+			add(new RequiredTextField<String>("difficulty", difficultyModel));
+			add(new RequiredTextField<String>("time", timeModel));
+		}
+
+		@Override
+		protected void onSubmit() {
+
+			skillsRepository.store(
+					new Skill(
+							nameModel.getObject(),
+							difficultyModel.getObject(),
+							timeModel.getObject())
+			);
+
+			nameModel.setObject("");
+			difficultyModel.setObject("");
+			timeModel.setObject("");
+		}
 	}
 
 }
