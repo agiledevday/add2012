@@ -10,7 +10,8 @@ import cucumber.junit.Cucumber.Options;
 
 @RunWith(Cucumber.class)
 @Options(
-		features = "src/test/resources/features", 
+		features = "src/test/resources/features",
+		/* monochrome = true, */
 		format = { "pretty", "html:target/cucumber-html-report" }
 		)
 public class CucumberAcceptanceTest {

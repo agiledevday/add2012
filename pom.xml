@@ -17,10 +17,8 @@
 	<artifactId>haslearntit</artifactId>
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
-	<!-- TODO project name -->
-	<name>quickstart</name>
+	<name>Has Learnt It</name>
 	<description></description>
-	<!-- <organization> <name>company name</name> <url>company url</url> </organization> -->
 	<licenses>
 		<license>
 			<name>The Apache Software License, Version 2.0</name>
