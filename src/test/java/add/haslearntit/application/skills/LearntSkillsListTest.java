@@ -60,7 +60,7 @@ public class LearntSkillsListTest extends HasLearntItBaseTest {
 		Skill someSkill = new Skill("java programming", "EASY", "1");
 		
 		//when
-		tester.startComponentInPage(new LearntSkillsList(modelContainingSkills(someSkill)));
+		tester.startComponentInPage(new LearntSkillsList("learntSkillsList", modelContainingSkills(someSkill)));
 		
 		//then
 		tester.assertLabel("learntSkillsList:list:0:skillPoints",Integer.toString(someSkill.getEarnedPoints()));
