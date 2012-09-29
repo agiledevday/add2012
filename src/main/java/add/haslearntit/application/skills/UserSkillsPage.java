@@ -1,11 +1,10 @@
 package add.haslearntit.application.skills;
 
 import org.apache.wicket.request.mapper.parameter.PageParameters;
+import org.apache.wicket.spring.injection.annot.SpringBean;
 
-import add.haslearntit.application.HasLearntItApplication;
 import add.haslearntit.application.TemplatePage;
 import add.haslearntit.domain.skills.SkillsRepository;
-import org.apache.wicket.spring.injection.annot.SpringBean;
 
 public class UserSkillsPage extends TemplatePage {
 
