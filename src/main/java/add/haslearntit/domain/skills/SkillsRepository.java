@@ -8,4 +8,8 @@ public interface SkillsRepository {
 
 	public abstract List<Skill> loadAll();
 
+	public abstract void addComment(Skill skill, Comment comment);
+
+	public abstract List<Comment> fetchAllComments(Skill skill);
+
 }
