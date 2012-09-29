@@ -9,8 +9,12 @@ class UserSkillsPage extends Page {
 
 	static at = { title == "Has Learnt It" }
 
+	static content = {
+		learntSkill { $("ul").find("li").find("div",class:"skill") }
+	}
+	
 	def recentlyLearntSkill = {
-		return $("ul").find("li .skill").text();
+		return learntSkill.text();
 	}
 
 	def recordNewSkill = {  skill, difficult, time ->
@@ -34,8 +38,8 @@ class UserSkillsPage extends Page {
 		return $(".messages li")*.text();
 	}
 
-	def learntSkills = {
-		return $("li .skill")*.text();
+	def learntSkills = {		
+		return  learntSkill*.text();
 	}
 
 	def commentExistsForSkill = { comment, skillName ->
@@ -50,6 +54,13 @@ class UserSkillsPage extends Page {
 		return $(".skill", text: contains(skillName))
 	}
 
+	
+	def learntSkillsPoints = {
+		
+		return $("div", class:"points")*.text();
+	}
+
+		
 	def encouragementIsPresent = {
 
 		return $(".encouragementMessage").size() > 0;

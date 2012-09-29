@@ -54,6 +54,18 @@ public class LearntSkillsListTest extends HasLearntItBaseTest {
 		tester.assertContainsNot("You haven't recorded any skills. For sure there is something you have learnt lately!");
 	}
 	
+	@Test
+	public void shouldDisplayLearnPoints(){
+		//given
+		Skill someSkill = new Skill("java programming", "EASY", "1");
+		
+		//when
+		tester.startComponentInPage(new LearntSkillsList("learntSkillsList", modelContainingSkills(someSkill)));
+		
+		//then
+		tester.assertLabel("learntSkillsList:list:0:skillPoints",Integer.toString(someSkill.getEarnedPoints()));
+	}
+	
 	// --
 
 	private SkillsListModel modelContainingSkills(Skill... someSkills) {
