@@ -40,8 +40,6 @@ class UserSkillsPage extends Page {
 		return $(".messages li")*.text();
 	}
 	
-
-	
 	def learntSkills = {		
 		return  learntSkill*.text();
 	}
