@@ -7,8 +7,9 @@ import org.apache.wicket.model.Model;
 
 import add.haslearntit.domain.skills.Skill;
 import add.haslearntit.domain.skills.SkillsRepository;
+import org.apache.wicket.spring.injection.annot.SpringBean;
 
-public class NewSkillPanel extends Panel{
+public class NewSkillPanel extends Panel {
 
 	private static final long serialVersionUID = 2627832833454321010L;
 
@@ -16,12 +17,12 @@ public class NewSkillPanel extends Panel{
 	private Model<String> difficultyModel = Model.of();
 	private Model<String> timeModel = Model.of();
 
-	private final SkillsRepository skillsRepository;
+	@SpringBean
+	private SkillsRepository skillsRepository;
 
-	public NewSkillPanel(String id, SkillsRepository skillsRepository) {
-		
+	public NewSkillPanel(String id) {
+
 		super(id);
-		this.skillsRepository = skillsRepository;
 		add(new NewSkillFrom("newSkillForm"));
 	}
 
