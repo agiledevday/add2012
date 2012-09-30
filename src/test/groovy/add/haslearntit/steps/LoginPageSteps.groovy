@@ -1,7 +1,7 @@
 package add.haslearntit.steps
 
 import geb.Browser
-import add.haslearntit.login.LoginPage
+import add.haslearntit.pages.LoginPage;
 import add.haslearntit.pages.UserSkillsPage
 import cucumber.runtime.PendingException
 this.metaClass.mixin(cucumber.runtime.groovy.Hooks)
@@ -62,8 +62,37 @@ When(~'^I enter no login and password$') {
 	browser.page.submitLoginForm();
 }
 
+Given(~'^I have been logged in successfully$') { ->
+
+	browser.at LoginPage
+	browser.page.enterLoginAndPassword("tomek", "abc123");
+	browser.page.submitLoginForm();
+}
+
+When(~'^I enter any page$') { ->
+
+	browser.to UserSkillsPage
+}
+
+Then(~'^I should see that I am logged in$') { ->
+	
+	assert browser.page.loggedInAs
+	assert browser.page.loggedInAs.user != "Anonymous"
+}
+
+Given(~'^I am not logged in$') { ->
+
+}
+
+Then(~'^I should see login page$') { ->
+
+	browser.at LoginPage	
+}
+
 Then(~'^I should see error with no login$') {
 	->
 	browser.at LoginPage
 	browser.page.checkError("Invalid login");
 }
+
+

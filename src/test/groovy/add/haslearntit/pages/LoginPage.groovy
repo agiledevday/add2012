@@ -1,7 +1,6 @@
-package add.haslearntit.login
+package add.haslearntit.pages
 
 import geb.Page
-import add.haslearntit.pages.UserSkillsPage
 
 
 class LoginPage extends Page {

@@ -1,6 +1,7 @@
 package add.haslearntit.pages
 
 import geb.*
+import add.haslearntit.pages.modules.LoggedInUserModule
 
 
 class UserSkillsPage extends Page {
@@ -11,6 +12,7 @@ class UserSkillsPage extends Page {
 
 	static content = {
 		learntSkill { $("ul").find("li").find("div",class:"skill") }
+		loggedInAs { module LoggedInUserModule }
 	}
 	
 	def recentlyLearntSkill = {
