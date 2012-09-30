@@ -5,6 +5,10 @@
 build/
 target/
 
+.idea/
+*.iml
+*.ipr
+
 # Package Files #
 *.jar
 *.war
