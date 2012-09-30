@@ -72,7 +72,20 @@ this.metaClass.mixin(cucumber.runtime.groovy.EN)
 		expected.diff(actual);
 	}
 	
-	Given(~'^I havn\'t learnt anything$') { 
+	Then(~'^I should see points for each skill$') { 
+		DataTable expected ->
+		
+		browser.at UserSkillsPage;
+		
+		List<List<String>> actual = new ArrayList<List<String>>();
+		browser.page.learntSkillsPoints().each{row -> 
+			actual.add([row]);
+		}
+		
+		expected.diff(actual);
+	}
+	
+	Given(~'^I haven\'t learnt anything$') { 
 		->
 		
 	}

@@ -1,36 +1,16 @@
 package add.haslearntit.application.skills;
 
-import static org.mockito.Mockito.when;
-
-import org.apache.wicket.util.tester.WicketTester;
+import add.haslearntit.HasLearntItBaseTest;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
-import org.springframework.context.ApplicationContext;
-
-import add.haslearntit.application.HasLearntItApplication;
-import add.haslearntit.domain.skills.SkillsRepository;
 
 @RunWith(MockitoJUnitRunner.class)
-public class UserSkillsPageTest {
-
-	@Mock
-	private ApplicationContext applicationContext;
-	@Mock
-	private SkillsRepository skillsRepository;
-	
-	private WicketTester tester;
+public class UserSkillsPageTest extends HasLearntItBaseTest {
 
 	@Before
 	public void setUp() {
-		
-		HasLearntItApplication application = new HasLearntItApplication();
-		application.setApplicationContext(applicationContext);
-		when(applicationContext.getBean("skillsRepository")).thenReturn(skillsRepository);
-		
-		tester = new WicketTester(application);
 		tester.startPage(UserSkillsPage.class);
 	}
 
@@ -49,7 +29,7 @@ public class UserSkillsPageTest {
 		// given:
 		// when:
 		// then:
-		tester.assertComponent("newSkillForm", NewSkillForm.class);
+		tester.assertComponent("newSkillForm", NewSkillPanel.class);
 	}
 	
 	@Test

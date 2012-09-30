@@ -5,12 +5,16 @@ import geb.*
 
 class UserSkillsPage extends Page {
 
-	static url = "http://localhost:8080/user/";
+	static url = "http://localhost:18081/user/";
 	
 	static at = { title == "Has Learnt It" }
 
+	static content = {
+		learntSkill { $("ul").find("li").find("div",class:"skill") }
+	}
+	
 	def recentlyLearntSkill = {
-		return $("ul").find("li").text();
+		return learntSkill.text();
 	}
 	
 	def recordNewSkill = { 
@@ -36,11 +40,16 @@ class UserSkillsPage extends Page {
 		return $(".messages li")*.text();
 	}
 	
-	def learntSkills = {
-		
-		return $("li")*.text();
+	def learntSkills = {		
+		return  learntSkill*.text();
 	}
 	
+	def learntSkillsPoints = {
+		
+		return $("div", class:"points")*.text();
+	}
+
+		
 	def encouragementIsPresent = {
 		
 		return $(".encouragementMessage").size() > 0;

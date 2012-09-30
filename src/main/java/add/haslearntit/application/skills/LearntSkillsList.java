@@ -14,9 +14,9 @@ public class LearntSkillsList extends Panel{
 	
 	private final SkillsListModel model;
 
-	public LearntSkillsList(SkillsListModel model) {
+	public LearntSkillsList(String id, SkillsListModel model) {
 	
-		super("learntSkillsList");
+		super(id);
 		this.model = model;
 		
 		initializeComponents();
@@ -35,6 +35,7 @@ public class LearntSkillsList extends Panel{
 			@Override
 			protected void populateItem(ListItem<Skill> item) {
 				item.add(new Label("skill", item.getModelObject().asMessage()));
+				item.add(new Label("skillPoints", String.valueOf(item.getModelObject().getEarnedPoints())));
 			}
 		});
 	}

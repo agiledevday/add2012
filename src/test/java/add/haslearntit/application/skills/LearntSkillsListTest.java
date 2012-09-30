@@ -4,6 +4,7 @@ import static java.util.Arrays.asList;
 
 import java.util.List;
 
+import add.haslearntit.HasLearntItBaseTest;
 import org.apache.wicket.model.util.ListModel;
 import org.apache.wicket.util.tester.WicketTester;
 import org.junit.Before;
@@ -12,14 +13,7 @@ import org.junit.Test;
 import add.haslearntit.application.HasLearntItApplication;
 import add.haslearntit.domain.skills.Skill;
 
-public class LearntSkillsListTest {
-
-	private WicketTester tester;
-
-	@Before
-	public void setUp() {
-		tester = new WicketTester(new HasLearntItApplication());
-	}
+public class LearntSkillsListTest extends HasLearntItBaseTest {
 
 	@Test
 	public void shouldDisplayAllLearntSkills() throws Exception {
@@ -29,8 +23,8 @@ public class LearntSkillsListTest {
 		Skill otherSkill = aSkill("sky diving");
 		
 		// when:
-		tester.startComponentInPage(new LearntSkillsList(modelContainingSkills(someSkill, otherSkill)));
-		
+		tester.startComponentInPage(new LearntSkillsList("learntSkillsList", modelContainingSkills(someSkill, otherSkill)));
+
 		// then:
 		tester.assertContains(someSkill.asMessage());
 		tester.assertContains(otherSkill.asMessage());
@@ -38,26 +32,38 @@ public class LearntSkillsListTest {
 
 	@Test
 	public void shouldDisplayEncouragementMessageIfUserHasNoSkills() throws Exception {
-		
+
 		// given:
-		
+
 		// when:
-		tester.startComponentInPage(new LearntSkillsList(modelContainingSkills()));
-		
+		tester.startComponentInPage(new LearntSkillsList("learntSkillsList", modelContainingSkills()));
+
 		// then:
-		tester.assertContains("You havn't recorded any skills. For sure there is something you have learnt lately!");
+		tester.assertContains("You haven't recorded any skills. For sure there is something you have learnt lately!");
+	}
+
+	@Test
+	public void shouldHideEncouragementMessageIfUserHasAlLeastOneSkill() throws Exception {
+
+		// given:
+
+		// when:
+		tester.startComponentInPage(new LearntSkillsList("learntSkillsList", modelContainingSkills(aSkill("skuba diving"))));
+
+		// then:
+		tester.assertContainsNot("You haven't recorded any skills. For sure there is something you have learnt lately!");
 	}
 	
 	@Test
-	public void shouldHideEncouragementMessageIfUserHasAlLeastOneSkill() throws Exception {
+	public void shouldDisplayLearnPoints(){
+		//given
+		Skill someSkill = new Skill("java programming", "EASY", "1");
 		
-		// given:
+		//when
+		tester.startComponentInPage(new LearntSkillsList("learntSkillsList", modelContainingSkills(someSkill)));
 		
-		// when:
-		tester.startComponentInPage(new LearntSkillsList(modelContainingSkills(aSkill("skuba diving"))));
-		
-		// then:
-		tester.assertContainsNot("You havn't recorded any skills. For sure there is something you have learnt lately!");
+		//then
+		tester.assertLabel("learntSkillsList:list:0:skillPoints",Integer.toString(someSkill.getEarnedPoints()));
 	}
 	
 	// --

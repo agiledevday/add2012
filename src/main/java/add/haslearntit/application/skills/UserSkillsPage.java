@@ -5,8 +5,12 @@ import org.apache.wicket.request.mapper.parameter.PageParameters;
 import add.haslearntit.application.HasLearntItApplication;
 import add.haslearntit.application.TemplatePage;
 import add.haslearntit.domain.skills.SkillsRepository;
+import org.apache.wicket.spring.injection.annot.SpringBean;
 
 public class UserSkillsPage extends TemplatePage {
+
+	@SpringBean
+	private SkillsRepository skillsRepository;
 
 	public UserSkillsPage(PageParameters params) {
 
@@ -17,9 +21,8 @@ public class UserSkillsPage extends TemplatePage {
 
 	private void initializeComponents() {
 		
-		SkillsRepository repository = ((HasLearntItApplication)getApplication()).getSkillsRepository();;
-		add(new NewSkillForm(repository));
-		add(new LearntSkillsList(new AllLearntSkillsListModel(repository)));
-		
+		add(new NewSkillPanel("newSkillForm"));
+		add(new LearntSkillsList("learntSkillsList", new AllLearntSkillsListModel(skillsRepository)));
+
 	}
 }

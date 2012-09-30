@@ -5,39 +5,28 @@ import static org.junit.Assert.assertThat;
 import static org.mockito.Matchers.argThat;
 import static org.mockito.Mockito.verify;
 
+import add.haslearntit.HasLearntItBaseTest;
 import org.apache.wicket.util.tester.FormTester;
-import org.apache.wicket.util.tester.WicketTester;
 import org.hamcrest.BaseMatcher;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import add.haslearntit.application.HasLearntItApplication;
 import add.haslearntit.domain.skills.Skill;
-import add.haslearntit.domain.skills.SkillsRepository;
-
 
 @RunWith(MockitoJUnitRunner.class)
-public class NewSkillFormTest {
+public class NewSkillPanelTest extends HasLearntItBaseTest {
 
-	@Mock
-	private SkillsRepository skillsRepository;
-
-	private WicketTester tester;
 	private FormTester formTester;
-	
 
 	@Before
 	public void setUp()
 	{
-		tester = new WicketTester(new HasLearntItApplication());
-		tester.startComponentInPage(new NewSkillForm(skillsRepository));
-		
-		formTester = tester.newFormTester("newSkillForm:form");
+		tester.startComponentInPage(new NewSkillPanel("newSkillPanel"));
+		formTester = tester.newFormTester("newSkillPanel:newSkillForm");
 	}
 	
 	@Test
