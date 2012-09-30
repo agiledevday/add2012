@@ -7,7 +7,7 @@ class UserSkillsPage extends Page {
 
 	static url = "http://localhost:18081/user/";
 	
-	static at = { title == "Has Learnt It" }
+	static at = { $("#userSkillsPage").displayed }
 
 	static content = {
 		learntSkill { $("ul").find("li").find("div",class:"skill") }
