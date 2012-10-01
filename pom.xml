@@ -36,6 +36,7 @@
 		<selenium.version>2.0rc3</selenium.version>
 		<mockito.version>1.9.0</mockito.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 	</properties>
 	<dependencies>
 
