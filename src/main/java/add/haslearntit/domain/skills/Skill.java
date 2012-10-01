@@ -58,7 +58,7 @@ public class Skill {
 
 	public int getEarnedPoints() {
 		try {
-			Difficutly difficulty = Difficutly.valueOf(difficultyLevel);
+			Difficulty difficulty = Difficulty.valueOf(difficultyLevel);
 			return difficulty.getLevel() * Integer.parseInt(timeSpent);
 		} catch (IllegalArgumentException e) {
 			return POINTS_FOR_UNKNOWN_DIFFICULTY;
