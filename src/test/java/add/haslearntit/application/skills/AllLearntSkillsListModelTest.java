@@ -9,7 +9,7 @@ import static org.mockito.Mockito.when;
 
 import java.util.List;
 
-import add.haslearntit.HasLearntItBaseTest;
+import add.haslearntit.HasLearntItBaseWicketIT;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,7 +18,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 import add.haslearntit.domain.skills.Skill;
 
 @RunWith(MockitoJUnitRunner.class)
-public class AllLearntSkillsListModelTest extends HasLearntItBaseTest {
+public class AllLearntSkillsListModelTest extends HasLearntItBaseWicketIT {
 
 	private SkillsListModel model;
 

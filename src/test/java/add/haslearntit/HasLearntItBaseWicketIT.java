@@ -9,7 +9,7 @@ import org.apache.wicket.util.tester.WicketTester;
 import org.junit.Before;
 import org.mockito.Mock;
 
-public class HasLearntItBaseTest {
+public class HasLearntItBaseWicketIT {
 
 	protected ApplicationContextMock applicationContext;
 

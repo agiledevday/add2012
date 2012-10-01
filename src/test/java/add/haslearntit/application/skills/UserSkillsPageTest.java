@@ -1,13 +1,13 @@
 package add.haslearntit.application.skills;
 
-import add.haslearntit.HasLearntItBaseTest;
+import add.haslearntit.HasLearntItBaseWicketIT;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
 
 @RunWith(MockitoJUnitRunner.class)
-public class UserSkillsPageTest extends HasLearntItBaseTest {
+public class UserSkillsPageTest extends HasLearntItBaseWicketIT {
 
 	@Before
 	public void setUp() {

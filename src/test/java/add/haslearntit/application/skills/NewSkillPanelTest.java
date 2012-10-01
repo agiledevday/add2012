@@ -5,7 +5,7 @@ import static org.junit.Assert.assertThat;
 import static org.mockito.Matchers.argThat;
 import static org.mockito.Mockito.verify;
 
-import add.haslearntit.HasLearntItBaseTest;
+import add.haslearntit.HasLearntItBaseWicketIT;
 import org.apache.wicket.util.tester.FormTester;
 import org.hamcrest.BaseMatcher;
 import org.hamcrest.Description;
@@ -18,7 +18,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 import add.haslearntit.domain.skills.Skill;
 
 @RunWith(MockitoJUnitRunner.class)
-public class NewSkillPanelTest extends HasLearntItBaseTest {
+public class NewSkillPanelTest extends HasLearntItBaseWicketIT {
 
 	private FormTester formTester;
 

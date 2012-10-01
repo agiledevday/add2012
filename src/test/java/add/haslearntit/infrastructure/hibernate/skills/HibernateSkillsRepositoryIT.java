@@ -9,7 +9,7 @@ import org.junit.Before;
 import add.haslearntit.domain.skills.Skill;
 import add.haslearntit.domain.skills.SkillsRepositoryContractTest;
 
-public class HibernateSkillsRepositoryTest extends SkillsRepositoryContractTest {
+public class HibernateSkillsRepositoryIT extends SkillsRepositoryContractTest {
 
 	private SessionFactory sessionFactory;
 	private Session session;
