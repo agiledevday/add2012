@@ -1,7 +1,6 @@
 package add.haslearntit.hooks
 
 import org.eclipse.jetty.webapp.WebAppContext
-import org.hibernate.SessionFactory
 import org.springframework.context.ApplicationContext
 import org.springframework.orm.hibernate3.LocalSessionFactoryBean
 import org.springframework.web.context.support.WebApplicationContextUtils

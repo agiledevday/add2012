@@ -18,12 +18,12 @@ import org.mockito.runners.MockitoJUnitRunner;
 import add.haslearntit.domain.skills.Skill;
 
 @RunWith(MockitoJUnitRunner.class)
-public class AllLearntSkillsListModelTest extends HasLearntItBaseTest{
+public class AllLearntSkillsListModelTest extends HasLearntItBaseTest {
 
 	private SkillsListModel model;
 
 	@Before
-	public void setUp() throws Exception {
+	public void setUp() {
 
 		model = new AllLearntSkillsListModel(skillsRepository);
 	}

@@ -6,11 +6,8 @@ import java.util.List;
 
 import add.haslearntit.HasLearntItBaseTest;
 import org.apache.wicket.model.util.ListModel;
-import org.apache.wicket.util.tester.WicketTester;
-import org.junit.Before;
 import org.junit.Test;
 
-import add.haslearntit.application.HasLearntItApplication;
 import add.haslearntit.domain.skills.Skill;
 
 public class LearntSkillsListTest extends HasLearntItBaseTest {
