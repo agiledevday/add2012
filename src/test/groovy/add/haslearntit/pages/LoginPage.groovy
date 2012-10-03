@@ -1,6 +1,8 @@
 package add.haslearntit.pages
 
 import geb.Page
+import add.haslearntit.pages.modules.LoggedInUserModule
+import add.haslearntit.pages.modules.MessagesModule
 
 
 class LoginPage extends Page {
@@ -9,12 +11,16 @@ class LoginPage extends Page {
 	
 	static at = { $("div#loginForm").displayed }
 	
+    static content = {
+        loggedInAs { module LoggedInUserModule }
+        messages {module MessagesModule}
+    }
 	
 	def enterLoginAndPassword = {
 		login, password ->
 		
-		$("form").loginField = login;
-		$("form").passwordField = password;
+		$("form").login = login;
+		$("form").password = password;
 		
 	}
 	

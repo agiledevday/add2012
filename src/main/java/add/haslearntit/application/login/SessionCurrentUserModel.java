@@ -8,33 +8,39 @@ import add.haslearntit.domain.user.User;
 
 public class SessionCurrentUserModel implements CurrentUserModel {
 
-	private final Application application;
+    private transient final Application application;
 
-	public SessionCurrentUserModel(Application application) {
-		this.application = application;
-	}
+    public SessionCurrentUserModel(Application application) {
+        this.application = application;
+    }
 
-	@Override
-	public User getObject() {
-		
-		User currentUser = (User) application.getSessionStore().getAttribute(getRequest(), "currentUser");
+    @Override
+    public User getObject() {
 
-		return currentUser != null ? currentUser : User.ANONYMOUS;
-	}
+        return anonymousIfUserEmpty(fetchUserFromSession());
+    }
 
-	@Override
-	public void setObject(User user) {
-		application.getSessionStore().setAttribute(getRequest(), "currentUser", user);
-	}
+    private User anonymousIfUserEmpty(User currentUser) {
+        return currentUser != null ? currentUser : User.ANONYMOUS;
+    }
 
-	private Request getRequest() {
-		Request request = RequestCycle.get() != null ? RequestCycle.get().getRequest() : null;
-		return request;
-	}
+    private User fetchUserFromSession() {
+        return (User) application.getSessionStore().getAttribute(getRequest(), "currentUser");
+    }
 
-	@Override
-	public void detach() {
-		
-	}
+    @Override
+    public void setObject(User user) {
+        application.getSessionStore().setAttribute(getRequest(), "currentUser", user);
+    }
+
+    private Request getRequest() {
+        Request request = RequestCycle.get() != null ? RequestCycle.get().getRequest() : null;
+        return request;
+    }
+
+    @Override
+    public void detach() {
+
+    }
 
 }

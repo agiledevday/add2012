@@ -1,26 +1,21 @@
 Feature: User is able to login with credentials to application
 
-Scenario: Successfull login
+Scenario: Go to skills page after successfull login
 	Given I enter login screen
 	When I enter valid login and password
 	Then I should see my user skills page
 
-Scenario: Login with no password
+Scenario Outline: Validate presence of login/password
 	Given I enter login screen
-	When I enter valid login and no password
-	Then I should see error with no password
+	When I sign in with following credentials <login>/<password>
+	Then login form should contain error '<message>'
 
-Scenario: Login with no login
-	Given I enter login screen
-	When I enter no login and password
-	Then I should see error with no login
+	Examples:
+		| login 	| password 	| message 						|
+		| 			| not empty | Please enter your login!		| 
+		| not empty | 			| Please enter your password!	|  
 	
 Scenario: Display logged user
-	Given I have been logged in successfully
+	Given I have been logged in successfully as 'Diligent Student'
 	When I enter any page
-	Then I should see that I am logged in
-	
-Scenario: Redirect anonymous user to login page
-	Given I am not logged in
-	When I enter any page
-	Then I should see login page
+	Then I should see that I am logged in as 'Diligent Student'
