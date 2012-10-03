@@ -14,6 +14,20 @@ Scenario Outline: Validate presence of login/password
 		| login 	| password 	| message 						|
 		| 			| not empty | Please enter your login!		| 
 		| not empty | 			| Please enter your password!	|  
+
+Scenario Outline: Authenticate credentials provided by user
+	Given there are users with following credentials
+		| login 		| password 			|
+		| valid login	| valid password	|
+	Given I enter login screen
+	When I sign in with following credentials <login>/<password>
+	Then <result>
+
+	Examples:
+		| login 		| password 			| result 															|
+		| invalid login	| valid password 	| login form should contain error 'Invalid username or password!'	| 
+		| valid login	| invalid password 	| login form should contain error 'Invalid username or password!'	| 
+		| valid login	| valid password 	| I should see that I am logged in as 'valid login'					| 
 	
 Scenario: Display logged user
 	Given I have been logged in successfully as 'Diligent Student'
