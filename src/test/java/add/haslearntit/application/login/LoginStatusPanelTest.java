@@ -27,7 +27,7 @@ public class LoginStatusPanelTest extends HasLearntItBaseTest{
 	public void shouldDisplayNameOfCurrentUser() throws Exception {
 		
 		// given:
-		currentUserModelContain(new User("fancyPants"));
+		currentUserModelContain(new User("fancyPants", ""));
 		
 		// when:
 		// then:

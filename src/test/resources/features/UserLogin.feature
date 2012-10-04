@@ -15,7 +15,7 @@ Scenario Outline: Validate presence of login/password
 		| 			| not empty | Please enter your login!		| 
 		| not empty | 			| Please enter your password!	|  
 
-Scenario Outline: Authenticate credentials provided by user
+Scenario Outline: Authenticate with credentials provided by user
 	Given there are users with following credentials
 		| login 		| password 			|
 		| valid login	| valid password	|
