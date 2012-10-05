@@ -4,10 +4,10 @@ import static java.util.Arrays.asList;
 
 import java.util.List;
 
-import add.haslearntit.HasLearntItBaseWicketIT;
 import org.apache.wicket.model.util.ListModel;
 import org.junit.Test;
 
+import add.haslearntit.HasLearntItBaseWicketIT;
 import add.haslearntit.domain.skills.Skill;
 
 public class LearntSkillsListTest extends HasLearntItBaseWicketIT {
@@ -74,8 +74,9 @@ public class LearntSkillsListTest extends HasLearntItBaseWicketIT {
 	}
 
 	public class StaticSkillsListModel extends ListModel<Skill> implements SkillsListModel {
-		
-		public StaticSkillsListModel(List<Skill> skills) {
+        private static final long serialVersionUID = 8429868990688738518L;
+
+        public StaticSkillsListModel(List<Skill> skills) {
 			super(skills);
 		}
 		
