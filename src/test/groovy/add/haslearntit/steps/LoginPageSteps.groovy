@@ -1,9 +1,6 @@
 package add.haslearntit.steps
 
 import geb.Browser
-import add.haslearntit.domain.user.User
-import add.haslearntit.domain.user.UserRepository
-import add.haslearntit.hooks.Context
 import add.haslearntit.pages.LoginPage
 import add.haslearntit.pages.UserSkillsPage
 this.metaClass.mixin(cucumber.runtime.groovy.Hooks)
@@ -31,10 +28,8 @@ Given(~'^I enter login screen$') {
 When(~'^I enter valid login and password$') {
     ->
 
-    Context.get().getBean(UserRepository.class).store(new User("validUser", "validPassword"));
-    
     browser.at LoginPage
-    browser.page.enterLoginAndPassword("validUser", "validPassword");
+    browser.page.enterLoginAndPassword("tomek", "abc123");
     browser.page.submitLoginForm();
 }
 
@@ -42,6 +37,14 @@ Then(~'^I should see my user skills page$') {
     ->
 
     browser.at UserSkillsPage
+}
+
+Given(~'^I have been logged in successfully$') {
+    ->
+
+    browser.at LoginPage
+    browser.page.enterLoginAndPassword("tomek", "abc123");
+    browser.page.submitLoginForm();
 }
 
 When(~'^I enter any page$') { -> browser.to UserSkillsPage }
@@ -52,10 +55,8 @@ Given(~'^I am not logged in$') {
 
 Given(~'^I have been logged in successfully as \'(.*)\'$') { String username ->
 
-    Context.get().getBean(UserRepository.class).store(new User(username, "validPassword"));
-
-    browser.to LoginPage
-    browser.page.enterLoginAndPassword(username, "validPassword");
+    browser.at LoginPage
+    browser.page.enterLoginAndPassword(username, "abc123");
     browser.page.submitLoginForm();
 }
 

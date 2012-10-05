@@ -19,6 +19,7 @@ public abstract class HasLearntItBaseTest {
 
 	protected WicketTester tester;
 
+	//remember to add any new mock to applicationContext
 	@Mock
 	protected SkillsRepository skillsRepository;
 
@@ -35,18 +36,12 @@ public abstract class HasLearntItBaseTest {
 	}
 
 	private void createApplicationContext() {
+		applicationContext = new ApplicationContextMock();
 
-	    applicationContext = new ApplicationContextMock();
 		applicationContext.putBean("skillsRepository", skillsRepository);
-		
-		setupApplicationContext();
-		
 	}
 
-	protected void setupApplicationContext() {
-    }
-
-    protected class HasLearntItTestApplication extends HasLearntItApplication {
+	protected class HasLearntItTestApplication extends HasLearntItApplication {
 		@Override
 		public RuntimeConfigurationType getConfigurationType() {
 			return RuntimeConfigurationType.DEVELOPMENT;

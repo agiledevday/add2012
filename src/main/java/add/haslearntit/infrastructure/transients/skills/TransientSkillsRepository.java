@@ -9,6 +9,8 @@ import add.haslearntit.domain.skills.SkillsRepository;
 
 public class TransientSkillsRepository implements SkillsRepository{
 
+	private static SkillsRepository instance = new TransientSkillsRepository();
+	
 	private List<Skill> storage;
 	
 	public TransientSkillsRepository() {
@@ -23,8 +25,12 @@ public class TransientSkillsRepository implements SkillsRepository{
 		return Collections.unmodifiableList(storage);
 	}
 
-	public void clear(){
-		storage.clear();
+	public static SkillsRepository get() {
+		return instance;
+	}
+	
+	public static void clear(){
+		instance = new TransientSkillsRepository();
 	}
 
 }

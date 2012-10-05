@@ -42,7 +42,7 @@ public class CurrentUserModelTest {
 	public void shouldGetCurrentUserFromSession() throws Exception {
 		
 		// given:
-		sessionContainEntry("currentUser", new User("John Signedin", ""));
+		sessionContainEntry("currentUser", new User("John Signedin"));
 		
 		// when:
 		User user = currentUserModel.getObject();
@@ -66,7 +66,7 @@ public class CurrentUserModelTest {
 	public void shouldSetCurrentUser() throws Exception {
 		
 		// given:
-		User user = new User("John Signedin", "");
+		User user = new User("John Signedin");
 
 		// when:
 		currentUserModel.setObject(user);
