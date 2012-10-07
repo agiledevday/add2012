@@ -12,6 +12,8 @@ import cucumber.junit.Cucumber.Options;
 @Options(
 		features = "src/test/resources/features",
 		/* monochrome = true, */
+		//uncomment a line bellow to run only one feature/scenario (marked as @currentlyInDevelopment
+//		tags = {"@currentlyInDevelopment"},
 		format = { "pretty", "html:target/cucumber-html-report" }
 		)
 public class CucumberAcceptanceIT {

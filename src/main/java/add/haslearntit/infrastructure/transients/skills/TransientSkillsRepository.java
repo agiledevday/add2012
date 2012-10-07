@@ -7,6 +7,9 @@ import java.util.List;
 import add.haslearntit.domain.skills.Skill;
 import add.haslearntit.domain.skills.SkillsRepository;
 
+import static ch.lambdaj.Lambda.filter;
+import static org.hamcrest.text.StringStartsWith.startsWith;
+
 public class TransientSkillsRepository implements SkillsRepository{
 
 	private static SkillsRepository instance = new TransientSkillsRepository();
@@ -23,6 +26,11 @@ public class TransientSkillsRepository implements SkillsRepository{
 
 	public List<Skill> loadAll() {
 		return Collections.unmodifiableList(storage);
+	}
+
+	@Override
+	public List<Skill> loadByNamePrefix(String namePrefix) {
+		return Collections.unmodifiableList(filter(startsWith(namePrefix), storage));
 	}
 
 	public static SkillsRepository get() {
