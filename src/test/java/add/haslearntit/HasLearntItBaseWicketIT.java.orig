@@ -1,7 +1,5 @@
 package add.haslearntit;
 
-import add.haslearntit.application.HasLearntItApplication;
-import add.haslearntit.domain.skills.SkillsRepository;
 import org.apache.wicket.RuntimeConfigurationType;
 import org.apache.wicket.spring.injection.annot.SpringComponentInjector;
 import org.apache.wicket.spring.test.ApplicationContextMock;
@@ -11,8 +9,15 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import add.haslearntit.application.HasLearntItApplication;
+import add.haslearntit.domain.skills.SkillsRepository;
+
+<<<<<<< HEAD:src/test/java/add/haslearntit/HasLearntItBaseTest.java
 @RunWith(MockitoJUnitRunner.class)
-public abstract class HasLearntItBaseWicketIT {
+public abstract class HasLearntItBaseTest {
+=======
+public class HasLearntItBaseWicketIT {
+>>>>>>> d57bfb77c7b213e23b4ee5b9204eb773cf259fc2:src/test/java/add/haslearntit/HasLearntItBaseWicketIT.java
 
 	protected ApplicationContextMock applicationContext;
 

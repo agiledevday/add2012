@@ -13,7 +13,7 @@ Scenario Outline: Prevent user from sumbiting incomplete skill description
 		| what 		| difficult 	| time 	 | 
 		| <skill>	| <difficulty> 	| <time> | 
 	And I try to submit my skill
-	Then I should be notified with message '<message>'
+	Then new skill form should contain error '<message>'
 	And skill should not be recorded
 
 	Examples:

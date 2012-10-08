@@ -14,5 +14,5 @@
 <listAttribute key="org.eclipse.debug.ui.favoriteGroups">
 <listEntry value="org.eclipse.debug.ui.launchGroup.run"/>
 </listAttribute>
-<stringAttribute key="org.eclipse.jdt.launching.WORKING_DIRECTORY" value="C:/Users/pragmatists/ADD/workspace-add/add2012"/>
+<stringAttribute key="org.eclipse.jdt.launching.WORKING_DIRECTORY" value="./add2012"/>
 </launchConfiguration>

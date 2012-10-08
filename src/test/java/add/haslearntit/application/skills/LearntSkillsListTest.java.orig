@@ -4,10 +4,17 @@ import static java.util.Arrays.asList;
 
 import java.util.List;
 
+<<<<<<< HEAD
 import org.apache.wicket.model.util.ListModel;
 import org.junit.Test;
 
+import add.haslearntit.HasLearntItBaseTest;
+=======
 import add.haslearntit.HasLearntItBaseWicketIT;
+import org.apache.wicket.model.util.ListModel;
+import org.junit.Test;
+
+>>>>>>> d57bfb77c7b213e23b4ee5b9204eb773cf259fc2
 import add.haslearntit.domain.skills.Skill;
 
 public class LearntSkillsListTest extends HasLearntItBaseWicketIT {

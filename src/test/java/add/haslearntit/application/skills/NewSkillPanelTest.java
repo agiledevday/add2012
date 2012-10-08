@@ -5,7 +5,6 @@ import static org.junit.Assert.assertThat;
 import static org.mockito.Matchers.argThat;
 import static org.mockito.Mockito.verify;
 
-import add.haslearntit.HasLearntItBaseWicketIT;
 import org.apache.wicket.util.tester.FormTester;
 import org.hamcrest.BaseMatcher;
 import org.hamcrest.Description;
@@ -15,6 +14,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import add.haslearntit.HasLearntItBaseWicketIT;
 import add.haslearntit.domain.skills.Skill;
 
 @RunWith(MockitoJUnitRunner.class)
