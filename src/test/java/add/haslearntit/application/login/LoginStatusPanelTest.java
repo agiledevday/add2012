@@ -8,11 +8,11 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import add.haslearntit.HasLearntItBaseTest;
+import add.haslearntit.HasLearntItBaseWicketIT;
 import add.haslearntit.domain.user.User;
 
 @RunWith(MockitoJUnitRunner.class)
-public class LoginStatusPanelTest extends HasLearntItBaseTest{
+public class LoginStatusPanelTest extends HasLearntItBaseWicketIT{
 
 	@Mock
 	private CurrentUserModel currentUserModel;

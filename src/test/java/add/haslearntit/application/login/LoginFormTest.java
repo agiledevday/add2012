@@ -12,13 +12,13 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import add.haslearntit.HasLearntItBaseTest;
+import add.haslearntit.HasLearntItBaseWicketIT;
 import add.haslearntit.domain.user.User;
 import add.haslearntit.domain.user.UserRepository;
 import add.haslearntit.domain.user.UserWithLoginNotFoundException;
 
 @RunWith(MockitoJUnitRunner.class)
-public class LoginFormTest extends HasLearntItBaseTest{
+public class LoginFormTest extends HasLearntItBaseWicketIT{
 
     @Mock
     private UserRepository userRepository;

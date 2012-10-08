@@ -9,7 +9,7 @@ import org.junit.Before;
 import add.haslearntit.domain.skills.Skill;
 import add.haslearntit.domain.skills.SkillsRepositoryContractTest;
 
-public class HibernateSkillsRepositoryTest extends SkillsRepositoryContractTest {
+public class HibernateSkillsRepositoryIT extends SkillsRepositoryContractTest {
 
 	private SessionFactory sessionFactory;
 	private Session session;
@@ -58,7 +58,8 @@ public class HibernateSkillsRepositoryTest extends SkillsRepositoryContractTest 
 		configuration.setProperty("hibernate.connection.username", "sa");
 		configuration.setProperty("hibernate.connection.password", "");
 		configuration.setProperty("hibernate.current_session_context_class","thread");
-		configuration.setProperty("hibernate.show_sql", "true");
+//		//disabled - SQL logging was enabled in a logback configuration and it doesn't make a mesh on a console
+//		configuration.setProperty("hibernate.show_sql", "true");
 		configuration.setProperty("hibernate.format_sql", "true");
 		configuration.setProperty("hibernate.hbm2ddl.auto", "create-drop");
 

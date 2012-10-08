@@ -5,11 +5,11 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import add.haslearntit.HasLearntItBaseTest;
+import add.haslearntit.HasLearntItBaseWicketIT;
 import add.haslearntit.domain.user.UserRepository;
 
 @RunWith(MockitoJUnitRunner.class)
-public class LoginPageTest extends HasLearntItBaseTest{
+public class LoginPageTest extends HasLearntItBaseWicketIT{
 
     @Mock
     private UserRepository userRepository;

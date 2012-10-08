@@ -1,0 +1,23 @@
+<configuration>
+
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%-5level %logger{36} - %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<logger name="add.haslearntit" level="DEBUG"/>
+
+	<logger name="org.apache.wicket" level="INFO"/>
+	<logger name="org.apache.wicket.protocol.http.HttpSessionStore" level="INFO"/>
+	<logger name="org.apache.wicket.version" level="INFO"/>
+	<logger name="org.apache.wicket.RequestCycle" level="INFO"/>
+
+	<!-- MZA: Do we need it? -->
+	<logger name="org.hibernate.SQL" level="DEBUG"/>
+
+	<root level="INFO">
+		<appender-ref ref="STDOUT"/>
+	</root>
+
+</configuration>

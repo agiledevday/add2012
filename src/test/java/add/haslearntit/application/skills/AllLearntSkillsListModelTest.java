@@ -9,21 +9,21 @@ import static org.mockito.Mockito.when;
 
 import java.util.List;
 
-import add.haslearntit.HasLearntItBaseTest;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import add.haslearntit.HasLearntItBaseWicketIT;
 import add.haslearntit.domain.skills.Skill;
 
 @RunWith(MockitoJUnitRunner.class)
-public class AllLearntSkillsListModelTest extends HasLearntItBaseTest{
+public class AllLearntSkillsListModelTest extends HasLearntItBaseWicketIT {
 
 	private SkillsListModel model;
 
 	@Before
-	public void setUp() throws Exception {
+	public void setUp() {
 
 		model = new AllLearntSkillsListModel(skillsRepository);
 	}

@@ -5,9 +5,6 @@ import static org.junit.matchers.JUnitMatchers.hasItem;
 
 import org.junit.Test;
 
-import add.haslearntit.domain.skills.Skill;
-import add.haslearntit.domain.skills.SkillsRepository;
-
 public abstract class SkillsRepositoryContractTest {
 
 	protected SkillsRepository repository;

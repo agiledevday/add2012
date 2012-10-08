@@ -3,10 +3,10 @@ package add.haslearntit.application;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.junit.Test;
 
-import add.haslearntit.HasLearntItBaseTest;
+import add.haslearntit.HasLearntItBaseWicketIT;
 import add.haslearntit.application.login.LoginStatusPanel;
 
-public class TemplatePageTest extends HasLearntItBaseTest{
+public class TemplatePageTest extends HasLearntItBaseWicketIT{
 
 	@Test
 	public void shouldContainFeedbackMessagesIfError() throws Exception {

@@ -14,7 +14,7 @@ import cucumber.junit.Cucumber.Options;
 		/* monochrome = true, */
 		format = { "pretty", "html:target/cucumber-html-report" }
 		)
-public class CucumberAcceptanceTest {
+public class CucumberAcceptanceIT {
 
 	public static Server server;
 
