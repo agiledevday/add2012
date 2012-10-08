@@ -1,25 +1,19 @@
 package add.haslearntit.application.skills;
 
+import static org.mockito.Mockito.when;
+
 import java.util.Arrays;
 
-import add.haslearntit.HasLearntItBaseWicketIT;
-import add.haslearntit.domain.skills.Skill;
-
-import org.apache.wicket.Component;
-import org.apache.wicket.ajax.form.AjaxFormChoiceComponentUpdatingBehavior;
-import org.apache.wicket.behavior.AbstractAjaxBehavior;
 import org.apache.wicket.extensions.ajax.markup.html.autocomplete.AbstractAutoCompleteBehavior;
-import org.apache.wicket.markup.html.form.TextField;
-import org.apache.wicket.util.tester.FormTester;
+import org.apache.wicket.extensions.ajax.markup.html.autocomplete.AutoCompleteSettings;
 import org.apache.wicket.util.tester.WicketTesterHelper;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import static org.fest.assertions.Assertions.assertThat;
-import static org.mockito.Mockito.when;
+import add.haslearntit.HasLearntItBaseWicketIT;
+import add.haslearntit.domain.skills.Skill;
 
 @RunWith(MockitoJUnitRunner.class)
 public class SkillNameSuggestionTest extends HasLearntItBaseWicketIT {
@@ -40,10 +34,6 @@ public class SkillNameSuggestionTest extends HasLearntItBaseWicketIT {
 		tester.assertContains("Jacoco");
 	}
 
-	private void userEntersSkillNamPart(String skillNamePart) {
-		tester.getRequest().setParameter("q", skillNamePart);
-	}
-
 	@Test
 	public void shouldNotShowPopupWhenNoSuggestionAvailable() {
 		//given
@@ -60,4 +50,13 @@ public class SkillNameSuggestionTest extends HasLearntItBaseWicketIT {
 						AbstractAutoCompleteBehavior.class);
 		tester.executeBehavior(behavior);
 	}
+	
+	private void userEntersSkillNamPart(String skillNamePart) {
+		tester.getRequest().setParameter(getAutocompleteParameterName(), skillNamePart);
+	}
+
+	private String getAutocompleteParameterName() {
+		return new AutoCompleteSettings().getParameterName();
+	}
+
 }
