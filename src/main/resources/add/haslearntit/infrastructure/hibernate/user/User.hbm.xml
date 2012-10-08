@@ -6,12 +6,10 @@
 
 <hibernate-mapping default-access="field">
 
-	<class name="add.haslearntit.domain.skills.Skill" table="H_SKILL">
+	<class name="add.haslearntit.domain.user.User" table="H_USER">
 
-		<id name="id" type="uuid-char" column="ID" />
-		<property name="name" column="NAME" />
-		<property name="difficultyLevel" column="DIFF_LVL" />
-		<property name="timeSpent" column="TIME_SPENT" />
+		<id name="name" column="USERNAME" />
+		<property name="password" column="PASSWD" />
 		
 	</class>
 

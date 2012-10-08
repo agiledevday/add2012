@@ -1,4 +1,4 @@
-package add.haslearntit.infrastructure.hibernate.skills;
+package add.haslearntit.infrastructure.hibernate.user;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -6,11 +6,11 @@ import org.hibernate.cfg.Configuration;
 import org.junit.After;
 import org.junit.Before;
 
-import add.haslearntit.domain.skills.Skill;
-import add.haslearntit.domain.skills.SkillsRepositoryContractTest;
+import add.haslearntit.domain.user.User;
+import add.haslearntit.domain.user.UserRepositoryContractTest;
 import add.haslearntit.infrastructure.hibernate.HibernateTestConfiguration;
 
-public class HibernateSkillsRepositoryIT extends SkillsRepositoryContractTest {
+public class HibernateUserRepositoryTest extends UserRepositoryContractTest{
 
     private SessionFactory sessionFactory;
     private Session session;
@@ -19,10 +19,10 @@ public class HibernateSkillsRepositoryIT extends SkillsRepositoryContractTest {
     public void setUp() throws Exception {
 
         buildSessionFactory();
-        repository = new HibernateSkillsRepository(sessionFactory) {
+        repository = new HibernateUserRepository(sessionFactory) {
             @Override
-            public void store(Skill skill) {
-                super.store(skill);
+            public void store(User user) {
+                super.store(user);
                 detachSession();
             }
 
@@ -35,7 +35,7 @@ public class HibernateSkillsRepositoryIT extends SkillsRepositoryContractTest {
 
         cleanupSession();
     }
-
+    
     private void detachSession() {
         session.flush();
         session.clear();
@@ -43,7 +43,7 @@ public class HibernateSkillsRepositoryIT extends SkillsRepositoryContractTest {
 
     private void buildSessionFactory() {
 
-        Configuration configuration = new HibernateTestConfiguration("skills/Skill.hbm.xml").prepareConfiguration();
+        Configuration configuration = new HibernateTestConfiguration("user/User.hbm.xml").prepareConfiguration();
         sessionFactory = configuration.buildSessionFactory();
     }
 
@@ -56,4 +56,5 @@ public class HibernateSkillsRepositoryIT extends SkillsRepositoryContractTest {
         session.getTransaction().rollback();
         session = null;
     }
+    
 }
