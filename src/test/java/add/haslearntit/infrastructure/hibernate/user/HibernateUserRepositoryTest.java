@@ -35,7 +35,7 @@ public class HibernateUserRepositoryTest extends UserRepositoryContractTest{
 
         cleanupSession();
     }
-
+    
     private void detachSession() {
         session.flush();
         session.clear();
