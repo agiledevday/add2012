@@ -3,9 +3,6 @@ package add.haslearntit.hooks
 import org.eclipse.jetty.webapp.WebAppContext
 import org.springframework.context.ApplicationContext
 import org.springframework.orm.hibernate3.LocalSessionFactoryBean
-import org.springframework.web.context.support.WebApplicationContextUtils
-
-import add.haslearntit.CucumberAcceptanceIT
 
 
 this.metaClass.mixin(cucumber.runtime.groovy.Hooks)
@@ -13,10 +10,9 @@ this.metaClass.mixin(cucumber.runtime.groovy.EN)
 
 Before{ scenario ->
 
-	WebAppContext handler = (WebAppContext) CucumberAcceptanceIT.server.getHandler();
-	ApplicationContext ctx = WebApplicationContextUtils.getWebApplicationContext(handler.getServletContext());
+	ApplicationContext context = Context.get();
 	
-	LocalSessionFactoryBean localSessionFactoryBean = ctx.getBean(LocalSessionFactoryBean.class);
+	LocalSessionFactoryBean localSessionFactoryBean = context.getBean(LocalSessionFactoryBean.class);
 	recreateSchema(localSessionFactoryBean);
 	
 }

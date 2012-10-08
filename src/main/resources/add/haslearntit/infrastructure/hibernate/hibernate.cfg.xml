@@ -7,5 +7,6 @@
 <hibernate-configuration>
 	<session-factory>
 		<mapping resource="add/haslearntit/infrastructure/hibernate/skills/Skill.hbm.xml" />
+		<mapping resource="add/haslearntit/infrastructure/hibernate/user/User.hbm.xml" />
 	</session-factory>
 </hibernate-configuration>

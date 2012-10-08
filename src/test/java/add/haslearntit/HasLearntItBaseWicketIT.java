@@ -7,15 +7,17 @@ import org.apache.wicket.spring.injection.annot.SpringComponentInjector;
 import org.apache.wicket.spring.test.ApplicationContextMock;
 import org.apache.wicket.util.tester.WicketTester;
 import org.junit.Before;
+import org.junit.runner.RunWith;
 import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
 
-public class HasLearntItBaseWicketIT {
+@RunWith(MockitoJUnitRunner.class)
+public abstract class HasLearntItBaseWicketIT {
 
 	protected ApplicationContextMock applicationContext;
 
 	protected WicketTester tester;
 
-	//remember to add any new mock to applicationContext
 	@Mock
 	protected SkillsRepository skillsRepository;
 
@@ -32,12 +34,18 @@ public class HasLearntItBaseWicketIT {
 	}
 
 	private void createApplicationContext() {
-		applicationContext = new ApplicationContextMock();
 
+	    applicationContext = new ApplicationContextMock();
 		applicationContext.putBean("skillsRepository", skillsRepository);
+		
+		setupApplicationContext();
+		
 	}
 
-	protected class HasLearntItTestApplication extends HasLearntItApplication {
+	protected void setupApplicationContext() {
+    }
+
+    protected class HasLearntItTestApplication extends HasLearntItApplication {
 		@Override
 		public RuntimeConfigurationType getConfigurationType() {
 			return RuntimeConfigurationType.DEVELOPMENT;
