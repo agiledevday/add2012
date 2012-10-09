@@ -32,7 +32,6 @@ public class NewSkillPanel extends Panel {
 	private SkillsRepository skillsRepository;
 
 	public NewSkillPanel(String id) {
-
 		super(id);
 		add(new NewSkillFrom("newSkillForm"));
 	}
@@ -47,7 +46,6 @@ public class NewSkillPanel extends Panel {
 
 		private void initializeComponents() {
 			FormComponent<String> nameTextField = createSkillNamesAutoCompleteTextField();
-//			nameTextField.setModelObject("ja");
 			add(nameTextField);
 			add(new RequiredTextField<String>("difficulty", difficultyModel));
 			add(new RequiredTextField<String>("time", timeModel));
@@ -74,7 +72,6 @@ public class NewSkillPanel extends Panel {
 				new DefaultCssAutoCompleteTextField<String>("name", nameModel) {
 			@Override
 			protected Iterator<String> getChoices(String input) {
-				System.out.println(format("skills names auto complete input: %s", input));
 				if (input == null) {
 					Collections.emptyIterator();
 				}
