@@ -51,4 +51,16 @@ class UserSkillsPage extends Page {
 
         return $(".encouragementMessage").size() > 0;
     }
+
+    def commentExistsForSkill = { comment, skillName ->
+        return commentsOfSkill(skillName).find {it.text == comment} != null
+    }
+
+    private commentsOfSkill = { skillName ->
+        return findSkillByName(skillName).parent().find(".comment").allElements();
+    }
+
+    private findSkillByName = { skillName ->
+        return $(".skill", text: contains(skillName))
+    }
 }
