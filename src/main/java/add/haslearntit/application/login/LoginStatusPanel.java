@@ -9,17 +9,17 @@ import org.apache.wicket.model.CompoundPropertyModel;
 
 import add.haslearntit.domain.user.User;
 
-public class LoginStatusPanel extends Panel{
+public class LoginStatusPanel extends Panel {
 
-	private final CompoundPropertyModel<User> model;
+    private final CompoundPropertyModel<User> model;
 
-	public LoginStatusPanel(CurrentUserModel currentUserModel) {
-		
-		super("loginStatusPanel");
-		
-		this.model = new CompoundPropertyModel<User>(currentUserModel);
-		
-		add(new Label("currentUser", model.bind(property(on(User.class).getName()))));
-	}
+    public LoginStatusPanel(CurrentUserModel currentUserModel) {
+
+        super("loginStatusPanel");
+
+        this.model = new CompoundPropertyModel<User>(currentUserModel);
+
+        add(new Label("currentUser", model.bind(property(on(User.class).getName()))));
+    }
 
 }
