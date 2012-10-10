@@ -1,78 +1,17 @@
 package add.haslearntit.infrastructure.transients.user;
 
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.instanceOf;
-import static org.junit.Assert.assertThat;
-import static org.junit.matchers.JUnitMatchers.containsString;
 
-import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Test;
 
-import add.haslearntit.domain.user.User;
-import add.haslearntit.domain.user.UserRepository;
-import add.haslearntit.domain.user.UserWithLoginAlreadyExistsException;
-import add.haslearntit.domain.user.UserWithLoginNotFoundException;
+import add.haslearntit.domain.user.UserRepositoryContractTest;
 
 
-public class TransientUserRepositoryTest {
-
-    private UserRepository repository;
+public class TransientUserRepositoryTest extends UserRepositoryContractTest {
 
     @Before
     public void setUp() throws Exception {
 
         repository = new TransientUserRepository();
     }
-    
-    @Test
-    public void shouldUserByLogin() throws Exception {
-        
-        // given:
-        User user = new User("login", "");
-        
-        // when:
-        repository.store(user);
-        repository.store(new User("other", ""));
-        
-        // then:
-        assertThat(repository.loadByLogin("login"), equalTo(user));
-    }
-
-    @Test
-    public void shouldFailMeaningfullyIfAskedForUserThatDoesNotExist() throws Exception {
-        
-        // given:
-        try{
-            // when:
-            repository.loadByLogin("missing user");
-            Assert.fail("expected exception!");
-
-        } catch (Exception exception){
-            
-            // then:
-            assertThat(exception, instanceOf(UserWithLoginNotFoundException.class));
-            assertThat(exception.getMessage(), containsString("missing user"));
-        }
-    }
-
-    @Test
-    public void shouldLoginBeUnique() throws Exception {
-        
-        // given:
-        repository.store(new User("login already taken", ""));
-        try{
-            // when:
-            repository.store(new User("login already taken", ""));
-            Assert.fail("expected exception!");
-
-        } catch (Exception exception){
-            
-            // then:
-            assertThat(exception, instanceOf(UserWithLoginAlreadyExistsException.class));
-            assertThat(exception.getMessage(), containsString("login already taken"));
-        }
-    }
-
     
 }

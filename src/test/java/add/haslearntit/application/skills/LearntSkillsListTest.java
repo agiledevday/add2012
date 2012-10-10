@@ -7,10 +7,10 @@ import java.util.List;
 import org.apache.wicket.model.util.ListModel;
 import org.junit.Test;
 
-import add.haslearntit.HasLearntItBaseTest;
+import add.haslearntit.HasLearntItBaseWicketIT;
 import add.haslearntit.domain.skills.Skill;
 
-public class LearntSkillsListTest extends HasLearntItBaseTest {
+public class LearntSkillsListTest extends HasLearntItBaseWicketIT {
 
 	@Test
 	public void shouldDisplayAllLearntSkills() throws Exception {

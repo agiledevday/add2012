@@ -94,9 +94,9 @@ public class SkillTest {
 
 	@Test
 	@Parameters(method="earnedPoints")
-	public void shouldCountPointsForDifficultyAndTime(Difficutly difficutly, int hoursSpent, int expectedPoints) {
+	public void shouldCountPointsForDifficultyAndTime(Difficulty difficulty, int hoursSpent, int expectedPoints) {
 		// given:
-		Skill someSkill = aSkill("someSkill", difficutly, hoursSpent);
+		Skill someSkill = aSkill("someSkill", difficulty, hoursSpent);
 		// when:
 		int earnedPoints = someSkill.getEarnedPoints();
 		// then:
@@ -116,10 +116,10 @@ public class SkillTest {
 	@SuppressWarnings("unused")
 	private Object[] earnedPoints() {
 		return $(
-				$(Difficutly.EASY, 1, 1),
-				$(Difficutly.MODERATE, 1, 2),
-				$(Difficutly.HARD, 1, 5),
-				$(Difficutly.MODERATE, 10, 20)
+				$(Difficulty.EASY, 1, 1),
+				$(Difficulty.MODERATE, 1, 2),
+				$(Difficulty.HARD, 1, 5),
+				$(Difficulty.MODERATE, 10, 20)
 				);
 	}
 	
@@ -142,7 +142,7 @@ public class SkillTest {
 	}
 
 
-	private Skill aSkill(String name, Difficutly difficulty, int durationHours) {
+	private Skill aSkill(String name, Difficulty difficulty, int durationHours) {
 		return new Skill(name, difficulty.name(), Integer.toString(durationHours));
 	}
 }
