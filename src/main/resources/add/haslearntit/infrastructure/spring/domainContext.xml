@@ -12,5 +12,7 @@
 	<bean id="usersRepository" class="add.haslearntit.infrastructure.hibernate.user.HibernateUserRepository">
 		<constructor-arg ref="sessionFactory"/>
     </bean>
+	<bean id="commentRepository" class="add.haslearntit.infrastructure.transients.comments.TransientCommentsRepository">
+    </bean>
 
 </beans>

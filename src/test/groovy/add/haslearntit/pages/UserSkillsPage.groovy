@@ -63,4 +63,9 @@ class UserSkillsPage extends Page {
     private findSkillByName = { skillName ->
         return $(".skill", text: contains(skillName))
     }
+
+    public void addComment(String comment, String skillName) {
+        findSkillByName(skillName).parent().find("form").newComment = comment;
+        findSkillByName(skillName).parent().find("input", type: "submit").click();
+    }
 }

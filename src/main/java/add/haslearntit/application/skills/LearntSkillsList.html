@@ -5,9 +5,14 @@
 			<div class="avatar"></div>
 			<div wicket:id="skill" class="skill"></div>
 			<div wicket:id="skillPoints" class="points"></div>
-			<ul class="comments">
-				<div class="comment">What a faboulous skill you learned today!</div>
+			
+			<ul wicket:id="comments" class="comments">
+				<div wicket:id="comment" class="comment"></div>
 			</ul>
+			<form wicket:id="commentForm">
+				<input wicket:id="newComment" name="newComment" type="text">
+				<input type="submit" value="Dodaj">
+			</form>
 		</li>
 	</ul>
 </wicket:panel>
