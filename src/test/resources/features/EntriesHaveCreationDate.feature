@@ -5,7 +5,7 @@ Feature: Each entry should have creation date
         When I try to submit my skill
         Then there should be entry with creation date '2010-01-12 12:00'
 
-    Scenario: Display effective date in timeline
+    Scenario Outline: Display effective date in timeline
         Given current date and time is '2010-01-01 12:00' 
         When I enter following entry details
             | creationDate     |

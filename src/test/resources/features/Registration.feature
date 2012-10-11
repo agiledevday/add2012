@@ -1,8 +1,8 @@
 Feature: User is able to register new account in application
 
-    Scenario: Validate registration form against required data
+    Scenario Outline: Validate registration form against required data
         Given I enter registration page
-        when I try to submit registration form with following data
+        When I try to submit registration form with following data
             | login     | password      | email     |
             | <login>   | <password>    | <email>   |
         Then I should see message <errorMessage>
@@ -14,9 +14,9 @@ Feature: User is able to register new account in application
             | notEmpty  |           | notEmpty  | Please provide your password! |
             | notEmpty  | notEmpty  |           | Please provide your email!    |
 
-    Scenario: Validate registration form against matching passwords
+    Scenario Outline: Validate registration form against matching passwords
         Given I enter registration page
-        when I try to submit registration form with following data
+        When I try to submit registration form with following data
             | password      | passwordConfirmation      |
             | <password>    | <passwordConfirmation>    |
         Then I should see message <errorMessage>
@@ -26,9 +26,9 @@ Feature: User is able to register new account in application
             | password      | passwordConfirmation  | errorMessage              |
             | somePassword  | someOtherPassword     | Password does not match!  |
 
-    Scenario: Validate registration form against password strength
+    Scenario Outline: Validate registration form against password strength
         Given I enter registration page
-        when I try to submit registration form with following data
+        When I try to submit registration form with following data
             | password      | passwordConfirmation  |
             | <password>    | <password>            |
         Then I should see message <errorMessage>
@@ -42,7 +42,7 @@ Feature: User is able to register new account in application
             | noNumbers        | Password has to contain numbers!                   |
             | 0SpecialChars    | Password has to contain at least one of !@#$%^&*   |
 
-    Scenario: Validate email in registration form
+    Scenario Outline: Validate email in registration form
         Given I enter registration page
         When I try to submit registration form with following data
             | email             |

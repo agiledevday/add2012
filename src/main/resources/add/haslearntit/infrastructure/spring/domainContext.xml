@@ -6,7 +6,7 @@
 
 	<import resource="classpath:/add/haslearntit/infrastructure/spring/persistenceContext.xml" />
 
-	<bean id="skillsRepository" class="add.haslearntit.infrastructure.hibernate.skills.HibernateSkillsRepository">
+	<bean id="skillsRepository" class="add.haslearntit.infrastructure.hibernate.entry.HibernateEntryRepository">
 		<constructor-arg ref="sessionFactory"/>
 	</bean>
 	<bean id="usersRepository" class="add.haslearntit.infrastructure.hibernate.user.HibernateUserRepository">

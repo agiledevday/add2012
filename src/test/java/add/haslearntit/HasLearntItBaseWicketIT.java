@@ -1,7 +1,8 @@
 package add.haslearntit;
 
 import add.haslearntit.application.HasLearntItApplication;
-import add.haslearntit.domain.skills.SkillsRepository;
+import add.haslearntit.domain.entry.EntryRepository;
+
 import org.apache.wicket.RuntimeConfigurationType;
 import org.apache.wicket.spring.injection.annot.SpringComponentInjector;
 import org.apache.wicket.spring.test.ApplicationContextMock;
@@ -19,7 +20,7 @@ public abstract class HasLearntItBaseWicketIT {
 	protected WicketTester tester;
 
 	@Mock
-	protected SkillsRepository skillsRepository;
+	protected EntryRepository entryRepository;
 
 
 	@Before
@@ -36,7 +37,7 @@ public abstract class HasLearntItBaseWicketIT {
 	private void createApplicationContext() {
 
 	    applicationContext = new ApplicationContextMock();
-		applicationContext.putBean("skillsRepository", skillsRepository);
+		applicationContext.putBean("entryRepository", entryRepository);
 		
 		setupApplicationContext();
 		

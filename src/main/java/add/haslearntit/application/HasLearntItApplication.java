@@ -3,14 +3,14 @@ package add.haslearntit.application;
 import org.apache.wicket.protocol.http.WebApplication;
 import org.apache.wicket.spring.injection.annot.SpringComponentInjector;
 
+import add.haslearntit.application.entry.DashboardPage;
 import add.haslearntit.application.login.LoginPage;
-import add.haslearntit.application.skills.UserSkillsPage;
 
 public class HasLearntItApplication extends WebApplication {
 
 	@Override
-	public Class<UserSkillsPage> getHomePage() {
-		return UserSkillsPage.class;
+	public Class<DashboardPage> getHomePage() {
+		return DashboardPage.class;
 	}
 
 	private Class<LoginPage> getLoginPage() {
@@ -21,7 +21,7 @@ public class HasLearntItApplication extends WebApplication {
 	public void init() {
 
 		super.init();
-		mountPage("/user", getHomePage());
+		mountPage("/home", getHomePage());
 		mountPage("/login", getLoginPage());
 		getComponentInstantiationListeners().add(new SpringComponentInjector(this));
 	}
