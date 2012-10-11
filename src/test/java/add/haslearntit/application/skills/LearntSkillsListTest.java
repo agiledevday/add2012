@@ -74,8 +74,9 @@ public class LearntSkillsListTest extends HasLearntItBaseWicketIT {
 	}
 
 	public class StaticSkillsListModel extends ListModel<Skill> implements SkillsListModel {
-		
-		public StaticSkillsListModel(List<Skill> skills) {
+        private static final long serialVersionUID = 8429868990688738518L;
+
+        public StaticSkillsListModel(List<Skill> skills) {
 			super(skills);
 		}
 		
