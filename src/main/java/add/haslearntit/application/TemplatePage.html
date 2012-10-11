@@ -1,33 +1,409 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<link rel="stylesheet" href="resources/css/style2.css" type="text/css" />
-	<title>Has Learnt It</title>
-</head>
-<body>
+<meta http-equiv="Content-Type" content="text/html">
+<meta charset="UTF-8">
+<title>Has Learnt It</title>
 
-	<div class="container">
-		<div class="top">
-			<div class="header">
-				<div class="logo"></div>
-				<div class="right">
-					<a>Settings</a> 
-					<a>
-						<div wicket:id="loginStatusPanel" class="loggedIn">
-							John	
-						</div>
-					</a>
+<script src="js/modernizr-1.7.min.js"></script>
+
+<link rel="stylesheet" type="text/css" href="resources/css/reset.css" media="screen" title="html5doctor.com Reset Stylesheet" />
+<link rel="stylesheet" type="text/css" href="resources/css/css3.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="resources/css/general.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="resources/css/grid.css" media="screen" />
+<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/ui-lightness/jquery-ui.css" type="text/css" media="all" />
+
+<link rel="stylesheet" type="text/css" href="resources/css/haslearntit.css" media="screen" />
+
+<script src="https://www.google.com/jsapi?key=ABQIAAAAUxUCpv_-wchVMBPB7LVQnRToRG0_EwnD46K32g5KL4I8_QPFRhSN0FGRemLxhNwTuWDoZMMht4aUrA" type="text/javascript"></script>
+<!-- 
+FIXME get rid of this fake implementations below this comment:)
+begining of uggly js.. ;)
+ -->
+<script type="text/javascript">
+	google.load("jquery", "1.7.1");
+	google.load("jqueryui", "1.8.16");
+
+	function OnLoad() {
+		$(document)
+				.ready(
+						function() {
+							$("#datepicker").datepicker({
+								onSelect : function(dateText, inst) {
+									$('#dropdown-choose-date').text(dateText);
+									hideDiv($(this));
+								}
+							});
+
+							$("div.clickable").click(function() {
+								window.location = $(this).attr("url");
+							});
+
+							$(".clickable-text").click(function(e) {
+								var name = '#' + $(this).attr("dropdown-name");
+								if ($(name).is(":visible")) {
+									hideDiv($(name));
+								} else {
+									var position = $(this).offset();
+									$(name).offset({
+										top : position.top + 30,
+										left : position.left
+									});
+									$(name).show();
+								}
+							});
+
+							$(".dropdown-selection").click(
+									function(e) {
+										var selection = $(this).text();
+										var dropdown = $(this).parent()
+												.parent().parent();
+										$('#dropdown-' + dropdown.attr("id"))
+												.text(selection);
+										hideDiv(dropdown);
+									});
+
+							$(".delete-comment").click(
+									function(e) {
+										var id = $(this).parent().parent()
+												.attr('comment-id');
+										$(this).parent().parent().remove();
+									});
+
+							$("#entry")
+									.submit(
+											function() {
+												var date = new Date();
+												$
+														.ajax({
+															url : "/entry/submit",
+															type : "POST",
+															data : {
+																when : 'today',
+																text : $(
+																		'#skill')
+																		.val(),
+																difficulty : $(
+																		'#dropdown-choose-level')
+																		.text(),
+																learningtime : $(
+																		'#learningtime')
+																		.val()
+															},
+															success : function() {
+																$("#wall")
+																		.prepend(
+																				//FIXME get rid of this fake implementation :) 
+																				'<div class="entry-box"><div class="entry-photo"><img src="http://www.gravatar.com/avatar/c0eef6a3371b35bd35f36aa99bbb7d57.png" /></div>'
+																						+ '<div style="display: table; float: left;"><div class="entry-text"><a href="#">Krzysiek Kozio³</a> '
+																						+ $(
+																								'#dropdown-choose-type')
+																								.text()
+																						+ '<span class="emphasized">'
+																						+ $(
+																								'#skill')
+																								.val()
+																						+ '</span> today.<br />'
+																						+ 'It was '
+																						+ $(
+																								'#dropdown-choose-level')
+																								.text()
+																						+ ' and it took him '
+																						+ $(
+																								'#learningtime')
+																								.val()
+																						+ ' '
+																						+ $(
+																								'#dropdown-choose-time')
+																								.text()
+																						+ '(of total 18 hours)<br /> He earned 15 points!'
+																						+ '</div><div class="comment-box"><a href="#" style="color: #aaa;" onclick="$(\'#comment-1\').show();">Leave a comment</a>'
+																						+ '</div><div id="comment-1" class="comment-box comments" style="display: table; display: none;"><div class="comment-input">'
+																						+ '<form class="comment-textfield"><input type="text" id="comment-1-input" placeholder="Leave a comment..."/></form></div></div>'
+																						+ '</div><div class="entry-date">Dzisiaj, '
+																						+ date
+																								.getHours()
+																						+ ':'
+																						+ date
+																								.getMinutes()
+																						+ '</div></div>');
+																$(this)
+																		.addClass(
+																				"done");
+																updateTrends();
+															},
+															error : function() {
+																alert('Fake implementation :)');
+															}
+														})
+												return false;
+											});
+							//FIXME get rid of this fake implementation :) 
+							$(".comment-textfield")
+									.submit(
+											function() {
+												var date = new Date();
+												$(this)
+														.parent()
+														.parent()
+														.prepend(
+																'<div class="entry-photo"><img src="http://www.gravatar.com/avatar/c0eef6a3371b35bd35f36aa99bbb7d57.png" /></div>'
+																		+ '<div class="entry-text comment-container"><p class="comment-author"><a href="#">Krzysiek Kozio³</a></p><p class="comment-text">'
+																		+ $(
+																				'#'
+																						+ $(
+																								this)
+																								.parent()
+																								.parent()
+																								.attr(
+																										'id')
+																						+ '-input')
+																				.val()
+																		+ '</p><span class="entry-date">Dzisiaj, '
+																		+ date
+																				.getHours()
+																		+ ':'
+																		+ date
+																				.getMinutes()
+																		+ '</span></div><div class="entry-hr"></div>');
+												return false;
+											});
+
+							updateTrends();
+						});
+	}
+	google.setOnLoadCallback(OnLoad);
+
+	function hideDiv(div) {
+		div.offset({
+			top : 0,
+			left : 0
+		});
+		div.hide();
+	}
+
+	function updateTrends() {
+		$.ajax({
+			url : "/skill/trends",
+			method : 'get',
+			dataType : 'json',
+			success : function(data) {
+				$('#trends-list').html("");
+				$(data.results).each(
+						function(i, elem) {
+							$('#trends-list').append(
+									"<li><a href='#'>" + elem.skill
+											+ "</a><br />" + elem.learntBy
+											+ " users</li>")
+						});
+			}
+		});
+	}
+</script>
+<!-- 
+end of uggly js.. ;)
+ -->
+
+</head>
+
+<body>
+	<div class="row">
+		<div id="main">
+			<header id="page-header" style="background: url('resources/img/button-bg.jpg');">
+				<div class="left">
+					<img src="resources/img/logo.jpg" />
 				</div>
-			</div>
+				<div id="search">
+					<span class="label">Search</span>
+					<div id="searchForm">
+						<form>
+							<input type="text" />
+						</form>
+					</div>
+				</div>
+				<div id="profile" class="clickable" url="user">
+					<span class="label">Profile</span>
+				</div>
+				<div id="logout" class="clickable" url="logout">
+					<div wicket:id="loginStatusPanel" class="label loggedIn">John Logout</div>
+				</div>
+			</header>
+
+			<div class="clear"></div>
+
+			<section id="top">
+				<div class="left" id="photo">
+					<img src="http://gravatar.com/avatar/0606d1268f2a8198d7fd601c7350acb9" />
+				</div>
+				<div class="left left-margin">
+					<h1>
+						Hello <span class="emphasized" style="font-size: 24pt">Pawe³ Lipiñski</span>!
+					</h1>
+					<h2>What have you learned since your last visit?</h2>
+				</div>
+				<div class="right" id="main-stats">
+					<div class="left" style="width: 161px; height: 100%; display: table;">
+						<p class="center-horizontal center-vertical" style="font-size: 13pt;">
+							You've been learning:<br />22h, 17min
+						</p>
+					</div>
+					<div style="float: left; width: 1px; background-color: #000; height: 100%; display: block;"></div>
+					<div class="left" style="width: 138px; height: 100%; display: table;">
+						<p class="center-horizontal center-vertical" style="font-size: 18pt;">
+							You have:<br /> <span class="emphasized">512 points</span>
+						</p>
+					</div>
+				</div>
+			</section>
+
+			<div class="clear"></div>
+
+			<section id="content">
+				<div wicket:id="messages" class="messages"></div>
+				<div id="wall">
+
+							<wicket:child></wicket:child>
+					<div class="clear"></div>
+					<div id="footer">&copy; 2012, Agile Developement Day, Warsaw</div>
+					<div class="clear"></div>
+				</div>
+			</section>
 		</div>
-		<div class="content">
-			<div wicket:id="messages" class="messages"></div>
-			<wicket:child></wicket:child>
-		</div>
-		<div class="footer">
-			<div>(C) Copyright 2012, Agile Developement Day, Warsaw</div>
-		</div>
+
+		<section id="left-sidebar" class="sidebar rounded">
+			<section>
+				<p class="title">You're following:</p>
+				<table>
+					<tr>
+						<td class="img"><img src="http://gravatar.com/avatar/b36fee01ac1166d8dd46f3c2e7649be6" /></td>
+						<td class="name"><a href="#">Krzysiek Jelski</a> <br />(1200)</td>
+					</tr>
+					<tr>
+						<td class="img"><img src="http://gravatar.com/avatar/49f4023a979fe8e47c7b639697f86f00" /></td>
+						<td class="name"><a href="#">Jakub Nabrdalik</a><br />(1023)</td>
+					</tr>
+					<tr>
+						<td class="img"><img src="http://gravatar.com/avatar/69eec1703cac03acdd3f80637c6a2b7e" /></td>
+						<td class="name"><a href="#">Tomasz Bartczak</a><br />(918)</td>
+					</tr>
+					<tr>
+						<td class="img"><img src="http://www.gravatar.com/avatar/c0eef6a3371b35bd35f36aa99bbb7d57.png" /></td>
+						<td class="name"><a href="#">Krzysiek Kozio³</a><br />(1023)</td>
+					</tr>
+					<tr>
+						<td class="img"><img src="http://gravatar.com/avatar/69eec1703cac03acdd3f80637c6a2b7e" /></td>
+						<td class="name"><a href="#">Tomasz Bartczak</a><br />(918)</td>
+					</tr>
+				</table>
+				<p class="center-horizontal">
+					<a href="#">See more...</a>
+				</p>
+			</section>
+			<hr />
+			<section>
+				<p class="title">Your followers:</p>
+				<table>
+					<tr>
+						<td class="img"><img src="http://gravatar.com/avatar/b36fee01ac1166d8dd46f3c2e7649be6" /></td>
+						<td class="name"><a href="#">Krzysiek Jelski</a> <br />(1200)</td>
+					</tr>
+					<tr>
+						<td class="img"><img src="http://gravatar.com/avatar/49f4023a979fe8e47c7b639697f86f00" /></td>
+						<td class="name"><a href="#">Jakub Nabrdalik</a><br />(1023)</td>
+					</tr>
+					<tr>
+						<td class="img"><img src="http://gravatar.com/avatar/69eec1703cac03acdd3f80637c6a2b7e" /></td>
+						<td class="name"><a href="#">Tomasz Bartczak</a><br />(918)</td>
+					</tr>
+					<tr>
+						<td class="img"><img src="http://www.gravatar.com/avatar/c0eef6a3371b35bd35f36aa99bbb7d57.png" /></td>
+						<td class="name"><a href="#">Krzysiek Kozio³</a><br />(1023)</td>
+					</tr>
+					<tr>
+						<td class="img"><img src="http://gravatar.com/avatar/69eec1703cac03acdd3f80637c6a2b7e" /></td>
+						<td class="name"><a href="#">Tomasz Bartczak</a><br />(918)</td>
+					</tr>
+				</table>
+				<p class="center-horizontal">
+					<a href="#">See more...</a>
+				</p>
+			</section>
+			<hr />
+			<section>
+				<p class="title">Invite friends:</p>
+				<form id="inviteForm">
+					<input type="email"><br />
+					<p style="font-size: 10pt; text-align: center;">Type your friend's email</p>
+					<p style="font-size: 14pt; text-align: center; margin-bottom: 20px;">
+						<input type="submit" value="INVITE" />
+					</p>
+				</form>
+			</section>
+		</section>
+		<section id="right-sidebar" class="sidebar rounded">
+			<section id="trends">
+				<p class="title">Trends:</p>
+				<ol id="trends-list">
+				</ol>
+			</section>
+			<hr />
+			<section>
+				<p class="title">Top 5 users:</p>
+				<table>
+					<tr>
+						<td class="img"><img src="http://gravatar.com/avatar/b36fee01ac1166d8dd46f3c2e7649be6" /></td>
+						<td class="name"><a href="#">Krzysiek Jelski</a> <br />(1200)</td>
+					</tr>
+					<tr>
+						<td class="img"><img src="http://gravatar.com/avatar/49f4023a979fe8e47c7b639697f86f00" /></td>
+						<td class="name"><a href="#">Jakub Nabrdalik</a><br />(1023)</td>
+					</tr>
+					<tr>
+						<td class="img"><img src="http://gravatar.com/avatar/69eec1703cac03acdd3f80637c6a2b7e" /></td>
+						<td class="name"><a href="#">Tomasz Bartczak</a><br />(918)</td>
+					</tr>
+					<tr>
+						<td class="img"><img src="http://www.gravatar.com/avatar/c0eef6a3371b35bd35f36aa99bbb7d57.png" /></td>
+						<td class="name"><a href="#">Krzysiek Kozio³</a><br />(1023)</td>
+					</tr>
+					<tr>
+						<td class="img"><img src="http://gravatar.com/avatar/69eec1703cac03acdd3f80637c6a2b7e" /></td>
+						<td class="name"><a href="#">Tomasz Bartczak</a><br />(918)</td>
+					</tr>
+				</table>
+			</section>
+			<hr />
+			<section>
+				<p class="title">Suggestions:</p>
+				<ol>
+					<li><a href="#">JAVA coœtam</a><br />128 users</li>
+					<li><a href="#">MySQL coœtam</a><br />110 users</li>
+					<li><a href="#">HTML5 &amp; CSS3</a><br />98 users</li>
+				</ol>
+			</section>
+		</section>
 	</div>
+	<div id="datepicker" class="dropdown"></div>
+	<div class="dropdown" id="choose-type">
+		<ul style="list-style: none; line-height: 150%;">
+			<li><a href="#" class="dropdown-selection">I've been learning</a></li>
+			<li><a href="#" class="dropdown-selection">I've learnt</a></li>
+		</ul>
+	</div>
+	<div class="dropdown" id="choose-level">
+		<ul style="list-style: none; line-height: 150%;">
+			<li><a href="#" class="dropdown-selection">easy</a></li>
+			<li><a href="#" class="dropdown-selection">medium</a></li>
+			<li><a href="#" class="dropdown-selection">hard</a></li>
+		</ul>
+	</div>
+	<div class="dropdown" id="choose-time">
+		<ul style="list-style: none; line-height: 150%;">
+			<li><a href="#" class="dropdown-selection">minutes</a></li>
+			<li><a href="#" class="dropdown-selection">hours</a></li>
+			<li><a href="#" class="dropdown-selection">days</a></li>
+		</ul>
+	</div>
+
 </body>
 </html>
