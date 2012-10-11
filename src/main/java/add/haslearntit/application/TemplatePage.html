@@ -4,9 +4,9 @@
 <meta http-equiv="Content-Type" content="text/html">
 <meta charset="UTF-8">
 <title>Has Learnt It</title>
-
+<!-- 
 <script src="js/modernizr-1.7.min.js"></script>
-
+ -->
 <link rel="stylesheet" type="text/css" href="resources/css/reset.css" media="screen" title="html5doctor.com Reset Stylesheet" />
 <link rel="stylesheet" type="text/css" href="resources/css/css3.css" media="screen" />
 <link rel="stylesheet" type="text/css" href="resources/css/general.css" media="screen" />
@@ -70,74 +70,6 @@ begining of uggly js.. ;)
 										$(this).parent().parent().remove();
 									});
 
-							$("#entry")
-									.submit(
-											function() {
-												var date = new Date();
-												$
-														.ajax({
-															url : "/entry/submit",
-															type : "POST",
-															data : {
-																when : 'today',
-																text : $(
-																		'#skill')
-																		.val(),
-																difficulty : $(
-																		'#dropdown-choose-level')
-																		.text(),
-																learningtime : $(
-																		'#learningtime')
-																		.val()
-															},
-															success : function() {
-																$("#wall")
-																		.prepend(
-																				//FIXME get rid of this fake implementation :) 
-																				'<div class="entry-box"><div class="entry-photo"><img src="http://www.gravatar.com/avatar/c0eef6a3371b35bd35f36aa99bbb7d57.png" /></div>'
-																						+ '<div style="display: table; float: left;"><div class="entry-text"><a href="#">Krzysiek Kozio³</a> '
-																						+ $(
-																								'#dropdown-choose-type')
-																								.text()
-																						+ '<span class="emphasized">'
-																						+ $(
-																								'#skill')
-																								.val()
-																						+ '</span> today.<br />'
-																						+ 'It was '
-																						+ $(
-																								'#dropdown-choose-level')
-																								.text()
-																						+ ' and it took him '
-																						+ $(
-																								'#learningtime')
-																								.val()
-																						+ ' '
-																						+ $(
-																								'#dropdown-choose-time')
-																								.text()
-																						+ '(of total 18 hours)<br /> He earned 15 points!'
-																						+ '</div><div class="comment-box"><a href="#" style="color: #aaa;" onclick="$(\'#comment-1\').show();">Leave a comment</a>'
-																						+ '</div><div id="comment-1" class="comment-box comments" style="display: table; display: none;"><div class="comment-input">'
-																						+ '<form class="comment-textfield"><input type="text" id="comment-1-input" placeholder="Leave a comment..."/></form></div></div>'
-																						+ '</div><div class="entry-date">Dzisiaj, '
-																						+ date
-																								.getHours()
-																						+ ':'
-																						+ date
-																								.getMinutes()
-																						+ '</div></div>');
-																$(this)
-																		.addClass(
-																				"done");
-																updateTrends();
-															},
-															error : function() {
-																alert('Fake implementation :)');
-															}
-														})
-												return false;
-											});
 							//FIXME get rid of this fake implementation :) 
 							$(".comment-textfield")
 									.submit(
