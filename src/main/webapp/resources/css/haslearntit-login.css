@@ -1,0 +1,180 @@
+body {
+	background: #1f1f1f url('../img/background.jpg');
+}
+
+img {
+	padding: 0;
+	border: 0;
+	margin: 0;
+}
+
+header {
+	margin-top: 5px;
+	margin-left: 10px;
+	margin-right: 10px;
+	height: 90px;
+	padding: 0;
+}
+
+input {
+	color: #777;
+}
+
+label {
+	margin-top: 10px;
+	margin-bottom: 5px;
+}
+
+.emphasized {
+	color: #e08419;
+}
+
+.center-vertical {
+	display: table-cell;
+	vertical-align: middle;
+}
+
+.center-horizontal {
+	text-align: center;
+}
+
+.clear {
+	height: 25px;
+}
+
+.left-margin {
+	margin-left: 20px;
+}
+
+.right-margin {
+	margin-right: 20px;
+}
+
+.clickable {
+	cursor: pointer;
+}
+
+header div {
+	height: 90px;
+}
+
+header .label {
+	font-size: 18pt;
+	margin-top: 12px;
+	color: #d9d9d9;
+	display: block;
+	line-height: 130%;	
+}
+
+#login-subtitle {
+	margin-left: 30px;
+	width: 500px;
+	float: left;
+}
+
+#main {
+	display: inline;
+	overflow: hidden;
+	float: left;
+	position: relative;
+	background-color: #fff;
+	padding: 0;
+	margin: 0;
+	width: 100%;
+	min-height: 820px;
+}
+
+#top ul {
+	list-style-type: none;		  	  
+	font-size: 16pt;	
+}
+
+#top li {
+	background: url('../img/login-arrow.jpg');
+	padding-left: 50px;
+	padding-top: 5px;	
+	height: 36px;
+}
+
+.underline {
+	text-decoration: underline;
+}
+
+.sidebar {
+	background-color: #eaeaea;
+	display: block;
+	width: 250px;
+	color: #777;
+	z-index: 10;
+}
+
+.sidebar .title {
+	text-align: left;
+	font-size: 18pt;
+	margin-top: 10px;
+	margin-bottom: 15px;
+	margin-left: 20px;
+}
+
+.sidebar ol {
+	padding-left: 10px;
+	font-size: 12pt;
+}
+
+.sidebar table {
+	width: 100%;
+	margin-bottom: 10px;
+	font-size: 12pt;
+}
+
+.sidebar td {
+	vertical-align: middle;
+	padding-bottom: 5px;
+}
+
+.sidebar li {
+	margin-bottom: 10px;
+}
+
+.sidebar a {
+	color: #777;
+}
+
+.sidebar table .img {
+	padding-left: 20px;
+	width: 35px;
+}
+
+.sidebar table .name {
+	width: 95px;
+	padding-left: 10px;
+}
+
+.sidebar td img,.entry-photo img,.comment-first-photo img {
+	width: 35px;
+	height: 35px;
+}
+
+.sidebar form {
+	text-align: center;
+	margin-top: 20px;
+}
+
+.sidebar hr {
+	background-color: #000;
+}
+
+#content {
+	display: block;
+	margin-left: 140px;
+	margin-right: 140px;
+}
+
+.clickable-text {
+	border-bottom: 1px dashed;
+	cursor: pointer;
+}
+
+.service-image {
+	cursor: pointer;
+}

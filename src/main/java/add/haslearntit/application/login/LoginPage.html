@@ -1,13 +1,51 @@
 <!DOCTYPE html>
 <html xmlns:wicket="http://wicket.apache.org">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="stylesheet" href="style.css" type="text/css" media="screen" title="Stylesheet" />
-	</head>
-	
-	<body>
-		<wicket:extend>
-			<div id="loginForm" wicket:id="loginForm"/>
-		</wicket:extend>
-	</body>
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="style.css" type="text/css" media="screen" title="Stylesheet" />
+</head>
+
+<body>
+	<wicket:extend>
+		<div class="row">
+			<div id="main">
+				<header id="header" style="background: url('resources/img/login-button-bg.jpg');">
+					<div class="left">
+						<img src="resources/img/login-logo.jpg" />
+					</div>
+					<div class="right">
+						<img src="resources/img/login-button-right.jpg" />
+					</div>
+						
+					<div id="login-subtitle">
+						<span class="label" >
+						A new professional community portal for those, who want to self-motivate to learn.
+						</span>						
+					</div>				
+				</header>
+
+				<div class="clear"></div>
+
+				<section id="top">
+					<div class="left" style="margin-left: 50px; margin-top: 20px;">
+						<h2 style="font-size: 18pt;">Are you learning something or plan to learn?</h2>
+						<ul>
+							<li>Create an account</li>
+							<li>Fill in your profile</li>
+							<li>Get motivated to learn</li>
+							<li>Compete with your friends while gaining new skills</li>
+							<li>Comment on your friends' new skills</li>
+						</ul>
+					</div>
+				</section>
+<div class="clear"></div>
+				<div id="loginForm" wicket:id="loginForm" />
+
+			</div>
+		</div>
+	</wicket:extend>
+</body>
 </html>
+
+
+
