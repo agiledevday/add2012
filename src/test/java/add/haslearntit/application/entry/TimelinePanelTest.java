@@ -14,72 +14,72 @@ import add.haslearntit.domain.entry.Entry;
 
 public class TimelinePanelTest extends HasLearntItBaseWicketIT {
 
-	@Test
-	public void shouldDisplayAllLearntSkills() throws Exception {
-		
-		// given:
-		Entry someEntry = aEntry("java programming");
-		Entry otherEntry = aEntry("sky diving");
-		
-		// when:
-		tester.startComponentInPage(new TimelinePanel("learntSkillsList", modelContainingSkills(someEntry, otherEntry)));
+    @Test
+    public void shouldDisplayAllLearntSkills() throws Exception {
 
-		// then:
-		tester.assertContains(someEntry.asMessage());
-		tester.assertContains(otherEntry.asMessage());
-	}
+        // given:
+        Entry someEntry = aEntry("java programming");
+        Entry otherEntry = aEntry("sky diving");
 
-	@Test
-	public void shouldDisplayEncouragementMessageIfUserHasNoSkills() throws Exception {
+        // when:
+        tester.startComponentInPage(new TimelinePanel("learntSkillsList", modelContainingSkills(someEntry, otherEntry)));
 
-		// given:
+        // then:
+        tester.assertContains(someEntry.asMessage());
+        tester.assertContains(otherEntry.asMessage());
+    }
 
-		// when:
-		tester.startComponentInPage(new TimelinePanel("learntSkillsList", modelContainingSkills()));
+    @Test
+    public void shouldDisplayEncouragementMessageIfUserHasNoSkills() throws Exception {
 
-		// then:
-		tester.assertContains("You haven't recorded any skills. For sure there is something you have learnt lately!");
-	}
+        // given:
 
-	@Test
-	public void shouldHideEncouragementMessageIfUserHasAlLeastOneSkill() throws Exception {
+        // when:
+        tester.startComponentInPage(new TimelinePanel("learntSkillsList", modelContainingSkills()));
 
-		// given:
+        // then:
+        tester.assertContains("You haven't recorded any skills. For sure there is something you have learnt lately!");
+    }
 
-		// when:
-		tester.startComponentInPage(new TimelinePanel("learntSkillsList", modelContainingSkills(aEntry("skuba diving"))));
+    @Test
+    public void shouldHideEncouragementMessageIfUserHasAlLeastOneSkill() throws Exception {
 
-		// then:
-		tester.assertContainsNot("You haven't recorded any skills. For sure there is something you have learnt lately!");
-	}
-	
-	@Test
-	public void shouldDisplayLearnPoints(){
-		//given
-		Entry someEntry = new Entry("java programming", "EASY", "1");
-		
-		//when
-		tester.startComponentInPage(new TimelinePanel("learntSkillsList", modelContainingSkills(someEntry)));
-		
-		//then
-		tester.assertLabel("learntSkillsList:list:0:skillPoints",Integer.toString(someEntry.getEarnedPoints()));
-	}
-	
-	// --
+        // given:
 
-	private TimelineModel modelContainingSkills(Entry... someSkills) {
-		return new StaticSkillsListModel(asList(someSkills));
-	}
-	
-	private Entry aEntry(String name) {
-		return new Entry(name, "easy", "1 minute");
-	}
+        // when:
+        tester.startComponentInPage(new TimelinePanel("learntSkillsList", modelContainingSkills(aEntry("skuba diving"))));
 
-	public class StaticSkillsListModel extends ListModel<Entry> implements TimelineModel {
-		
-		public StaticSkillsListModel(List<Entry> entries) {
-			super(entries);
-		}
-		
-	}
+        // then:
+        tester.assertContainsNot("You haven't recorded any skills. For sure there is something you have learnt lately!");
+    }
+
+    @Test
+    public void shouldDisplayLearnPoints() {
+        // given
+        Entry someEntry = new Entry("java programming", "EASY", "1");
+
+        // when
+        tester.startComponentInPage(new TimelinePanel("learntSkillsList", modelContainingSkills(someEntry)));
+
+        // then
+        tester.assertLabel("learntSkillsList:list:0:skillPoints", Integer.toString(someEntry.getEarnedPoints()));
+    }
+
+    // --
+
+    private TimelineModel modelContainingSkills(Entry... entries) {
+        return new StaticTimelineModel(asList(entries));
+    }
+
+    private Entry aEntry(String name) {
+        return new Entry(name, "easy", "1 minute");
+    }
+
+    public class StaticTimelineModel extends ListModel<Entry> implements TimelineModel {
+
+        public StaticTimelineModel(List<Entry> entries) {
+            super(entries);
+        }
+
+    }
 }
