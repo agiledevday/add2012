@@ -4,8 +4,10 @@ import java.util.List;
 
 public interface SkillsRepository {
 
-	public abstract void store(Skill skill);
+	void store(Skill skill);
 
-	public abstract List<Skill> loadAll();
+	List<Skill> loadAll();
 
+	//TODO: MZA: Write to be able to push changes, requires automatic tests
+	List<Skill> loadByNamePrefix(String namePrefix);
 }
