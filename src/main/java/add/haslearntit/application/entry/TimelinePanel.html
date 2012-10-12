@@ -1,70 +1,57 @@
 <wicket:panel>
-	<div wicket:id="encouragement" class="encouragementMessage">You haven't recorded any skills. For sure there is something you have learnt lately!</div>
-	<ul class="learntSkills">
-		<li wicket:id="list" style="list-style-type: none;">
-
-
-			<div class="entry-box">
-
-				<div class="entry-photo">
-					<div class="avatar"></div>
-					<img
-						src="http://www.gravatar.com/avatar/c0eef6a3371b35bd35f36aa99bbb7d57.png" />
-				</div>
-
-				<div style="display: table; float: left;">
-					<div class="entry-text">
-						<a href="#">Krzysiek Kozio³</a> has learnt 
-						<span class="emphasized">
-							<div wicket:id="skill" class="skill"></div>
-						</span> today.<br /> It was hard and it took him 60 hours (of total 152738392 hours) <br /> He earned
-						<div wicket:id="skillPoints" class="points"></div> points!
-					</div>
-					
-					<div class="comment-box comments">
-						<div comment-id="1">
-							<div class="entry-photo">
-								<img src="http://gravatar.com/avatar/0606d1268f2a8198d7fd601c7350acb9" />
-							</div>
-							<div class="entry-text comment-container">
-								<div class="delete-comment">
-									<img src="resources/img/delete-comment.png">
-								</div>
-								<p class="comment-author">
-									<a href="#">Pawel Lipinski</a>
-								</p>
-								<p class="comment-text">"So let's do it like they do it on Discovery channel"</p>
-								<span class="entry-date">Dzisiaj, 7:15</span>
-							</div>
-							<div class="entry-hr"></div>
-						</div>
-						<div comment-id="2">
-							<div class="entry-photo">
-								<img src="http://gravatar.com/avatar/49f4023a979fe8e47c7b639697f86f00" />
-							</div>
-							<div class="entry-text comment-container">
-								<p class="comment-author">
-									<a href="#">Jakub Nabrdalik</a>
-								</p>
-								<p class="comment-text">Daj lepiej linka do tej strony z Viagr¹...</p>
-								<span class="entry-date">Dzisiaj, 23:15</span>
-							</div>
-							<div class="entry-hr"></div>
-						</div>
-						<div class="comment-input">
-							<form class="comment-textfield">
-								<input type="text" placeholder="Leave a comment..." />
-							</form>
-						</div>
-					</div>
-				</div>
-				<div class="entry-date">
-					Wczoraj o 19:52<br /> <img src="resources/img/skill-complete.jpg" />
-				</div>
-			</div>
-
-		</li>
-	</ul>
-
-
+    <div wicket:id="encouragement" class="encouragementMessage">You haven't recorded any skills. For sure there is something you have learnt lately!</div>
+    <ul class="learntSkills">
+        <li wicket:id="list" style="list-style-type: none;">
+            <div class="entry-box">
+                <div class="entry-photo">
+                    <div class="avatar"></div>
+                    <img src="http://www.gravatar.com/avatar/c0eef6a3371b35bd35f36aa99bbb7d57.png" />
+                </div>
+                <div style="display: table; float: left;">
+                    <div class="entry-text">
+                        <div wicket:id="skill" class="skill"></div>
+                        <div wicket:id="skillPoints" class="points"></div>
+                    </div>
+                    <div class="comment-box comments">
+                        <div comment-id="1">
+                            <div class="entry-photo">
+                                <img src="http://gravatar.com/avatar/0606d1268f2a8198d7fd601c7350acb9" />
+                            </div>
+                            <div class="entry-text comment-container">
+                                <div class="delete-comment">
+                                    <img src="resources/img/delete-comment.png">
+                                </div>
+                                <p class="comment-author">
+                                    <a href="#">Pawel Lipinski</a>
+                                </p>
+                                <p class="comment-text">"So let's do it like they do it on Discovery channel"</p>
+                                <span class="entry-date">Dzisiaj, 7:15</span>
+                            </div>
+                            <div class="entry-hr"></div>
+                        </div>
+                        <div comment-id="2">
+                            <div class="entry-photo">
+                                <img src="http://gravatar.com/avatar/49f4023a979fe8e47c7b639697f86f00" />
+                            </div>
+                            <div class="entry-text comment-container">
+                                <p class="comment-author">
+                                    <a href="#">Jakub Nabrdalik</a>
+                                </p>
+                                <p class="comment-text">Daj lepiej linka do tej strony z Viagrï¿½...</p>
+                                <span class="entry-date">Dzisiaj, 23:15</span>
+                            </div>
+                            <div class="entry-hr"></div>
+                        </div>
+                        <div class="comment-input">
+                            <form class="comment-textfield">
+                                <input type="text" placeholder="Leave a comment..." />
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="entry-date">Wczoraj o 19:52<br /> <img src="resources/img/skill-complete.jpg" />
+                </div>
+            </div>
+        </li>
+    </ul>
 </wicket:panel>
