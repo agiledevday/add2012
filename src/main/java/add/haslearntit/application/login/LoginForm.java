@@ -8,7 +8,7 @@ import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.Model;
 
-import add.haslearntit.application.skills.UserSkillsPage;
+import add.haslearntit.application.entry.DashboardPage;
 import add.haslearntit.domain.user.User;
 import add.haslearntit.domain.user.UserRepository;
 import add.haslearntit.domain.user.UserWithLoginNotFoundException;
@@ -39,7 +39,7 @@ public class LoginForm extends Panel{
 			    
 				if(!hasError()){
                     setCurrentUser(loginField.getValue());
-					setResponsePage(UserSkillsPage.class);
+					setResponsePage(DashboardPage.class);
 				}
 			}
 		};

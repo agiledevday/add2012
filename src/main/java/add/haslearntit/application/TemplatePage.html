@@ -11,210 +11,209 @@
 <link rel="stylesheet" type="text/css" href="resources/css/css3.css" media="screen" />
 <link rel="stylesheet" type="text/css" href="resources/css/general.css" media="screen" />
 <link rel="stylesheet" type="text/css" href="resources/css/grid.css" media="screen" />
-<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/ui-lightness/jquery-ui.css" type="text/css" media="all" />
 
 <link rel="stylesheet" type="text/css" href="resources/css/haslearntit.css" media="screen" />
 
 </head>
 
 <body>
-	<div class="row">
-		<div id="main">
-			<header id="page-header" style="background: url('resources/img/button-bg.jpg');">
-				<div class="left">
-					<img src="resources/img/logo.jpg" />
-				</div>
-				<div id="search">
-					<span class="label">Search</span>
-					<div id="searchForm">
-						<form>
-							<input type="text" />
-						</form>
-					</div>
-				</div>
-				<div id="profile" class="clickable" url="user">
-					<span class="label">Profile</span>
-				</div>
-				<div id="logout" class="clickable" url="logout">
-					<div wicket:id="loginStatusPanel" class="label loggedIn">John Logout</div>
-				</div>
-			</header>
+    <div class="row">
+        <div id="main">
+            <header id="page-header" style="background: url('resources/img/button-bg.jpg');">
+                <div class="left">
+                    <img src="resources/img/logo.jpg" />
+                </div>
+                <div id="search">
+                    <span class="label">Search</span>
+                    <div id="searchForm">
+                        <form>
+                            <input type="text" />
+                        </form>
+                    </div>
+                </div>
+                <div id="profile" class="clickable" url="user">
+                    <span class="label">Profile</span>
+                </div>
+                <div id="logout" class="clickable" url="logout">
+                    <div wicket:id="loginStatusPanel" class="label loggedIn">John Logout</div>
+                </div>
+            </header>
 
-			<div class="clear"></div>
+            <div class="clear"></div>
 
-			<section id="top">
-				<div class="left" id="photo">
-					<img src="http://gravatar.com/avatar/0606d1268f2a8198d7fd601c7350acb9" />
-				</div>
-				<div class="left left-margin">
-					<h1>
-						Hello <span class="emphasized" style="font-size: 24pt">Pawe� Lipi�ski</span>!
-					</h1>
-					<h2>What have you learned since your last visit?</h2>
-				</div>
-				<div class="right" id="main-stats">
-					<div class="left" style="width: 161px; height: 100%; display: table;">
-						<p class="center-horizontal center-vertical" style="font-size: 13pt;">
-							You've been learning:<br />22h, 17min
-						</p>
-					</div>
-					<div style="float: left; width: 1px; background-color: #000; height: 100%; display: block;"></div>
-					<div class="left" style="width: 138px; height: 100%; display: table;">
-						<p class="center-horizontal center-vertical" style="font-size: 18pt;">
-							You have:<br /> <span class="emphasized">512 points</span>
-						</p>
-					</div>
-				</div>
-			</section>
+            <section id="top">
+                <div class="left" id="photo">
+                    <img src="http://gravatar.com/avatar/0606d1268f2a8198d7fd601c7350acb9" />
+                </div>
+                <div class="left left-margin">
+                    <h1>
+                        Hello <span class="emphasized" style="font-size: 24pt">Anonymous</span>!
+                    </h1>
+                    <h2>What have you learned since your last visit?</h2>
+                </div>
+                <div class="right" id="main-stats">
+                    <div class="left" style="width: 161px; height: 100%; display: table;">
+                        <p class="center-horizontal center-vertical" style="font-size: 13pt;">
+                            You've been learning:<br />22h, 17min
+                        </p>
+                    </div>
+                    <div style="float: left; width: 1px; background-color: #000; height: 100%; display: block;"></div>
+                    <div class="left" style="width: 138px; height: 100%; display: table;">
+                        <p class="center-horizontal center-vertical" style="font-size: 18pt;">
+                            You have:<br /> <span class="emphasized">512 points</span>
+                        </p>
+                    </div>
+                </div>
+            </section>
 
-			<div class="clear"></div>
+            <div class="clear"></div>
 
-			<section id="content">
-				<div wicket:id="messages" class="messages"></div>
-				<div id="wall">
+            <section id="content">
+                <div wicket:id="messages" class="messages"></div>
+                <div id="wall">
 
-							<wicket:child></wicket:child>
-					<div class="clear"></div>
-					<div id="footer">&copy; 2012, Agile Developement Day, Warsaw</div>
-					<div class="clear"></div>
-				</div>
-			</section>
-		</div>
+                    <wicket:child></wicket:child>
+                    <div class="clear"></div>
+                    <div id="footer">&copy; 2012, Agile Developement Day, Warsaw</div>
+                    <div class="clear"></div>
+                </div>
+            </section>
+        </div>
 
-		<section id="left-sidebar" class="sidebar rounded">
-			<section>
-				<p class="title">You're following:</p>
-				<table>
-					<tr>
-						<td class="img"><img src="http://gravatar.com/avatar/b36fee01ac1166d8dd46f3c2e7649be6" /></td>
-						<td class="name"><a href="#">Krzysiek Jelski</a> <br />(1200)</td>
-					</tr>
-					<tr>
-						<td class="img"><img src="http://gravatar.com/avatar/49f4023a979fe8e47c7b639697f86f00" /></td>
-						<td class="name"><a href="#">Jakub Nabrdalik</a><br />(1023)</td>
-					</tr>
-					<tr>
-						<td class="img"><img src="http://gravatar.com/avatar/69eec1703cac03acdd3f80637c6a2b7e" /></td>
-						<td class="name"><a href="#">Tomasz Bartczak</a><br />(918)</td>
-					</tr>
-					<tr>
-						<td class="img"><img src="http://www.gravatar.com/avatar/c0eef6a3371b35bd35f36aa99bbb7d57.png" /></td>
-						<td class="name"><a href="#">Krzysiek Kozio�</a><br />(1023)</td>
-					</tr>
-					<tr>
-						<td class="img"><img src="http://gravatar.com/avatar/69eec1703cac03acdd3f80637c6a2b7e" /></td>
-						<td class="name"><a href="#">Tomasz Bartczak</a><br />(918)</td>
-					</tr>
-				</table>
-				<p class="center-horizontal">
-					<a href="#">See more...</a>
-				</p>
-			</section>
-			<hr />
-			<section>
-				<p class="title">Your followers:</p>
-				<table>
-					<tr>
-						<td class="img"><img src="http://gravatar.com/avatar/b36fee01ac1166d8dd46f3c2e7649be6" /></td>
-						<td class="name"><a href="#">Krzysiek Jelski</a> <br />(1200)</td>
-					</tr>
-					<tr>
-						<td class="img"><img src="http://gravatar.com/avatar/49f4023a979fe8e47c7b639697f86f00" /></td>
-						<td class="name"><a href="#">Jakub Nabrdalik</a><br />(1023)</td>
-					</tr>
-					<tr>
-						<td class="img"><img src="http://gravatar.com/avatar/69eec1703cac03acdd3f80637c6a2b7e" /></td>
-						<td class="name"><a href="#">Tomasz Bartczak</a><br />(918)</td>
-					</tr>
-					<tr>
-						<td class="img"><img src="http://www.gravatar.com/avatar/c0eef6a3371b35bd35f36aa99bbb7d57.png" /></td>
-						<td class="name"><a href="#">Krzysiek Kozio�</a><br />(1023)</td>
-					</tr>
-					<tr>
-						<td class="img"><img src="http://gravatar.com/avatar/69eec1703cac03acdd3f80637c6a2b7e" /></td>
-						<td class="name"><a href="#">Tomasz Bartczak</a><br />(918)</td>
-					</tr>
-				</table>
-				<p class="center-horizontal">
-					<a href="#">See more...</a>
-				</p>
-			</section>
-			<hr />
-			<section>
-				<p class="title">Invite friends:</p>
-				<form id="inviteForm">
-					<input type="email"><br />
-					<p style="font-size: 10pt; text-align: center;">Type your friend's email</p>
-					<p style="font-size: 14pt; text-align: center; margin-bottom: 20px;">
-						<input type="submit" value="INVITE" />
-					</p>
-				</form>
-			</section>
-		</section>
-		<section id="right-sidebar" class="sidebar rounded">
-			<section id="trends">
-				<p class="title">Trends:</p>
-				<ol id="trends-list">
-				</ol>
-			</section>
-			<hr />
-			<section>
-				<p class="title">Top 5 users:</p>
-				<table>
-					<tr>
-						<td class="img"><img src="http://gravatar.com/avatar/b36fee01ac1166d8dd46f3c2e7649be6" /></td>
-						<td class="name"><a href="#">Krzysiek Jelski</a> <br />(1200)</td>
-					</tr>
-					<tr>
-						<td class="img"><img src="http://gravatar.com/avatar/49f4023a979fe8e47c7b639697f86f00" /></td>
-						<td class="name"><a href="#">Jakub Nabrdalik</a><br />(1023)</td>
-					</tr>
-					<tr>
-						<td class="img"><img src="http://gravatar.com/avatar/69eec1703cac03acdd3f80637c6a2b7e" /></td>
-						<td class="name"><a href="#">Tomasz Bartczak</a><br />(918)</td>
-					</tr>
-					<tr>
-						<td class="img"><img src="http://www.gravatar.com/avatar/c0eef6a3371b35bd35f36aa99bbb7d57.png" /></td>
-						<td class="name"><a href="#">Krzysiek Kozio�</a><br />(1023)</td>
-					</tr>
-					<tr>
-						<td class="img"><img src="http://gravatar.com/avatar/69eec1703cac03acdd3f80637c6a2b7e" /></td>
-						<td class="name"><a href="#">Tomasz Bartczak</a><br />(918)</td>
-					</tr>
-				</table>
-			</section>
-			<hr />
-			<section>
-				<p class="title">Suggestions:</p>
-				<ol>
-					<li><a href="#">JAVA co�tam</a><br />128 users</li>
-					<li><a href="#">MySQL co�tam</a><br />110 users</li>
-					<li><a href="#">HTML5 &amp; CSS3</a><br />98 users</li>
-				</ol>
-			</section>
-		</section>
-	</div>
-	<div id="datepicker" class="dropdown"></div>
-	<div class="dropdown" id="choose-type">
-		<ul style="list-style: none; line-height: 150%;">
-			<li><a href="#" class="dropdown-selection">I've been learning</a></li>
-			<li><a href="#" class="dropdown-selection">I've learnt</a></li>
-		</ul>
-	</div>
-	<div class="dropdown" id="choose-level">
-		<ul style="list-style: none; line-height: 150%;">
-			<li><a href="#" class="dropdown-selection">easy</a></li>
-			<li><a href="#" class="dropdown-selection">medium</a></li>
-			<li><a href="#" class="dropdown-selection">hard</a></li>
-		</ul>
-	</div>
-	<div class="dropdown" id="choose-time">
-		<ul style="list-style: none; line-height: 150%;">
-			<li><a href="#" class="dropdown-selection">minutes</a></li>
-			<li><a href="#" class="dropdown-selection">hours</a></li>
-			<li><a href="#" class="dropdown-selection">days</a></li>
-		</ul>
-	</div>
+        <section id="left-sidebar" class="sidebar rounded">
+            <section>
+                <p class="title">You're following:</p>
+                <table>
+                    <tr>
+                        <td class="img"><img src="http://gravatar.com/avatar/b36fee01ac1166d8dd46f3c2e7649be6" /></td>
+                        <td class="name"><a href="#">Krzysiek Jelski</a> <br />(1200)</td>
+                    </tr>
+                    <tr>
+                        <td class="img"><img src="http://gravatar.com/avatar/49f4023a979fe8e47c7b639697f86f00" /></td>
+                        <td class="name"><a href="#">Jakub Nabrdalik</a><br />(1023)</td>
+                    </tr>
+                    <tr>
+                        <td class="img"><img src="http://gravatar.com/avatar/69eec1703cac03acdd3f80637c6a2b7e" /></td>
+                        <td class="name"><a href="#">Tomasz Bartczak</a><br />(918)</td>
+                    </tr>
+                    <tr>
+                        <td class="img"><img src="http://www.gravatar.com/avatar/c0eef6a3371b35bd35f36aa99bbb7d57.png" /></td>
+                        <td class="name"><a href="#">Krzysiek Kozio�</a><br />(1023)</td>
+                    </tr>
+                    <tr>
+                        <td class="img"><img src="http://gravatar.com/avatar/69eec1703cac03acdd3f80637c6a2b7e" /></td>
+                        <td class="name"><a href="#">Tomasz Bartczak</a><br />(918)</td>
+                    </tr>
+                </table>
+                <p class="center-horizontal">
+                    <a href="#">See more...</a>
+                </p>
+            </section>
+            <hr />
+            <section>
+                <p class="title">Your followers:</p>
+                <table>
+                    <tr>
+                        <td class="img"><img src="http://gravatar.com/avatar/b36fee01ac1166d8dd46f3c2e7649be6" /></td>
+                        <td class="name"><a href="#">Krzysiek Jelski</a> <br />(1200)</td>
+                    </tr>
+                    <tr>
+                        <td class="img"><img src="http://gravatar.com/avatar/49f4023a979fe8e47c7b639697f86f00" /></td>
+                        <td class="name"><a href="#">Jakub Nabrdalik</a><br />(1023)</td>
+                    </tr>
+                    <tr>
+                        <td class="img"><img src="http://gravatar.com/avatar/69eec1703cac03acdd3f80637c6a2b7e" /></td>
+                        <td class="name"><a href="#">Tomasz Bartczak</a><br />(918)</td>
+                    </tr>
+                    <tr>
+                        <td class="img"><img src="http://www.gravatar.com/avatar/c0eef6a3371b35bd35f36aa99bbb7d57.png" /></td>
+                        <td class="name"><a href="#">Krzysiek Kozio�</a><br />(1023)</td>
+                    </tr>
+                    <tr>
+                        <td class="img"><img src="http://gravatar.com/avatar/69eec1703cac03acdd3f80637c6a2b7e" /></td>
+                        <td class="name"><a href="#">Tomasz Bartczak</a><br />(918)</td>
+                    </tr>
+                </table>
+                <p class="center-horizontal">
+                    <a href="#">See more...</a>
+                </p>
+            </section>
+            <hr />
+            <section>
+                <p class="title">Invite friends:</p>
+                <form id="inviteForm">
+                    <input type="email"><br />
+                    <p style="font-size: 10pt; text-align: center;">Type your friend's email</p>
+                    <p style="font-size: 14pt; text-align: center; margin-bottom: 20px;">
+                        <input type="submit" value="INVITE" />
+                    </p>
+                </form>
+            </section>
+        </section>
+        <section id="right-sidebar" class="sidebar rounded">
+            <section id="trends">
+                <p class="title">Trends:</p>
+                <ol id="trends-list">
+                </ol>
+            </section>
+            <hr />
+            <section>
+                <p class="title">Top 5 users:</p>
+                <table>
+                    <tr>
+                        <td class="img"><img src="http://gravatar.com/avatar/b36fee01ac1166d8dd46f3c2e7649be6" /></td>
+                        <td class="name"><a href="#">Krzysiek Jelski</a> <br />(1200)</td>
+                    </tr>
+                    <tr>
+                        <td class="img"><img src="http://gravatar.com/avatar/49f4023a979fe8e47c7b639697f86f00" /></td>
+                        <td class="name"><a href="#">Jakub Nabrdalik</a><br />(1023)</td>
+                    </tr>
+                    <tr>
+                        <td class="img"><img src="http://gravatar.com/avatar/69eec1703cac03acdd3f80637c6a2b7e" /></td>
+                        <td class="name"><a href="#">Tomasz Bartczak</a><br />(918)</td>
+                    </tr>
+                    <tr>
+                        <td class="img"><img src="http://www.gravatar.com/avatar/c0eef6a3371b35bd35f36aa99bbb7d57.png" /></td>
+                        <td class="name"><a href="#">Krzysiek Kozio�</a><br />(1023)</td>
+                    </tr>
+                    <tr>
+                        <td class="img"><img src="http://gravatar.com/avatar/69eec1703cac03acdd3f80637c6a2b7e" /></td>
+                        <td class="name"><a href="#">Tomasz Bartczak</a><br />(918)</td>
+                    </tr>
+                </table>
+            </section>
+            <hr />
+            <section>
+                <p class="title">Suggestions:</p>
+                <ol>
+                    <li><a href="#">JAVA</a><br />128 users</li>
+                    <li><a href="#">MySQL</a><br />110 users</li>
+                    <li><a href="#">HTML5 &amp; CSS3</a><br />98 users</li>
+                </ol>
+            </section>
+        </section>
+    </div>
+    <div id="datepicker" class="dropdown"></div>
+    <div class="dropdown" id="choose-type">
+        <ul style="list-style: none; line-height: 150%;">
+            <li><a href="#" class="dropdown-selection">I've been learning</a></li>
+            <li><a href="#" class="dropdown-selection">I've learnt</a></li>
+        </ul>
+    </div>
+    <div class="dropdown" id="choose-level">
+        <ul style="list-style: none; line-height: 150%;">
+            <li><a href="#" class="dropdown-selection">easy</a></li>
+            <li><a href="#" class="dropdown-selection">medium</a></li>
+            <li><a href="#" class="dropdown-selection">hard</a></li>
+        </ul>
+    </div>
+    <div class="dropdown" id="choose-time">
+        <ul style="list-style: none; line-height: 150%;">
+            <li><a href="#" class="dropdown-selection">minutes</a></li>
+            <li><a href="#" class="dropdown-selection">hours</a></li>
+            <li><a href="#" class="dropdown-selection">days</a></li>
+        </ul>
+    </div>
 
 </body>
 </html>

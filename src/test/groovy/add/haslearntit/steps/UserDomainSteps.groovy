@@ -18,9 +18,9 @@ Given(~'^there are users with following credentials$') { DataTable users ->
     users.asMaps().each { user ->
 
         repository.store(new User(user["login"], user["password"]));
-                
-    }
         
+    }
+
 }
 
 

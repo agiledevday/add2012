@@ -28,7 +28,7 @@ class LoginPage extends Page {
 		
 		assert $("input", type: "submit").size() > 0;
 		
-		$("input", type: "submit").click(UserSkillsPage);
+		$("input", type: "submit").click(DashboardPage);
 	}
 	
 	def checkError = {

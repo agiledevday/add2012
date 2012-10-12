@@ -13,15 +13,16 @@ import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import add.haslearntit.HasLearntItBaseWicketIT;
-import add.haslearntit.domain.skills.Skill;
+import add.haslearntit.application.entry.DashboardPage;
+import add.haslearntit.domain.entry.Entry;
 
 @RunWith(MockitoJUnitRunner.class)
 public class SkillNameSuggestionTest extends HasLearntItBaseWicketIT {
 
 	@Before
 	public void skillsInRepository() {
-		when(skillsRepository.loadByNamePrefix("ja")).thenReturn(Arrays.asList(new Skill("Jacoco", null, null)));
-		tester.startPage(UserSkillsPage.class);
+		when(entryRepository.loadByNamePrefix("ja")).thenReturn(Arrays.asList(new Entry("Jacoco", null, null)));
+		tester.startPage(DashboardPage.class);
 	}
 	
 	@Test

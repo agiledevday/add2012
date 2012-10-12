@@ -5,7 +5,7 @@ import add.haslearntit.domain.user.User
 import add.haslearntit.domain.user.UserRepository
 import add.haslearntit.hooks.Context
 import add.haslearntit.pages.LoginPage
-import add.haslearntit.pages.UserSkillsPage
+import add.haslearntit.pages.DashboardPage
 this.metaClass.mixin(cucumber.runtime.groovy.Hooks)
 this.metaClass.mixin(cucumber.runtime.groovy.EN)
 
@@ -41,10 +41,10 @@ When(~'^I enter valid login and password$') {
 Then(~'^I should see my user skills page$') {
     ->
 
-    browser.at UserSkillsPage
+    browser.at DashboardPage
 }
 
-When(~'^I enter any page$') { -> browser.to UserSkillsPage }
+When(~'^I enter any page$') { -> browser.to DashboardPage }
 
 Given(~'^I am not logged in$') {
     ->
