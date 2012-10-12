@@ -5,6 +5,7 @@ import org.apache.wicket.spring.injection.annot.SpringComponentInjector;
 
 import add.haslearntit.application.entry.DashboardPage;
 import add.haslearntit.application.login.LoginPage;
+import add.haslearntit.application.registration.RegistrationPage;
 
 public class HasLearntItApplication extends WebApplication {
 
@@ -23,6 +24,7 @@ public class HasLearntItApplication extends WebApplication {
 		super.init();
 		mountPage("/home", getHomePage());
 		mountPage("/login", getLoginPage());
+		mountPage("/register", RegistrationPage.class);
 		getComponentInstantiationListeners().add(new SpringComponentInjector(this));
 	}
 

@@ -10,7 +10,7 @@ import cucumber.junit.Cucumber.Options;
 
 @RunWith(Cucumber.class)
 @Options(
-		features = "src/test/resources/features",
+		features = "src/test/resources/features/Registration2.feature",
 		/* monochrome = true, */
 		//uncomment a line bellow to run only one feature/scenario (marked as @currentlyInDevelopment
 //		tags = {"@currentlyInDevelopment"},

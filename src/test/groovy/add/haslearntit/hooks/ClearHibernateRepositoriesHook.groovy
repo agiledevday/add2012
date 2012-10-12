@@ -19,8 +19,6 @@ Before{ scenario ->
 
 private recreateSchema(LocalSessionFactoryBean localSessionFactoryBean) {
 
-	System.err.println("Recreating database schema...");
-	
 	localSessionFactoryBean.dropDatabaseSchema();
 	localSessionFactoryBean.createDatabaseSchema()
 }
