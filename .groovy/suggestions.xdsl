@@ -6,4 +6,10 @@
 <doc/>
 </method>
 </declaringtype>
+<declaringtype type="add.haslearntit.domain.UserDomain">
+<method isActive="true" isStatic="false" name="createValidUser" type="java.lang.String">
+<parameters useNamedArguments="false"/>
+<doc/>
+</method>
+</declaringtype>
 </projectSuggestions>

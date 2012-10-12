@@ -1,38 +1,41 @@
 package add.haslearntit.steps
 
-import geb.Browser
-import add.haslearntit.domain.user.User
-import add.haslearntit.domain.user.UserRepository
-import add.haslearntit.hooks.Context
+import add.haslearntit.domain.UserDomain
 import add.haslearntit.pages.LoginPage
-import add.haslearntit.pages.DashboardPage
+import add.haslearntit.ui.DashboardUi
+import add.haslearntit.ui.LoginUi
 this.metaClass.mixin(cucumber.runtime.groovy.Hooks)
 this.metaClass.mixin(cucumber.runtime.groovy.EN)
 
-    Given(~'^I enter login screen$') {
-        ->
-    
-        browser.to LoginPage
-        browser.at LoginPage
-    }
-    
-    When(~'^I enter valid login and password$') {
-        ->
-    
-        createUser("validUser", "validPassword");
+    UserDomain userDomain;
+    LoginUi loginUi;
+    DashboardUi dashboardUi;
+
+    Before() {
+        userDomain = world.asType(UserDomain);
+        loginUi = world.asType(LoginUi);
+        dashboardUi = world.asType(DashboardUi);
+    }    
+
+    Given(~'^I enter login screen$') { ->
         
-        browser.at LoginPage
-        browser.page.loginWithLoginAndPassword("validUser", "validPassword");
+        loginUi.enterPage();
     }
     
-    Then(~'^I should see my user skills page$') {
-        ->
+    When(~'^I enter valid login and password$') { ->
+        
+        userDomain.createValidUser();
+        loginUi.loginWithValidCredentials();
+    }
     
-        browser.at DashboardPage
+    Then(~'^I should see my user skills page$') { ->
+        
+        dashboardUi.assertIsOnPage();
     }
     
     When(~'^I enter any page$') { -> 
-        browser.to DashboardPage 
+        
+        dashboardUi.enter();
     }
     
     Given(~'^I am not logged in$') {
@@ -41,28 +44,24 @@ this.metaClass.mixin(cucumber.runtime.groovy.EN)
     
     Given(~'^I have been logged in successfully as \'(.*)\'$') { String username ->
     
-        createUser(username, "validPassword");
-    
-        browser.to LoginPage
-        browser.page.loginWithLoginAndPassword(username, "validPassword");
-        
-        
+        userDomain.createUser(username, "validPassword");
+        loginUi.loginWithCredentials(username, "validPassword");
+       
     }
     
     Then(~'^I should see that I am logged in as \'(.*)\'$') { String username ->
         
-        assert browser.page.loggedInAs
-        assert browser.page.loggedInAs.user == username
+        loginUi.assertIsLoggedInAs(username);
     }
     
     When(~'^I sign in with following credentials (.*)/(.*)$') { String login, String password ->
-    
-        browser.at LoginPage
-        browser.page.loginWithLoginAndPassword(login, password);
+        
+        loginUi.loginWithCredentials(login, password);    
     }
     
     Then(~'^login form should contain error \'(.*)\'$') { String error ->
-        assert browser.page.messages.entries.contains(error);
+        
+        loginUi.assertFailedToLoginDueTo(error);
     }
     
 

@@ -16,12 +16,14 @@ Scenario Outline: Display matching skills while typing skill description
 		| Jacoco;Java		| ja			| Jacoco;Java	|
 		| Jacoco;Java		| foo			| 				|
 
+@pending
 Scenario: Don't display matching skills for less than two letters is given
 	Given users have already learned 'Jacoco'
 	When I am typing following skill details 'j'
 	Then I should see no suggestions
 
 #TODO: MZA: As a separate scenario or join with the first one?
+@pending
 Scenario: Don't display matching skills when not skills were lerned by users
 	Given users have already learned nothing
 	When I am typing following skill details 'ja'
