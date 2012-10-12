@@ -7,6 +7,23 @@
 		<encoder>
 			<pattern>%-5level %logger{36} - %msg%n</pattern>
 		</encoder>
+		<!-- A workaround to prevent a lot of message of two kinds from HtmlUnit which doesn't seem to be a real problem.
+		     Firebug doesn't complain about the code. -->
+		<filter class="ch.qos.logback.core.filter.EvaluatorFilter">
+			<evaluator>
+				<matcher>
+					<Name>jsDataNotYetAvailable</Name>
+					<regex>line=\[971\] lineSource=\[null\] lineOffset=\[0\]</regex>
+				</matcher>
+				<matcher>
+					<Name>jsGetElementByNameForIE</Name>
+					<regex>did a getElementByName for Internet Explorer</regex>
+				</matcher>
+				<expression>jsDataNotYetAvailable.matches(formattedMessage) || jsGetElementByNameForIE.matches(formattedMessage)</expression>
+			</evaluator>
+			<OnMismatch>NEUTRAL</OnMismatch>
+			<OnMatch>DENY</OnMatch>
+		</filter>
 	</appender>
 
 	<appender name="FILE" class="ch.qos.logback.core.FileAppender">

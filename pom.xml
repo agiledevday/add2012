@@ -127,6 +127,13 @@
 			<artifactId>logback-classic</artifactId>
 			<version>${logback.version}</version>
 		</dependency>
+		<!-- Janino is used by logback in a test mode to filter out a few messages from HtmlUnit -->
+		<dependency>
+			<groupId>org.codehaus.janino</groupId>
+			<artifactId>janino</artifactId>
+			<version>2.6.1</version>
+			<scope>test</scope>
+		</dependency>
 		<dependency>
 			<!-- for Spring logs - http://blog.springsource.org/2009/12/04/logging-dependencies-in-spring/ -->
 			<groupId>org.slf4j</groupId>
