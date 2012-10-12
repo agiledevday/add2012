@@ -34,7 +34,7 @@ When user types skill name, he sees a suggestions based on existing skills.
   Examples:
     | existing skills | skill typed | suggestions |
     | Jacoco          | ja          | Jacoco      |
-    | Jacoco;JAVA     | JA          | Jacoco;Java |
+    | Jacoco;JAVA     | JA          | Jacoco;JAVA |
 
   Scenario:
   Scenario: Display matching skills in alphabetical order
