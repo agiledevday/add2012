@@ -1,5 +1,6 @@
 Feature: Each entry should have creation date
 
+    @pending
     Scenario Outline: Pretty print effective date for last 24 hours
         Given current date and time is '2010-01-12 12:00' 
         When I enter following entry details

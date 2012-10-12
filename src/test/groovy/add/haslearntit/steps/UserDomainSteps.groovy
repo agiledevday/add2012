@@ -7,22 +7,12 @@ import cucumber.table.DataTable
 this.metaClass.mixin(cucumber.runtime.groovy.Hooks)
 this.metaClass.mixin(cucumber.runtime.groovy.EN)
 
-UserRepository repository;
-
-Before{
-    repository = Context.get().getBean(UserRepository.class);
-}
-
-Given(~'^there are users with following credentials$') { DataTable users ->
-
-    users.asMaps().each { user ->
-
-        repository.store(new User(user["login"], user["password"]));
-        
+    Given(~'^there are users with following credentials$') { DataTable users ->
+    
+        users.asMaps().each { user ->
+    
+            createUser(user["login"], user["password"]);
+            
+        }
     }
-
-}
-
-
-
 
