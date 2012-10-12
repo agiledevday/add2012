@@ -15,6 +15,8 @@ import org.mockito.runners.MockitoJUnitRunner;
 @RunWith(MockitoJUnitRunner.class)
 public abstract class HasLearntItBaseWicketIT {
 
+    protected static final String APP_INFO_TEST_TEXT = "Test revision";
+
 	protected ApplicationContextMock applicationContext;
 
 	protected WicketTester tester;
@@ -38,6 +40,7 @@ public abstract class HasLearntItBaseWicketIT {
 
 	    applicationContext = new ApplicationContextMock();
 		applicationContext.putBean("entryRepository", entryRepository);
+        applicationContext.putBean("appInfoText", APP_INFO_TEST_TEXT);
 		
 		setupApplicationContext();
 		

@@ -241,6 +241,14 @@
             <version>${jetty.version}</version>
             <scope>provided</scope>
         </dependency>
+
+        <!-- A small library to display current application version to user -->
+        <dependency>
+            <groupId>net.sf.appinfo</groupId>
+            <artifactId>appinfo</artifactId>
+            <version>0.5.2</version>
+        </dependency>
+
     </dependencies>
     <build>
         <resources>
@@ -376,6 +384,25 @@
                     <excludes>
                         <exclude>**/*AcceptanceIT.java</exclude>
                     </excludes>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId> <!-- maven-war-plugin for web applications -->
+                <version>2.3</version>
+                <configuration>
+                    <archive>
+                        <manifestEntries>
+                            <Specification-Title>${project.name}</Specification-Title>
+                            <Specification-Version>${project.version}</Specification-Version>
+                            <!-- Variables set by Hudson -->
+                            <Build-Number>${BUILD_NUMBER}</Build-Number>
+                            <Build-Date>${BUILD_ID}</Build-Date>
+                            <SCM-Revision>${GIT_REVISION}</SCM-Revision>
+                            <!-- Next one for potential usage in the next AppInfo versions -->
+                            <Job-Name>${JOB_NAME}</Job-Name>
+                        </manifestEntries>
+                    </archive>
                 </configuration>
             </plugin>
         </plugins>

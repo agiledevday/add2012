@@ -1,5 +1,6 @@
 package add.haslearntit.application;
 
+import add.haslearntit.application.common.AppInfoPanel;
 import org.apache.wicket.Application;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
@@ -21,6 +22,7 @@ public class TemplatePage extends WebPage {
 		});
 		
 		add(new LoginStatusPanel(new SessionCurrentUserModel(Application.get())));
+        add(new AppInfoPanel("appInfo"));
 	}
 
 }

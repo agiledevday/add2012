@@ -31,7 +31,12 @@
 
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>classpath:/add/haslearntit/infrastructure/spring/applicationContext.xml</param-value>
+		<param-value>
+            classpath:/add/haslearntit/infrastructure/spring/applicationContext.xml,
+            <!-- AppInfo - allow to display current application version when automatically deploying from CI -->
+            classpath:net/sf/appinfo/appInfoDefaultContext.xml,
+            classpath:net/sf/appinfo/appInfoWebContext.xml
+        </param-value>
 	</context-param>
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
