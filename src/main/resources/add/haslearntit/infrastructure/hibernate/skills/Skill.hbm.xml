@@ -8,7 +8,7 @@
 
 	<class name="add.haslearntit.domain.skills.Skill" table="H_SKILL">
 
-		<id name="id" column="ID" />
+		<id name="id" type="uuid-char" column="ID" />
 		<property name="name" column="NAME" />
 		<property name="difficultyLevel" column="DIFF_LVL" />
 		<property name="timeSpent" column="TIME_SPENT" />

@@ -26,7 +26,7 @@ public class NewSkillPanel extends Panel {
 		add(new NewSkillFrom("newSkillForm"));
 	}
 
-	private class NewSkillFrom extends Form {
+	private class NewSkillFrom extends Form<Void> {
 		private static final long serialVersionUID = -3821156411930577907L;
 
 		public NewSkillFrom(String id) {

@@ -9,5 +9,8 @@
 	<bean id="skillsRepository" class="add.haslearntit.infrastructure.hibernate.skills.HibernateSkillsRepository">
 		<constructor-arg ref="sessionFactory"/>
 	</bean>
+	<bean id="usersRepository" class="add.haslearntit.infrastructure.hibernate.user.HibernateUserRepository">
+		<constructor-arg ref="sessionFactory"/>
+    </bean>
 
 </beans>

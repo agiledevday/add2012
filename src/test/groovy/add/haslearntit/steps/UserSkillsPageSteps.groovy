@@ -1,10 +1,8 @@
 package add.haslearntit.steps
 
 import geb.Browser
-import geb.report.ScreenshotAndPageSourceReporter;
-import add.haslearntit.infrastructure.transients.skills.TransientSkillsRepository;
+import add.haslearntit.infrastructure.transients.skills.TransientSkillsRepository
 import add.haslearntit.pages.*
-import cucumber.runtime.PendingException
 import cucumber.table.DataTable
 
 this.metaClass.mixin(cucumber.runtime.groovy.Hooks)
@@ -116,15 +114,8 @@ this.metaClass.mixin(cucumber.runtime.groovy.EN)
 		browser.at UserSkillsPage;
 		assert browser.page.submitNewSkillForm();
 	}
-	
-	Then(~'^I should be notified with message \'(.*)\'$') { String message ->
-		
-		assert browser.page.messages().contains(message);
-	}
-	
-	Then(~'^skill should not be recorded$') { ->
-	
-		assert TransientSkillsRepository.get().loadAll().size() == 0;
-	}
-		
-	
+    
+    Then(~'^new skill form should contain error \'(.*)\'$') { String error ->
+        assert browser.page.messages.entries.contains(error);
+    }
+    

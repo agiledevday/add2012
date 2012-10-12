@@ -8,71 +8,52 @@ import org.junit.Before;
 
 import add.haslearntit.domain.skills.Skill;
 import add.haslearntit.domain.skills.SkillsRepositoryContractTest;
+import add.haslearntit.infrastructure.hibernate.HibernateTestConfiguration;
 
 public class HibernateSkillsRepositoryIT extends SkillsRepositoryContractTest {
 
-	private SessionFactory sessionFactory;
-	private Session session;
+    private SessionFactory sessionFactory;
+    private Session session;
 
-	@Before
-	public void setUp() throws Exception {
+    @Before
+    public void setUp() throws Exception {
 
-		buildSessionFactory();
-		repository = new HibernateSkillsRepository(sessionFactory){
-			@Override
-			public void store(Skill skill) {
-				super.store(skill);
-				detachSession();
-			}
+        buildSessionFactory();
+        repository = new HibernateSkillsRepository(sessionFactory) {
+            @Override
+            public void store(Skill skill) {
+                super.store(skill);
+                detachSession();
+            }
 
-		};
-		initializeSession();
-	}
+        };
+        initializeSession();
+    }
 
-	@After
-	public void tearDown() throws Exception {
+    @After
+    public void tearDown() throws Exception {
 
-		cleanupSession();
-	}
+        cleanupSession();
+    }
 
-	private void detachSession() {
-		session.flush();
-		session.clear();
-	}
-	
-	private void buildSessionFactory() {
+    private void detachSession() {
+        session.flush();
+        session.clear();
+    }
 
-		Configuration configuration = prepareTestConfiguration();
-		sessionFactory = configuration.buildSessionFactory();
-	}
+    private void buildSessionFactory() {
 
-	private Configuration prepareTestConfiguration() {
+        Configuration configuration = new HibernateTestConfiguration("skills/Skill.hbm.xml").prepareConfiguration();
+        sessionFactory = configuration.buildSessionFactory();
+    }
 
-		Configuration configuration = new Configuration();
+    private void initializeSession() {
+        session = sessionFactory.getCurrentSession();
+        session.beginTransaction();
+    }
 
-		configuration.addResource("add/haslearntit/infrastructure/hibernate/skills/Skill.hbm.xml");
-
-		configuration.setProperty("hibernate.dialect", "org.hibernate.dialect.HSQLDialect");
-		configuration.setProperty("hibernate.connection.driver_class", "org.hsqldb.jdbcDriver");
-		configuration.setProperty("hibernate.connection.url","jdbc:hsqldb:mem:hasLearntIt");
-		configuration.setProperty("hibernate.connection.username", "sa");
-		configuration.setProperty("hibernate.connection.password", "");
-		configuration.setProperty("hibernate.current_session_context_class","thread");
-//		//disabled - SQL logging was enabled in a logback configuration and it doesn't make a mesh on a console
-//		configuration.setProperty("hibernate.show_sql", "true");
-		configuration.setProperty("hibernate.format_sql", "true");
-		configuration.setProperty("hibernate.hbm2ddl.auto", "create-drop");
-
-		return configuration;
-	}
-
-	private void initializeSession() {
-		session = sessionFactory.getCurrentSession();
-		session.beginTransaction();
-	}
-
-	private void cleanupSession() {
-		session.getTransaction().rollback();
-		session = null;
-	}
+    private void cleanupSession() {
+        session.getTransaction().rollback();
+        session = null;
+    }
 }
