@@ -36,6 +36,7 @@ public class NewEntryPanel extends Panel {
     }
 
     private class NewEntryForm extends Form<Void> {
+        private static final long serialVersionUID = 7468136832009985979L;
 
         public NewEntryForm(String id) {
             super(id);
@@ -62,6 +63,8 @@ public class NewEntryPanel extends Panel {
     private TextField<String> createSkillNamesAutoCompleteTextField() {
         DefaultCssAutoCompleteTextField<String> skillNamesAutoCompleteTextField =
                 new DefaultCssAutoCompleteTextField<String>("name", nameModel) {
+            private static final long serialVersionUID = 2326158862363900977L;
+
             @Override
             protected Iterator<String> getChoices(String input) {
                 if (input == null) {

@@ -6,8 +6,9 @@ import add.haslearntit.application.TemplatePage;
 import add.haslearntit.domain.entry.EntryRepository;
 
 public class DashboardPage extends TemplatePage {
+    private static final long serialVersionUID = 6274703983167941772L;
 
-	@SpringBean
+    @SpringBean
 	private EntryRepository entryRepository;
 
 	public DashboardPage() {

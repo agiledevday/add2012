@@ -10,7 +10,7 @@ import org.apache.wicket.model.CompoundPropertyModel;
 import add.haslearntit.domain.user.User;
 
 public class LoginStatusPanel extends Panel {
-
+    private static final long serialVersionUID = 3545715212541895521L;
     private final CompoundPropertyModel<User> model;
 
     public LoginStatusPanel(CurrentUserModel currentUserModel) {

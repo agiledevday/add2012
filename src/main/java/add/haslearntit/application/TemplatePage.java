@@ -8,10 +8,13 @@ import add.haslearntit.application.login.LoginStatusPanel;
 import add.haslearntit.application.login.SessionCurrentUserModel;
 
 public class TemplatePage extends WebPage {
+    private static final long serialVersionUID = -943763663071297928L;
 
-	public TemplatePage() {
+    public TemplatePage() {
 		add(new FeedbackPanel("messages") {
-			@Override
+            private static final long serialVersionUID = -7117768392120078835L;
+
+            @Override
 			public boolean isVisible() {
 				return anyMessage();
 			}

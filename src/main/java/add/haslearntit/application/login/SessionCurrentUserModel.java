@@ -7,7 +7,7 @@ import org.apache.wicket.request.cycle.RequestCycle;
 import add.haslearntit.domain.user.User;
 
 public class SessionCurrentUserModel implements CurrentUserModel {
-
+    private static final long serialVersionUID = -7922140395099348280L;
     private transient final Application application;
 
     public SessionCurrentUserModel(Application application) {

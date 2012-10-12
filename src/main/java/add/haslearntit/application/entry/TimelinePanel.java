@@ -31,8 +31,9 @@ public class TimelinePanel extends Panel{
 	private void initializeSkillsList() {
 		
 		add(new ListView<Entry>("list", model){
+            private static final long serialVersionUID = -78059563727068797L;
 
-			@Override
+            @Override
 			protected void populateItem(ListItem<Entry> item) {
 				item.add(new Label("skill", item.getModelObject().asMessage()));
 				item.add(new Label("skillPoints", String.valueOf(item.getModelObject().getEarnedPoints())));
@@ -43,8 +44,9 @@ public class TimelinePanel extends Panel{
 	private void initializeEncouragement() {
 		
 		add(new WebMarkupContainer("encouragement"){
-			
-			@Override
+            private static final long serialVersionUID = 2193082720922962694L;
+
+            @Override
 			public boolean isVisible() {
 				return model.getObject().size() == 0;
 			}

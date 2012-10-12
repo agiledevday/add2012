@@ -6,7 +6,7 @@ import add.haslearntit.application.TemplatePage;
 import add.haslearntit.domain.user.UserRepository;
 
 public class LoginPage extends TemplatePage {
-
+    private static final long serialVersionUID = -3935776395557698121L;
     @SpringBean
     private UserRepository userRepository;
     

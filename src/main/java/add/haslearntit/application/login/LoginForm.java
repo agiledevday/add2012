@@ -14,6 +14,7 @@ import add.haslearntit.domain.user.UserRepository;
 import add.haslearntit.domain.user.UserWithLoginNotFoundException;
 
 public class LoginForm extends Panel{
+    private static final long serialVersionUID = -8520281746316087565L;
 
     private final UserRepository userRepository;
 
@@ -32,8 +33,9 @@ public class LoginForm extends Panel{
 	private void buildForm() {
 		
 		form = new Form<Void>("form"){
-			
-			protected void onSubmit() {
+            private static final long serialVersionUID = 1941687389356354112L;
+
+            protected void onSubmit() {
 	
 			    authenticate();
 			    
