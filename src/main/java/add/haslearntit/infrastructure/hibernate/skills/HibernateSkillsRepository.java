@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.classic.Session;
-import org.hibernate.criterion.Restrictions;
 import org.springframework.transaction.annotation.Transactional;
 
 import add.haslearntit.domain.skills.Skill;
@@ -30,16 +29,6 @@ public class HibernateSkillsRepository implements SkillsRepository {
 	@Override
 	public List<Skill> loadAll() {
 		return Collections.unmodifiableList(session().createCriteria(Skill.class).list());
-	}
-
-	@Transactional(readOnly = true)
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<Skill> loadByNamePrefix(String namePrefix) {
-		return Collections.unmodifiableList(session()
-				.createCriteria(Skill.class)
-				.add(Restrictions.ilike("name", namePrefix + "%")
-				).list());
 	}
 
 	private Session session() {
