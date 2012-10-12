@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<projectSuggestions>
-<declaringtype type="env">
-<method isActive="true" isStatic="false" name="World" type="java.lang.String">
-<parameters useNamedArguments="false"/>
-<doc/>
-</method>
-</declaringtype>
-</projectSuggestions>

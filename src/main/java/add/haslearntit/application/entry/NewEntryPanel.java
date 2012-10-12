@@ -1,6 +1,7 @@
 package add.haslearntit.application.entry;
 
-import static ch.lambdaj.Lambda.convert;
+import static ch.lambdaj.Lambda.extract;
+import static ch.lambdaj.Lambda.on;
 
 import java.util.Collections;
 import java.util.Iterator;
@@ -16,7 +17,6 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 
 import add.haslearntit.domain.entry.Entry;
 import add.haslearntit.domain.entry.EntryRepository;
-import ch.lambdaj.function.convert.StringPropertyExtractor;
 
 public class NewEntryPanel extends Panel {
 
@@ -68,7 +68,7 @@ public class NewEntryPanel extends Panel {
                     Collections.emptyList().iterator();
                 }
                 List<Entry> skills = entryRepository.loadByNamePrefix(input);
-                List<String> names = convert(skills, new StringPropertyExtractor<Entry>("name"));
+                List<String> names = extract(skills, on(Entry.class).getName());
                 return names.iterator();
             }
         };
