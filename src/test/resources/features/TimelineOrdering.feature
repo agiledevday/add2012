@@ -1,5 +1,6 @@
 Feature: Timelines are ordered according to creation date
 
+    @pending
     Scenario: Display entries from most recent to most outdated
             | entry     | creationDate  |
             | Java      | 2010-01-01    |

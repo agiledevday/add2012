@@ -70,7 +70,8 @@ this.metaClass.mixin(cucumber.runtime.groovy.EN)
         expected.diff(actual);
     }
     
-    Then(~'^I should see points for each skill$') { 
+    Then(~'^I should see points for each skill$') {
+         
         DataTable expected ->
         
         browser.at DashboardPage;
@@ -130,11 +131,13 @@ this.metaClass.mixin(cucumber.runtime.groovy.EN)
     }
 
     When(~'''^I am typing following skill details \'(.*)\'$''') { String typedSkillPart ->
+        
         browser.at DashboardPage;
         browser.page.typeSkillPart(typedSkillPart)
     }
     
     Then(~'^I should see following skills suggestions \'(.*)\'$') { String suggestionsAsList ->
+        
         suggestionsList = splitListPassedAsStringWithSemicolons(suggestionsAsList)
         assert browser.page.displayedSkillSuggestions().sort() == suggestionsList.sort()
     }
