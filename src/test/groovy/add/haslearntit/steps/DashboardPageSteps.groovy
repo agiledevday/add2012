@@ -8,26 +8,10 @@ import cucumber.table.DataTable
 this.metaClass.mixin(cucumber.runtime.groovy.Hooks)
 this.metaClass.mixin(cucumber.runtime.groovy.EN)
 
-    def browser
-    def failures = 0;
-    
-    Before {
-        browser = new Browser()
-    }
-    
-    After{ scenario ->
-        
-        if(scenario.failed){
-            browser.report("failed" + failures++);
-        }
-        
-    }
-    
     Given(~'^I have learnt new skill lately$') {
         ->
         
-        browser.to DashboardPage
-        browser.page.recordNewSkill("how to bind cucumber features to groovy steps", "easy", "2 hours");
+        createEntry("how to bind cucumber features to groovy steps", "easy", "2 hours");
     }
     
     When(~'^I enter my home page$') {
@@ -126,11 +110,11 @@ this.metaClass.mixin(cucumber.runtime.groovy.EN)
         List<String> skillsList = splitListPassedAsStringWithSemicolons(skillsAsList)
 
         skillsList.each { skill ->
-            browser.page.recordNewSkill(skill, "easy", "1");
+            createEntry(skill, "easy", "1");
         }
     }
 
-    When(~'''^I am typing following skill details \'(.*)\'$''') { String typedSkillPart ->
+    When(~'^I am typing following skill details \'(.*)\'$') { String typedSkillPart ->
         
         browser.at DashboardPage;
         browser.page.typeSkillPart(typedSkillPart)

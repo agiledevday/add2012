@@ -1,19 +1,28 @@
 package add.haslearntit.domain
 
+import add.haslearntit.domain.entry.Entry
 import add.haslearntit.domain.entry.EntryRepository
-import add.haslearntit.hooks.Context
 
-class EntryDomain {
+
+class EntryDomain extends Domain{
 
     EntryRepository entryRepository;
         
     public EntryDomain() {
-        entryRepository = Context.get().getBean(EntryRepository);
+        entryRepository = getBean(EntryRepository);
     }
 
     public int entriesCount(){
         
         return entryRepository.loadAll().size();
     }
+
+    public Entry createEntry(String name, String difficulty, String time){
+        
+        Entry entry = new Entry(name, difficulty, time);
+        entryRepository.store(entry);
+        return entry;
+        
+    }    
     
 }
