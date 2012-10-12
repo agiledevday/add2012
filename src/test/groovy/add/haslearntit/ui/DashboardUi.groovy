@@ -75,7 +75,7 @@ class DashboardUi {
     
     public assertEncouragementMessageIsNotPresent(){
         
-        assert page().encouragementIsPresent() == false;
+        assert !page().encouragementIsPresent();
     }
     
     public assertNewEntryFormContainError(String error){

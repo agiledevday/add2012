@@ -16,11 +16,13 @@ When user types skill name, he sees a suggestions based on existing skills.
     | jacoco;java     | ja          | jacoco;java |
     | jacoco;java     | foo         |             |
 
+  @pending
   Scenario: Don't display matching skills for less than two letters is given
     Given users have already learned 'Jacoco'
     When I am typing following skill details 'j'
     Then I should see no suggestions
 
+  @pending
   Scenario: Don't display matching skills when not skills were lerned by users
     Given users have already learned nothing
     When I am typing following skill details 'ja'
@@ -36,7 +38,7 @@ When user types skill name, he sees a suggestions based on existing skills.
     | Jacoco          | ja          | Jacoco      |
     | Jacoco;JAVA     | JA          | Jacoco;JAVA |
 
-  Scenario:
+  @pending
   Scenario: Display matching skills in alphabetical order
     Given users have already learned
       | Java;Jacoco;Jabber |
@@ -46,11 +48,13 @@ When user types skill name, he sees a suggestions based on existing skills.
       | Jabber;Jacoco;Java |
       | Java1;Java2        |
 
+  @pending
   Scenario: Display up to 5 skill suggestions
     Given users have already learned 'Jacoco;Java;JavaScript;Jabber;Jamaica;Jango'
     When I am typing following skill details 'ja'
     Then I should see 'Jacoco;Java;JavaScript;Jabber;Jamaica'
 
+  @pending
   Scenario: Display distinct skill names
     Given users have already learned
       | Java;Jacoco;Java |
