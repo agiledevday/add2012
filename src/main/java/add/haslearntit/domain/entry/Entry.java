@@ -66,4 +66,14 @@ public class Entry {
     public String getName() {
         return name;
     }
+
+    @Override
+    public String toString() {
+        return "Entry{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", difficultyLevel='" + difficultyLevel + '\'' +
+                ", timeSpent='" + timeSpent + '\'' +
+                '}';
+    }
 }
