@@ -26,4 +26,8 @@ public class HasLearntItApplication extends WebApplication {
 		getComponentInstantiationListeners().add(new SpringComponentInjector(this));
 	}
 
+	@Override
+	protected void outputDevelopmentModeWarning() {
+		// don't display message
+	}
 }
