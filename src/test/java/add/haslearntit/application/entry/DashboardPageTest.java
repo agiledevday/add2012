@@ -6,9 +6,6 @@ import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import add.haslearntit.HasLearntItBaseWicketIT;
-import add.haslearntit.application.entry.DashboardPage;
-import add.haslearntit.application.entry.NewEntryPanel;
-import add.haslearntit.application.entry.TimelinePanel;
 
 @RunWith(MockitoJUnitRunner.class)
 public class DashboardPageTest extends HasLearntItBaseWicketIT {

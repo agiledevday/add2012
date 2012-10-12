@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.classic.Session;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.transaction.annotation.Transactional;
 
 import add.haslearntit.domain.entry.Entry;
@@ -31,6 +32,16 @@ public class HibernateEntryRepository implements EntryRepository {
         return Collections.unmodifiableList(session().createCriteria(Entry.class).list());
     }
 
+    @Transactional(readOnly = true)
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<Entry> loadByNamePrefix(String namePrefix) {
+        return Collections.unmodifiableList(session()
+                .createCriteria(Entry.class)
+                .add(Restrictions.ilike("name", namePrefix + "%")
+                ).list());
+    }
+    
     private Session session() {
         return sessionFactory.getCurrentSession();
     }

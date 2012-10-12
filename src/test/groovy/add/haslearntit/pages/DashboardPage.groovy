@@ -9,12 +9,14 @@ class DashboardPage extends Page {
 
     static url = "http://localhost:18081/home/";
 
-    static at = { $("#userSkillsPage").displayed }
+    static at = { title == "Has Learnt It" }
 
     static content = {
         learntSkill { $("ul").find("li").find("div",class:"skill") }
         loggedInAs { module LoggedInUserModule }
         messages { module MessagesModule}
+        skillSuggestionsDiv(required: false) { $("div", class: "wicket-aa") }
+        skillSuggestions(required: false) { skillSuggestionsDiv().find("ul li") }
     }
 
     def recentlyLearntSkill = {
@@ -50,5 +52,14 @@ class DashboardPage extends Page {
     def encouragementIsPresent = {
 
         return $(".encouragementMessage").size() > 0;
+    }
+
+    def typeSkillPart(typedSkillPart) {
+        $("form").name = typedSkillPart;
+    }
+
+    def displayedSkillSuggestions = {
+        waitFor { skillSuggestionsDiv.present }
+        return skillSuggestions()*.text()
     }
 }

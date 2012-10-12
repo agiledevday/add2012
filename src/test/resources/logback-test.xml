@@ -24,7 +24,7 @@
     <logger name="org.apache.wicket.version" level="INFO" />
     <logger name="org.apache.wicket.RequestCycle" level="INFO" />
 
-    <logger name="com.gargoylesoftware.htmlunit" level="ERROR" />
+    <logger name="com.gargoylesoftware.htmlunit" level="OFF" />
 
     <logger name="org.hibernate.SQL" level="DEBUG" />
 

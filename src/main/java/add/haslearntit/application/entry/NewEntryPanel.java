@@ -1,14 +1,22 @@
 package add.haslearntit.application.entry;
 
+import static ch.lambdaj.Lambda.convert;
+
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
+
+import org.apache.wicket.extensions.ajax.markup.html.autocomplete.DefaultCssAutoCompleteTextField;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.RequiredTextField;
+import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.Model;
+import org.apache.wicket.spring.injection.annot.SpringBean;
 
 import add.haslearntit.domain.entry.Entry;
 import add.haslearntit.domain.entry.EntryRepository;
-
-import org.apache.wicket.spring.injection.annot.SpringBean;
+import ch.lambdaj.function.convert.StringPropertyExtractor;
 
 public class NewEntryPanel extends Panel {
 
@@ -35,7 +43,7 @@ public class NewEntryPanel extends Panel {
         }
 
         private void initializeComponents() {
-            add(new RequiredTextField<String>("name", nameModel));
+            add(createSkillNamesAutoCompleteTextField());
             add(new RequiredTextField<String>("difficulty", difficultyModel));
             add(new RequiredTextField<String>("time", timeModel));
         }
@@ -51,4 +59,20 @@ public class NewEntryPanel extends Panel {
         }
     }
 
+    private TextField<String> createSkillNamesAutoCompleteTextField() {
+        DefaultCssAutoCompleteTextField<String> skillNamesAutoCompleteTextField =
+                new DefaultCssAutoCompleteTextField<String>("name", nameModel) {
+            @Override
+            protected Iterator<String> getChoices(String input) {
+                if (input == null) {
+                    Collections.emptyList().iterator();
+                }
+                List<Entry> skills = entryRepository.loadByNamePrefix(input);
+                List<String> names = convert(skills, new StringPropertyExtractor<Entry>("name"));
+                return names.iterator();
+            }
+        };
+        return (TextField<String>) skillNamesAutoCompleteTextField.setRequired(true);
+    }
+    
 }
