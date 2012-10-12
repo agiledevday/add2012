@@ -118,27 +118,3 @@ this.metaClass.mixin(cucumber.runtime.groovy.EN)
     Then(~'^new skill form should contain error \'(.*)\'$') { String error ->
         assert browser.page.messages.entries.contains(error);
     }
-    
-    Given(~'^users have already learned \'(.*)\'$') { String skillsAsList->
-        
-        browser.to DashboardPage;
-        List<String> skillsList = splitListPassedAsStringWithSemicolons(skillsAsList)
-
-        skillsList.each { skill ->
-            browser.page.recordNewSkill(skill, "easy", "1");
-        }
-    }
-
-    When(~'''^I am typing following skill details \'(.*)\'$''') { String typedSkillPart ->
-        browser.at DashboardPage;
-        browser.page.typeSkillPart(typedSkillPart)
-    }
-    
-    Then(~'^I should see following skills suggestions \'(.*)\'$') { String suggestionsAsList ->
-        suggestionsList = splitListPassedAsStringWithSemicolons(suggestionsAsList)
-        assert browser.page.displayedSkillSuggestions().sort() == suggestionsList.sort()
-    }
-    
-    List<String> splitListPassedAsStringWithSemicolons(String listAsString) {
-        (listAsString == null || listAsString.isEmpty()) ? [] : listAsString.split(";")
-    }
