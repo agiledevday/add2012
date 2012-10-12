@@ -9,12 +9,14 @@ class UserSkillsPage extends Page {
 
     static url = "http://localhost:18081/user/";
 
-    static at = { $("#userSkillsPage").displayed }
+    static at = { title == "Has Learnt It" }
 
     static content = {
         learntSkill { $("ul").find("li").find("div",class:"skill") }
         loggedInAs { module LoggedInUserModule }
         messages { module MessagesModule}
+        skillSuggestionsDiv(required: false) { $("div", class: "wicket-aa") }
+        skillSuggestions(required: false) { skillSuggestionsDiv().find("ul li") }
     }
 
     def recentlyLearntSkill = {
@@ -50,5 +52,15 @@ class UserSkillsPage extends Page {
     def encouragementIsPresent = {
 
         return $(".encouragementMessage").size() > 0;
+    }
+
+    def typeSkillPart(typedSkillPart) {
+        $("form").name = typedSkillPart //A short version of: $("form").find("input", name: "name") << typedSkillPart
+    }
+
+    def displayedSkillSuggestions = {
+        //FIXME: MZA: It works when only one Feature is run, but not when all of them
+        waitFor { skillSuggestionsDiv.present }
+        return skillSuggestions()*.text()
     }
 }

@@ -20,4 +20,4 @@ Scenario Outline: Prevent user from sumbiting incomplete skill description
 		| skill 	| difficulty	| time 	 	| message 											| 
 		| 			| not empty	 	| not empty	| You have to provide skill description!			|
 		| not empty |				| not empty	| You have to say how difficult it was!				|
-		| not empty	| not empty		|			| You have provide info about how difficult it was! | 
+		| not empty	| not empty		|			| You have provide info about how difficult it was! |
