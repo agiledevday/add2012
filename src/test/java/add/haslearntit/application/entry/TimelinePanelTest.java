@@ -8,8 +8,6 @@ import org.apache.wicket.model.util.ListModel;
 import org.junit.Test;
 
 import add.haslearntit.HasLearntItBaseWicketIT;
-import add.haslearntit.application.entry.TimelineModel;
-import add.haslearntit.application.entry.TimelinePanel;
 import add.haslearntit.domain.entry.Entry;
 
 public class TimelinePanelTest extends HasLearntItBaseWicketIT {
@@ -76,6 +74,7 @@ public class TimelinePanelTest extends HasLearntItBaseWicketIT {
     }
 
     public class StaticTimelineModel extends ListModel<Entry> implements TimelineModel {
+        private static final long serialVersionUID = 2455476166327418908L;
 
         public StaticTimelineModel(List<Entry> entries) {
             super(entries);
