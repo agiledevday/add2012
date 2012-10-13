@@ -70,7 +70,7 @@ public class TimelinePanelTest extends HasLearntItBaseWicketIT {
     }
 
     private Entry aEntry(String name) {
-        return new Entry(name, "easy", "1 minute");
+        return new Entry(name, "easy", "1");
     }
 
     public class StaticTimelineModel extends ListModel<Entry> implements TimelineModel {

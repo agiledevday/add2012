@@ -1,5 +1,8 @@
 package add.haslearntit.application.skills;
 
+import static org.mockito.Matchers.anyString;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.Arrays;
@@ -43,7 +46,18 @@ public class SkillNameSuggestionTest extends HasLearntItBaseWicketIT {
 		autocompleteIsTriggeredOn("newSkillForm:newSkillForm:name");
 		//then
 		tester.assertContainsNot("Jacoco");
-	}
+    }
+
+    @Test
+    public void shouldNotShowNameWhenLessThanTwoLetters() {
+        //given
+        userEntersSkillNamPart("j");
+        //when
+        autocompleteIsTriggeredOn("newSkillForm:newSkillForm:name");
+        //then
+        tester.assertContainsNot("Jacoco");
+        verify(entryRepository, never()).loadByNamePrefix(anyString());
+    }
 
 	private void autocompleteIsTriggeredOn(String inputPath) {
 		AbstractAutoCompleteBehavior behavior = (AbstractAutoCompleteBehavior) WicketTesterHelper.

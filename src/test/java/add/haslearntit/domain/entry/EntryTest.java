@@ -2,16 +2,14 @@ package add.haslearntit.domain.entry;
 
 import static junitparams.JUnitParamsRunner.$;
 import static org.hamcrest.CoreMatchers.equalTo;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 
 import org.hamcrest.Matcher;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
-import add.haslearntit.domain.entry.Difficulty;
-import add.haslearntit.domain.entry.Entry;
 
 @RunWith(JUnitParamsRunner.class)
 public class EntryTest {
@@ -22,7 +20,7 @@ public class EntryTest {
 		// given:
 		String name = "writing tests in JUnit";
 		String difficulty = "easy";
-		String time = "15 minutes";
+		String time = "15";
 
 		Entry entry = aEntry(name, difficulty, time);
 
@@ -32,7 +30,7 @@ public class EntryTest {
 		// then:
 		assertThat(
 				message,
-				equalTo("A User has learnt writing tests in JUnit, which was pretty easy, and it took him 15 minutes."));
+				equalTo("A User has learnt writing tests in JUnit, which was pretty easy, and it took him 15 hours."));
 	}
 
 	@Test

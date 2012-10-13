@@ -25,7 +25,7 @@ public class Entry {
     }
 
     public String asMessage() {
-        return String.format("A User has learnt %s, which was pretty %s, and it took him %s.", name, difficultyLevel, timeSpent);
+        return String.format("A User has learnt %s, which was pretty %s, and it took him %s hours.", name, difficultyLevel, timeSpent);
     }
 
     @Override

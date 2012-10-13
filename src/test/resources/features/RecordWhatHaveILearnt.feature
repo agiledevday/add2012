@@ -3,10 +3,10 @@ Feature: Record what have I learnt
 Scenario: Add simple skill
 	Given I have learnt following skills
 		| what 							| difficult 	| time 	 | 
-		| writing cucumber scenarios	| EASY			| 2 days | 
+		| writing cucumber scenarios	| EASY			| 2 	 | 
 	When I enter my home page
 	Then I should see following skills
-		| A User has learnt writing cucumber scenarios, which was pretty EASY, and it took him 2 days. 	|
+		| A User has learnt writing cucumber scenarios, which was pretty EASY, and it took him 2 hours. 	|
 
 Scenario Outline: Prevent user from sumbiting incomplete skill description
 	When I enter following skill details

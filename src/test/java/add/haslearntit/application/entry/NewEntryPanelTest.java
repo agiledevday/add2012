@@ -33,15 +33,15 @@ public class NewEntryPanelTest extends HasLearntItBaseWicketIT {
 		tester.startComponentInPage(new NewEntryPanel("newSkillPanel"));
 		formTester = tester.newFormTester("newSkillPanel:newSkillForm");
 	}
-
+	
 	@Test
 	public void shouldSaveNewSkill() throws Exception {
 		
 
 		// given:
 		String name = "testing components using WicketTester";
-		String difficulty = String.valueOf(getDifficultyChoices().indexOf(Difficulty.MEDIUM.name()));
-		String time = "10 minutes";
+		String difficulty = difficultyChoiceValue(Difficulty.MEDIUM);
+		String time = "10";
 
 		formTester.setValue("name", name);
 		formTester.setValue("difficulty", difficulty);
@@ -54,6 +54,7 @@ public class NewEntryPanelTest extends HasLearntItBaseWicketIT {
 		verify(entryRepository).store(
 				argThat(hasSameMessageAs(aEntry(name, Difficulty.MEDIUM.name(), time))));
 	}
+
 
 
 	@Test
@@ -126,7 +127,7 @@ public class NewEntryPanelTest extends HasLearntItBaseWicketIT {
 	private void validForm() {
 		String name = "testing components using WicketTester";
 		String difficulty = "challenging";
-		String time = "10 minutes";
+		String time = "10";
 
 		formTester.setValue("name", name);
 		formTester.setValue("difficulty", difficulty);
@@ -150,4 +151,27 @@ public class NewEntryPanelTest extends HasLearntItBaseWicketIT {
 			}
 		};
 	}
+	
+	@Test
+	public void shouldReturnErrorMessageWhenInvalidTimeField() throws Exception {
+		// given:
+		String name = "testing components using WicketTester";
+		String difficulty = difficultyChoiceValue(Difficulty.MEDIUM);
+		String time = "10 minutes";
+		
+		formTester.setValue("name", name);
+		formTester.setValue("difficulty", difficulty);
+		formTester.setValue("time", time);
+		
+		// when:
+		formTester.submit();
+		
+		// then:
+		tester.assertErrorMessages("Please enter correct time in hours!");
+	}
+	
+	private String difficultyChoiceValue(Difficulty difficulty) {
+		return String.valueOf(getDifficultyChoices().indexOf(difficulty.name()));
+	}
+
 }
