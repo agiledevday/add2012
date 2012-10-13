@@ -39,6 +39,10 @@ this.metaClass.mixin(cucumber.runtime.groovy.EN)
         assert dashboardUi.displayedSkillSuggestions().isEmpty()
     }
 
+    Given(~'users have already learned nothing'){ ->
+        //nothing to do :)
+    }
+
 List<String> splitListPassedAsStringWithSemicolons(String listAsString) {
         (listAsString == null || listAsString.isEmpty()) ? [] : listAsString.split(";")
     }

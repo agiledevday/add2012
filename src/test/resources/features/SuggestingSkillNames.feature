@@ -1,5 +1,5 @@
 #only this feature should be run (when tags property in CucumberAcceptanceIT is uncommented)
-#@currentlyInDevelopment
+@currentlyInDevelopment
 Feature: Skill name suggestion
 
 When user types skill name, he sees a suggestions based on existing skills.
@@ -21,7 +21,6 @@ When user types skill name, he sees a suggestions based on existing skills.
     When I am typing following skill details 'j'
     Then I should see no suggestions
 
-  @pending
   Scenario: Don't display matching skills when not skills were lerned by users
     Given users have already learned nothing
     When I am typing following skill details 'ja'
