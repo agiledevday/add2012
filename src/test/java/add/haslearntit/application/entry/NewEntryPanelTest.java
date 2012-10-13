@@ -48,6 +48,24 @@ public class NewEntryPanelTest extends HasLearntItBaseWicketIT {
     }
 
     @Test
+    public void shouldReturnErrorMessageWhenTimeFieldIsOutOfRange() throws Exception {
+        // given:
+        String name = "testing components using WicketTester";
+        String difficulty = "challenging";
+        String time = "0";
+
+        formTester.setValue("name", name);
+        formTester.setValue("difficulty", difficulty);
+        formTester.setValue("time", time);
+
+        // when:
+        formTester.submit();
+
+        // then:
+        tester.assertErrorMessages("Provided time is out of range 1-8760!");
+    }
+
+    @Test
     public void shouldSaveNewSkill() throws Exception {
 
         // given:
