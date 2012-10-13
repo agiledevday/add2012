@@ -1,27 +1,32 @@
 package add.haslearntit.domain.entry;
 
+import java.util.Date;
 import java.util.UUID;
 
 public class Entry {
 
     public static final int POINTS_FOR_UNKNOWN_DIFFICULTY = 0;
+    public static final int MIN_TIME_SPENT = 1;
+    public static final int MAX_TIME_SPENT = 8760;
 
     private UUID id = UUID.randomUUID();
 
     private String name;
     private String difficultyLevel;
     private String timeSpent;
+	private Date creationDate;
 
     private Entry() {
     }
 
-    public Entry(String name, String difficulty, String timeSpent) {
+    public Entry(String name, String difficulty, String timeSpent, Date creationDate) {
 
         this();
 
         this.name = name;
         this.difficultyLevel = difficulty;
         this.timeSpent = timeSpent;
+        this.creationDate = creationDate;
     }
 
     public String asMessage() {
@@ -74,6 +79,11 @@ public class Entry {
                 ", name='" + name + '\'' +
                 ", difficultyLevel='" + difficultyLevel + '\'' +
                 ", timeSpent='" + timeSpent + '\'' +
+                ", creationDate='" + creationDate + '\'' +                
                 '}';
     }
+
+	public Date getCreationDate() {
+		return creationDate;
+	}
 }

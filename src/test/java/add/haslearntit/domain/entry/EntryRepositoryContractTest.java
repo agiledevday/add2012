@@ -4,6 +4,8 @@ import static ch.lambdaj.Lambda.convert;
 import static org.fest.assertions.Assertions.assertThat;
 import static org.junit.matchers.JUnitMatchers.hasItem;
 
+import java.util.Date;
+
 import ch.lambdaj.function.convert.PropertyExtractor;
 import org.hamcrest.MatcherAssert;
 import org.junit.Test;
@@ -64,7 +66,7 @@ public abstract class EntryRepositoryContractTest {
     public void shouldReturnDistinctElementsEvenWhenNumberGreaterThanLimit() {
         //given
         List<Entry> jaSkills = generateTheSameEntriesWithPrefix("Ja", EntryRepository.MAX_SUGGESTIONS_RESULTS);
-        List<Entry> jacocoSkills = generateTheSameEntriesWithPrefix("JaCoco", 2);
+        List<Entry> jacocoSkills = generateTheSameEntriesWithPrefix("Jacoco", 2);
         storeSkills(jaSkills);
         storeSkills(jacocoSkills);
         //when
@@ -135,11 +137,11 @@ public abstract class EntryRepositoryContractTest {
 
 
     private Entry anEntry() {
-        return new Entry("entry", "difficultyLevel", "timeConsumed");
+        return anEntry("entry");
     }
 
     private Entry anEntry(String skill) {
-        return new Entry(skill, "difficultyLevel", "timeConsumed");
+        return new Entry(skill, "difficultyLevel", "timeConsumed", new Date());
     }
 
     private void storeSkills(List<Entry> skills) {

@@ -17,9 +17,9 @@ class EntryDomain extends Domain{
         return entryRepository.loadAll().size();
     }
 
-    public Entry createEntry(String name, String difficulty, String time){
+    public Entry createEntry(String name, String difficulty, String time, Date creationDate){
         
-        Entry entry = new Entry(name, difficulty, time);
+        Entry entry = new Entry(name, difficulty, time, creationDate);
         entryRepository.store(entry);
         return entry;
         

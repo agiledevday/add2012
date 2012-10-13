@@ -45,9 +45,12 @@ class DashboardPage extends Page {
     }
 
     def learntSkillsPoints = {
-
         return $("div", class:"points")*.text();
     }
+	
+	def learntSkillDate = {
+		return $("div", class:"entry-date")*.text();
+	}
 
     def encouragementIsPresent = {
 

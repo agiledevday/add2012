@@ -13,3 +13,5 @@ target/
 *.jar
 *.war
 *.ear
+/add2012 cl inst.launch
+/add2012 Jetty run.launch

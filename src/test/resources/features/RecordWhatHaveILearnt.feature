@@ -21,7 +21,6 @@ Scenario Outline: Prevent user from sumbiting incomplete skill description
 		| 			| EASY		 	| not empty	| You have to provide skill description!			|
 		| not empty	| HARD			|			| You have provide info about how difficult it was! |
 
-@currentlyInDevelopment
 Scenario: Suggesting difficulty levels
 	When I enter my home page
 	Then I can choose difficulty level from 

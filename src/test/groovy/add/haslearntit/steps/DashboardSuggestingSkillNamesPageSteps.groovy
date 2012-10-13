@@ -19,7 +19,7 @@ this.metaClass.mixin(cucumber.runtime.groovy.EN)
         List<String> skillsList = splitListPassedAsStringWithSemicolons(skillsAsList)
 
         skillsList.each { skill ->
-            entryDomain.createEntry(skill, "easy", "1");
+            entryDomain.createEntry(skill, "easy", "1", new Date());
         }
 
     }

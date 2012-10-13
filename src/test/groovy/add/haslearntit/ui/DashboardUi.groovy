@@ -8,95 +8,98 @@ import add.haslearntit.pages.DashboardPage
 
 class DashboardUi {
 
-    String newSkillName;
-    String newSkillDifficulty;
-    String newSkillTime;
+	String newSkillName;
+	String newSkillDifficulty;
+	String newSkillTime;
 
-    public recordNewSkill(){
+	public recordNewSkill(){
 
-        newSkillName = "how to bind cucumber features to groovy steps";
-        newSkillDifficulty = Difficulty.EASY.name();
-        newSkillTime = "2";
+		newSkillName = "how to bind cucumber features to groovy steps";
+		newSkillDifficulty = Difficulty.EASY.name();
+		newSkillTime = "2";
 
-        recordSkill(newSkillName, newSkillDifficulty, newSkillTime);
-    }
+		recordSkill(newSkillName, newSkillDifficulty, newSkillTime);
+	}
 
-    DashboardPage page() {
+	DashboardPage page() {
 
-        assertIsOnPage();
-        return browser.getPage();
-    }
+		assertIsOnPage();
+		return browser.getPage();
+	}
 
-    private recordSkill(String skillName, String skillDifficulty, String skillTime) {
+	private recordSkill(String skillName, String skillDifficulty, String skillTime) {
 
-        enter();
-        page().recordNewSkill(skillName, skillDifficulty, skillTime)
-    }
+		enter();
+		page().recordNewSkill(skillName, skillDifficulty, skillTime)
+	}
 
-    public assertIsOnPage(){
-        browser.at DashboardPage;
-    }
+	public assertIsOnPage(){
+		browser.at DashboardPage;
+	}
 
-    public enter(){
-        browser.to DashboardPage;
-        assertIsOnPage();
-    }
+	public enter(){
+		browser.to DashboardPage;
+		assertIsOnPage();
+	}
 
-    public assertNewSkillIsDisplayed(){
+	public assertNewSkillIsDisplayed(){
 
-        assert page().recentlyLearntSkill().contains(newSkillName);
-        assert page().recentlyLearntSkill().contains(newSkillDifficulty);
-        assert page().recentlyLearntSkill().contains(newSkillTime);
-    }
-	
+		assert page().recentlyLearntSkill().contains(newSkillName);
+		assert page().recentlyLearntSkill().contains(newSkillDifficulty);
+		assert page().recentlyLearntSkill().contains(newSkillTime);
+	}
+
+	public assertNewEntryCreateDateNotNull(){
+		assert !page().learntSkillDate().isEmpty();
+	}
+
 	def displayedDifficultyNames={
 		return page().displayedDifficultyNames();
 	}
-    
 
-    def displayedEntries={
 
-        return page().learntSkills();
-    }
+	def displayedEntries={
 
-    def displayedEntriesPoints={
+		return page().learntSkills();
+	}
 
-        return page().learntSkillsPoints();
-    }
+	def displayedEntriesPoints={
 
-    public submitEntry(){
+		return page().learntSkillsPoints();
+	}
 
-        page().submitNewSkillForm();
-    }
+	public submitEntry(){
 
-    public fillNewSkillForm(String name, String difficulty, String time){
+		page().submitNewSkillForm();
+	}
 
-        page().fillNewSkillForm(name, difficulty, time);
-    }
+	public fillNewSkillForm(String name, String difficulty, String time){
 
-    public assertEncouragementMessageIsPresent(){
+		page().fillNewSkillForm(name, difficulty, time);
+	}
 
-        assert page().encouragementIsPresent();
-    }
+	public assertEncouragementMessageIsPresent(){
 
-    public assertEncouragementMessageIsNotPresent(){
+		assert page().encouragementIsPresent();
+	}
 
-        assert !page().encouragementIsPresent();
-    }
+	public assertEncouragementMessageIsNotPresent(){
 
-    public assertNewEntryFormContainError(String error){
+		assert !page().encouragementIsPresent();
+	}
 
-        assert page().messages.entries.contains(error);
-    }
+	public assertNewEntryFormContainError(String error){
 
-    public startTypingEntryName(String partialName){
+		assert page().messages.entries.contains(error);
+	}
 
-        enter();
-        page().typeSkillPart(partialName);
-    }
+	public startTypingEntryName(String partialName){
+		enter();
+		page().typeSkillPart(partialName);
+	}
 
-    public List<String> displayedSkillSuggestions(){
-        
-        return page().displayedSkillSuggestions();
-    }
+	public List<String> displayedSkillSuggestions(){
+
+		return page().displayedSkillSuggestions().sort();
+	}
 }
