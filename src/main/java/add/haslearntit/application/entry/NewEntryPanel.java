@@ -5,6 +5,7 @@ import static ch.lambdaj.Lambda.on;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -68,7 +69,7 @@ public class NewEntryPanel extends Panel {
         @Override
         protected void onSubmit() {
 
-            entryRepository.store(new Entry(nameModel.getObject(), difficultyModel.getObject(), timeModel.getObject()));
+            entryRepository.store(new Entry(nameModel.getObject(), difficultyModel.getObject(), timeModel.getObject(), new Date()));
 
             nameModel.setObject("");
             difficultyModel.setObject(DEFAULT_DIFICULTY);

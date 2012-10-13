@@ -6,6 +6,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.Arrays;
+import java.util.Date;
 
 import org.apache.wicket.extensions.ajax.markup.html.autocomplete.AbstractAutoCompleteBehavior;
 import org.apache.wicket.extensions.ajax.markup.html.autocomplete.AutoCompleteSettings;
@@ -24,7 +25,7 @@ public class SkillNameSuggestionTest extends HasLearntItBaseWicketIT {
 
 	@Before
 	public void skillsInRepository() {
-		when(entryRepository.loadByNamePrefix("ja")).thenReturn(Arrays.asList(new Entry("Jacoco", null, null)));
+		when(entryRepository.loadByNamePrefix("ja")).thenReturn(Arrays.asList(new Entry("Jacoco", null, null, new Date())));
 		tester.startPage(DashboardPage.class);
 	}
 	

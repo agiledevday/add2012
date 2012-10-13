@@ -7,6 +7,7 @@ import static org.mockito.Matchers.argThat;
 import static org.mockito.Mockito.verify;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.wicket.markup.html.form.DropDownChoice;
@@ -135,7 +136,7 @@ public class NewEntryPanelTest extends HasLearntItBaseWicketIT {
 	}
 
 	private Entry aEntry(String name, String difficulty, String time) {
-		return new Entry(name, difficulty, time);
+		return new Entry(name, difficulty, time, new Date());
 	}
 
 	protected Matcher<Entry> hasSameMessageAs(final Entry expectedEntry) {

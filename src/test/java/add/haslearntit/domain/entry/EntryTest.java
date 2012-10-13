@@ -2,8 +2,12 @@ package add.haslearntit.domain.entry;
 
 import static junitparams.JUnitParamsRunner.$;
 import static org.hamcrest.CoreMatchers.equalTo;
+import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
+
+import java.util.Date;
+
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 
@@ -22,7 +26,7 @@ public class EntryTest {
 		String difficulty = "easy";
 		String time = "15";
 
-		Entry entry = aEntry(name, difficulty, time);
+		Entry entry = aEntry(name, difficulty, time, new Date());
 
 		// when:
 		String message = entry.asMessage();
@@ -92,6 +96,12 @@ public class EntryTest {
 		// then:
 		assertThat(hashAreEqual, isTrue());
 	}
+	
+	@Test
+	public void shouldCreateDateNotEmpty() throws Exception {
+		Entry entry = aEntry();
+		assertNotNull(entry.getCreationDate());
+	}
 
 	@Test
 	@Parameters(method="earnedPoints")
@@ -107,7 +117,7 @@ public class EntryTest {
 	@Test
 	public void shouldThrow() {
 		// given:
-		Entry someEntry = aEntry("someSkill", "wrong_value", "1");
+		Entry someEntry = aEntry("someSkill", "wrong_value", "1", new Date());
 		// when:
 		int earnedPoints = someEntry.getEarnedPoints();
 		// then:
@@ -127,11 +137,11 @@ public class EntryTest {
 	// --
 
 	private Entry aEntry() {
-		return aEntry("someSkill", "someDifficulty", "someTime");
+		return aEntry("someSkill", "someDifficulty", "someTime", new Date());
 	}
 
-	private Entry aEntry(String name, String difficulty, String time) {
-		return new Entry(name, difficulty, time);
+	private Entry aEntry(String name, String difficulty, String time, Date creationDate) {
+		return new Entry(name, difficulty, time, creationDate);
 	}
 
 	private Matcher<Boolean> isFalse() {
@@ -144,6 +154,6 @@ public class EntryTest {
 
 
 	private Entry aEntry(String name, Difficulty difficulty, int durationHours) {
-		return new Entry(name, difficulty.name(), Integer.toString(durationHours));
+		return new Entry(name, difficulty.name(), Integer.toString(durationHours), new Date());
 	}
 }

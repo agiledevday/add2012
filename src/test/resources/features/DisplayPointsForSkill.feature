@@ -1,5 +1,6 @@
 Feature: Display points for a learnt skill
 
+@currentlyInDevelopment
 Scenario: Display points for a learnt skill
 	Given I have learnt following skills
 		| what 							| difficult 	| time | 

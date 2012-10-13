@@ -3,6 +3,8 @@ package add.haslearntit.domain.entry;
 import static org.junit.Assert.assertThat;
 import static org.junit.matchers.JUnitMatchers.hasItem;
 
+import java.util.Date;
+
 import org.junit.Test;
 
 public abstract class EntryRepositoryContractTest {
@@ -32,7 +34,7 @@ public abstract class EntryRepositoryContractTest {
     // --
 
     private Entry anEntry() {
-        return new Entry("entry", "difficultyLevel", "timeConsumed");
+        return new Entry("entry", "difficultyLevel", "timeConsumed", new Date());
     }
 
 }

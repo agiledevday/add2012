@@ -1,5 +1,8 @@
 package add.haslearntit.application.entry;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.list.ListItem;
@@ -32,11 +35,11 @@ public class TimelinePanel extends Panel{
 		
 		add(new ListView<Entry>("list", model){
             private static final long serialVersionUID = -78059563727068797L;
-
             @Override
 			protected void populateItem(ListItem<Entry> item) {
 				item.add(new Label("skill", item.getModelObject().asMessage()));
 				item.add(new Label("skillPoints", String.valueOf(item.getModelObject().getEarnedPoints())));
+				item.add(new Label("creationDate", getDateString(item.getModelObject())));
 			}
 		});
 	}
@@ -51,6 +54,10 @@ public class TimelinePanel extends Panel{
 				return model.getObject().size() == 0;
 			}
 		});
+	}
+
+	private String getDateString(Entry item) {
+		return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(item.getCreationDate());
 	}
 
 }

@@ -7,6 +7,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.util.Date;
 import java.util.List;
 
 import org.junit.Before;
@@ -64,6 +65,6 @@ public class GlobalTimelineModelTest extends HasLearntItBaseWicketIT {
     }
 
     private Entry aEntry(String skill) {
-        return new Entry(skill, "easy", "1");
+        return new Entry(skill, "easy", "1", new Date());
     }
 }
