@@ -45,8 +45,6 @@ this.metaClass.mixin(cucumber.runtime.groovy.EN)
 		dashboardUi.displayedDifficultyNames().each{name ->
 			actual.add([name]);
 		}
-		println("----------------------------------------");
-		println(actual);
 		expected.diff(actual);
 	}
     

@@ -1,10 +1,15 @@
 package add.haslearntit.application.entry;
 
+import static org.fest.assertions.Assertions.assertThat;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Matchers.argThat;
 import static org.mockito.Mockito.verify;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.util.tester.FormTester;
 import org.hamcrest.BaseMatcher;
 import org.hamcrest.Description;
@@ -15,7 +20,7 @@ import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import add.haslearntit.HasLearntItBaseWicketIT;
-import add.haslearntit.application.entry.NewEntryPanel;
+import add.haslearntit.domain.entry.Difficulty;
 import add.haslearntit.domain.entry.Entry;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -24,89 +29,98 @@ public class NewEntryPanelTest extends HasLearntItBaseWicketIT {
 	private FormTester formTester;
 
 	@Before
-	public void setUp()
-	{
+	public void setUp() {
 		tester.startComponentInPage(new NewEntryPanel("newSkillPanel"));
 		formTester = tester.newFormTester("newSkillPanel:newSkillForm");
 	}
-	
+
 	@Test
 	public void shouldSaveNewSkill() throws Exception {
 		
+
 		// given:
 		String name = "testing components using WicketTester";
-		String difficulty = "challenging";
+		String difficulty = String.valueOf(getDifficultyChoices().indexOf(Difficulty.MEDIUM.name()));
 		String time = "10 minutes";
 
 		formTester.setValue("name", name);
 		formTester.setValue("difficulty", difficulty);
 		formTester.setValue("time", time);
-		
+
 		// when:
 		formTester.submit();
-		
+
 		// then:
-		verify(entryRepository).store(argThat(
-				hasSameMessageAs(
-						aEntry(name, difficulty, time))));
+		verify(entryRepository).store(
+				argThat(hasSameMessageAs(aEntry(name, Difficulty.MEDIUM.name(), time))));
 	}
+
 
 	@Test
 	public void shouldValidateSkillNameIsRequired() throws Exception {
-		
+
 		// given:
 		validForm();
 		formTester.setValue("name", "");
-		
+
 		// when:
 		formTester.submit();
-		
+
 		// then:
 		tester.assertErrorMessages("You have to provide skill description!");
 	}
 
-	@Test
-	public void shouldValidateSkillDifficultyIsRequired() throws Exception {
-		
-		// given:
-		validForm();
-		formTester.setValue("difficulty", "");
-		
-		// when:
-		formTester.submit();
-		
-		// then:
-		tester.assertErrorMessages("You have to say how difficult it was!");
-	}
-	
+
 	@Test
 	public void shouldValidateSkillTimeIsRequired() throws Exception {
-		
+
 		// given:
 		validForm();
 		formTester.setValue("time", "");
-		
+
 		// when:
 		formTester.submit();
-		
+
 		// then:
 		tester.assertErrorMessages("You have provide info about how difficult it was!");
 	}
-	
+
 	@Test
 	public void shouldClearFormAfterSubmit() throws Exception {
-		
+
 		// given:
 		validForm();
-		
+
 		// when:
 		formTester.submit();
-		
+
 		// then:
 		assertThat(formTester.getTextComponentValue("name"), equalTo(""));
-		assertThat(formTester.getTextComponentValue("difficulty"), equalTo(""));
+		assertThat(getDifficultyDropDown().getValue(), equalTo(String.valueOf(getDifficultyChoices().indexOf(Difficulty.MEDIUM.name()))));
 		assertThat(formTester.getTextComponentValue("time"), equalTo(""));
 	}
+
+	@Test
+	public void shouldListDifficultiesLevels() {
+		// given:
+
+		// when:
+
+		// then:
+		assertThat(getDifficultyChoices()).containsExactly("EASY","MEDIUM","HARD");
+	}
+
+
+	@SuppressWarnings("unchecked")
+	private DropDownChoice<String> getDifficultyDropDown() {
+		return (DropDownChoice<String>) tester.getComponentFromLastRenderedPage("newSkillPanel:newSkillForm:difficulty");
+	}
+	
+	@SuppressWarnings("unchecked")
+	private List<String> getDifficultyChoices() {
+		return (List<String>) getDifficultyDropDown().getChoices();
+	}
+
 	// --
 
 	private void validForm() {
@@ -118,7 +132,7 @@ public class NewEntryPanelTest extends HasLearntItBaseWicketIT {
 		formTester.setValue("difficulty", difficulty);
 		formTester.setValue("time", time);
 	}
-	
+
 	private Entry aEntry(String name, String difficulty, String time) {
 		return new Entry(name, difficulty, time);
 	}
@@ -127,7 +141,7 @@ public class NewEntryPanelTest extends HasLearntItBaseWicketIT {
 		return new BaseMatcher<Entry>() {
 
 			public boolean matches(Object arg0) {
-				
+
 				Entry entry = (Entry) arg0;
 				return entry.asMessage().equals(expectedEntry.asMessage());
 			}

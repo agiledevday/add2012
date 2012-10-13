@@ -120,9 +120,9 @@ public class EntryTest {
 	private Object[] earnedPoints() {
 		return $(
 				$(Difficulty.EASY, 1, 1),
-				$(Difficulty.MODERATE, 1, 2),
+				$(Difficulty.MEDIUM, 1, 2),
 				$(Difficulty.HARD, 1, 5),
-				$(Difficulty.MODERATE, 10, 20)
+				$(Difficulty.MEDIUM, 10, 20)
 				);
 	}
 	
