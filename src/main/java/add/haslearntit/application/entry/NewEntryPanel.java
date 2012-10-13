@@ -19,9 +19,14 @@ import add.haslearntit.application.entry.validators.TimeValidator;
 import add.haslearntit.domain.entry.Entry;
 import add.haslearntit.domain.entry.EntryRepository;
 
+import com.google.common.annotations.VisibleForTesting;
+
 public class NewEntryPanel extends Panel {
 
     private static final long serialVersionUID = 2627832833454321010L;
+
+    @VisibleForTesting
+    static final int MINIMAL_REQUIRED_LETTER_TO_SUGGEST = 2;
 
     private Model<String> nameModel = Model.of();
     private Model<String> difficultyModel = Model.of();
@@ -68,8 +73,8 @@ public class NewEntryPanel extends Panel {
 
                     @Override
                     protected Iterator<String> getChoices(String input) {
-                        if (input == null) {
-                            Collections.emptyList().iterator();
+                        if (input == null || input.length() < MINIMAL_REQUIRED_LETTER_TO_SUGGEST) {
+                            return Collections.<String> emptyList().iterator();
                         }
                         List<Entry> skills = entryRepository.loadByNamePrefix(input);
                         List<String> names = extract(skills, on(Entry.class).getName());

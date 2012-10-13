@@ -1,9 +1,7 @@
 package add.haslearntit.steps
 
 import add.haslearntit.domain.EntryDomain
-import add.haslearntit.pages.*
 import add.haslearntit.ui.DashboardUi
-import add.haslearntit.ui.LoginUi
 
 this.metaClass.mixin(cucumber.runtime.groovy.Hooks)
 this.metaClass.mixin(cucumber.runtime.groovy.EN)
@@ -36,7 +34,11 @@ this.metaClass.mixin(cucumber.runtime.groovy.EN)
         suggestionsList = splitListPassedAsStringWithSemicolons(suggestionsAsList)
         assert dashboardUi.displayedSkillSuggestions() == suggestionsList.sort()
     }
-    
-    List<String> splitListPassedAsStringWithSemicolons(String listAsString) {
+
+    Then(~'^I should see no suggestions$') { ->
+        assert dashboardUi.displayedSkillSuggestions().isEmpty()
+    }
+
+List<String> splitListPassedAsStringWithSemicolons(String listAsString) {
         (listAsString == null || listAsString.isEmpty()) ? [] : listAsString.split(";")
     }
