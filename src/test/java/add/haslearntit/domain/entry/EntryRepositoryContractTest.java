@@ -38,7 +38,7 @@ public abstract class EntryRepositoryContractTest {
     public void shouldReturnsSkillsOrderedAlphabetically() {
 
         //given
-        Entry[] skills = new Entry[]{anEntry("Java"), anEntry("Jacoco"), anEntry("Jabber")};
+        Entry[] skills = generateEntriesWithPrefix("Ja", 3);
         storeSkills(skills);
         //when
         final List<Entry> result = repository.loadByNamePrefix("Ja");
@@ -50,8 +50,7 @@ public abstract class EntryRepositoryContractTest {
     @Test
     public void shouldLimitSkillResults() {
         //given
-        Entry[] skills = new Entry[]{anEntry("Java"), anEntry("Jacoco"), anEntry("Jabber"), anEntry("Java-GWT"),
-                anEntry("Java-AppEngine"),anEntry("Java-Python")};
+        Entry[] skills = generateEntriesWithPrefix("Ja", 6);
         storeSkills(skills);
         //when
         final List<Entry> result = repository.loadByNamePrefix("Ja");
@@ -61,9 +60,9 @@ public abstract class EntryRepositoryContractTest {
     }
 
     @Test
-    public void shouldNotFailWhenThereIsLessResultsThatLimit() {
+    public void shouldNotFailWhenThereIsNoElements() {
         //given
-        Entry[] skills = new Entry[]{};
+        Entry[] skills = generateEntriesWithPrefix("Any", 0);
         storeSkills(skills);
         //when
         final List<Entry> result = repository.loadByNamePrefix("Ja");
@@ -71,7 +70,27 @@ public abstract class EntryRepositoryContractTest {
         assertThat(result).isNotNull().isEmpty();
     }
 
-    // --           
+
+    @Test
+    public void shouldNotFailWhenThereIsLessResultsThatLimit() {
+        //given
+        Entry[] skills = generateEntriesWithPrefix("Ja", 1);
+        storeSkills(skills);
+        //when
+        final List<Entry> result = repository.loadByNamePrefix("Ja");
+        //then
+        assertThat(result).containsExactly(skills);
+    }
+
+    // --
+
+    private Entry[] generateEntriesWithPrefix(String prefix, int numOfElems) {
+        Entry[] generatedElements = new Entry[numOfElems];
+        for (int i = 0; i < numOfElems; i++) {
+            generatedElements[i] = anEntry(prefix + i);
+        }
+        return generatedElements;
+    }
 
     private Entry anEntry() {
         return new Entry("entry", "difficultyLevel", "timeConsumed");
