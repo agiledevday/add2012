@@ -34,7 +34,9 @@ public class TransientEntryRepository implements EntryRepository{
     public List<Entry> loadByNamePrefix(String namePrefix) {
         final List<Entry> entries = filter(having(on(Entry.class).getName(), startsWith(namePrefix)), storage);
         final List<Entry> sortedEntries = sort(entries, on(Entry.class).getName());
-        return Collections.unmodifiableList(sortedEntries.subList(0, EntryRepository.MAX_SUGGESTIONS_RESULTS));
+        final int toIndex = sortedEntries.size() < EntryRepository.MAX_SUGGESTIONS_RESULTS ?
+                sortedEntries.size() : EntryRepository.MAX_SUGGESTIONS_RESULTS;
+        return Collections.unmodifiableList(sortedEntries.subList(0, toIndex));
     }
 
 }

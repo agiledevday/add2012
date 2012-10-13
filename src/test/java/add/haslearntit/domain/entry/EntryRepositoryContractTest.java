@@ -60,6 +60,17 @@ public abstract class EntryRepositoryContractTest {
         assertThat(result).containsExactly(Arrays.copyOfRange(skills, 0, EntryRepository.MAX_SUGGESTIONS_RESULTS));
     }
 
+    @Test
+    public void shouldNotFailWhenThereIsLessResultsThatLimit() {
+        //given
+        Entry[] skills = new Entry[]{};
+        storeSkills(skills);
+        //when
+        final List<Entry> result = repository.loadByNamePrefix("Ja");
+        //then
+        assertThat(result).isNotNull().isEmpty();
+    }
+
     // --           
 
     private Entry anEntry() {
