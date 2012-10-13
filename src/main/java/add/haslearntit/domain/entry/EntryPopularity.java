@@ -1,6 +1,8 @@
 package add.haslearntit.domain.entry;
 
-public class EntryPopularity implements Comparable<EntryPopularity> {
+import java.io.Serializable;
+
+public class EntryPopularity implements Comparable<EntryPopularity>, Serializable {
 
 	private String name;
 	private Long count;
