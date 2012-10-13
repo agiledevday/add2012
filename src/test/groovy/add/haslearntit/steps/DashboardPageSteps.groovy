@@ -1,9 +1,13 @@
 package add.haslearntit.steps
 
+import org.fest.assertions.AssertExtension;
+import static org.fest.assertions.Assertions.*;
+
 import add.haslearntit.domain.UserDomain
 import add.haslearntit.pages.*
 import add.haslearntit.ui.DashboardUi
 import add.haslearntit.ui.LoginUi
+import cucumber.runtime.PendingException
 import cucumber.table.DataTable
 
 this.metaClass.mixin(cucumber.runtime.groovy.Hooks)
@@ -34,6 +38,17 @@ this.metaClass.mixin(cucumber.runtime.groovy.EN)
         
         dashboardUi.assertNewSkillIsDisplayed();
     }
+	
+	Then(~'^I can choose difficulty level from$') { DataTable expected ->
+		
+		List<List<String>> actual =  new ArrayList<List<String>>();
+		dashboardUi.displayedDifficultyNames().each{name ->
+			actual.add([name]);
+		}
+		println("----------------------------------------");
+		println(actual);
+		expected.diff(actual);
+	}
     
     Given(~'^I have learnt following skills$') { 
         DataTable table ->

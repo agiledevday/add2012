@@ -46,6 +46,10 @@ class DashboardUi {
         assert page().recentlyLearntSkill().contains(newSkillDifficulty);
         assert page().recentlyLearntSkill().contains(newSkillTime);
     }
+	
+	def displayedDifficultyNames={
+		return page().displayedDifficultyNames();
+	}
     
 
     def displayedEntries={

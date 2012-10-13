@@ -11,7 +11,12 @@
                     <span class="left-margin clickable-text" id="dropdown-choose-level" dropdown-name="choose-level">
                         <input wicket:id="difficulty" name="difficulty" type="text" style="width: 50px;" placeholder="difficulty">
                     </span> 
-                    <span class="left-margin">and it took me</span> <span class="left-margin"> <input wicket:id="time" id="learningtime" name="time"
+                    <select>
+						<option value="EASY">EASY</option>
+						<option value="MEDIUM">MEDIUM</option>
+						<option value="HARD">HARD</option>
+					</select> 
+					<span class="left-margin">and it took me</span> <span class="left-margin"> <input wicket:id="time" id="learningtime" name="time"
                         type="text" placeholder="time spent" style="height: 22px; width: 40px;">
                     </span> 
                     <span class="right" style="margin-right: 20px;"> 
