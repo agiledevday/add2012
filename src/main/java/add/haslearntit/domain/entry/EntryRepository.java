@@ -10,5 +10,5 @@ public interface EntryRepository {
 
     List<Entry> loadAll();
 
-    List<Entry> loadByNamePrefix(String namePrefix);
+    List<String> loadSkillNameByNamePrefix(String namePrefix);
 }

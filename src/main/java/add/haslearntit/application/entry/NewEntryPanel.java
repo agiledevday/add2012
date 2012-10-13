@@ -1,8 +1,5 @@
 package add.haslearntit.application.entry;
 
-import static ch.lambdaj.Lambda.extract;
-import static ch.lambdaj.Lambda.on;
-
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Iterator;
@@ -27,8 +24,8 @@ import com.google.common.annotations.VisibleForTesting;
 public class NewEntryPanel extends Panel {
 
     private static final long serialVersionUID = 2627832833454321010L;
+
     private static final String DEFAULT_DIFICULTY = Difficulty.MEDIUM.name();
-    
 
     @VisibleForTesting
     static final int MINIMAL_REQUIRED_LETTER_TO_SUGGEST = 2;
@@ -57,13 +54,13 @@ public class NewEntryPanel extends Panel {
         private void initializeComponents() {
             add(createSkillNamesAutoCompleteTextField());
             difficultyModel.setObject(DEFAULT_DIFICULTY);
-            add(new DropDownChoice<String>("difficulty", difficultyModel, getListOfDificulties()).setNullValid(false));
+            add(new DropDownChoice<String>("difficulty", difficultyModel, getListOfDifficulties()).setNullValid(false));
             add(new RequiredTextField<String>("time", timeModel).add(new TimeValidator()));
         }
 
-		private List<String> getListOfDificulties() {
-			return Arrays.asList(Difficulty.EASY.name(),Difficulty.MEDIUM.name(),Difficulty.HARD.name());
-		}
+        private List<String> getListOfDifficulties() {
+            return Arrays.asList(Difficulty.EASY.name(), Difficulty.MEDIUM.name(), Difficulty.HARD.name());
+        }
 
         @Override
         protected void onSubmit() {
@@ -84,10 +81,9 @@ public class NewEntryPanel extends Panel {
                     @Override
                     protected Iterator<String> getChoices(String input) {
                         if (input == null || input.length() < MINIMAL_REQUIRED_LETTER_TO_SUGGEST) {
-                            return Collections.<String> emptyList().iterator();
+                            return Collections.<String>emptyList().iterator();
                         }
-                        List<Entry> skills = entryRepository.loadByNamePrefix(input);
-                        List<String> names = extract(skills, on(Entry.class).getName());
+                        List<String> names = entryRepository.loadSkillNameByNamePrefix(input);
                         return names.iterator();
                     }
                 };

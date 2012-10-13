@@ -3,12 +3,11 @@ package add.haslearntit.infrastructure.transients.entry;
 import static ch.lambdaj.Lambda.*;
 import static org.hamcrest.text.StringStartsWith.startsWith;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 import add.haslearntit.domain.entry.Entry;
 import add.haslearntit.domain.entry.EntryRepository;
+import ch.lambdaj.function.convert.PropertyExtractor;
 
 public class TransientEntryRepository implements EntryRepository{
 
@@ -30,13 +29,17 @@ public class TransientEntryRepository implements EntryRepository{
 		storage.clear();
 	}
 	
+    @SuppressWarnings("unchecked")
     @Override
-    public List<Entry> loadByNamePrefix(String namePrefix) {
+    public List<String> loadSkillNameByNamePrefix(String namePrefix) {
         final List<Entry> entries = filter(having(on(Entry.class).getName(), startsWith(namePrefix)), storage);
         final List<Entry> sortedEntries = sort(entries, on(Entry.class).getName());
-        final int toIndex = sortedEntries.size() < EntryRepository.MAX_SUGGESTIONS_RESULTS ?
-                sortedEntries.size() : EntryRepository.MAX_SUGGESTIONS_RESULTS;
-        return Collections.unmodifiableList(sortedEntries.subList(0, toIndex));
+        List<String> names = convert(sortedEntries, new PropertyExtractor("name"));
+        Set<String> uniqueNames = new TreeSet<String>(names);
+        List<String> uniqueNamesList = new ArrayList<String>(uniqueNames);
+        final int toIndex = uniqueNamesList.size() < EntryRepository.MAX_SUGGESTIONS_RESULTS ?
+                uniqueNamesList.size() : EntryRepository.MAX_SUGGESTIONS_RESULTS;
+        return Collections.unmodifiableList(uniqueNamesList.subList(0, toIndex));
     }
 
 }

@@ -17,14 +17,13 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import add.haslearntit.HasLearntItBaseWicketIT;
 import add.haslearntit.application.entry.DashboardPage;
-import add.haslearntit.domain.entry.Entry;
 
 @RunWith(MockitoJUnitRunner.class)
 public class SkillNameSuggestionTest extends HasLearntItBaseWicketIT {
 
 	@Before
 	public void skillsInRepository() {
-		when(entryRepository.loadByNamePrefix("ja")).thenReturn(Arrays.asList(new Entry("Jacoco", null, null)));
+		when(entryRepository.loadSkillNameByNamePrefix("ja")).thenReturn(Arrays.asList("Jacoco"));
 		tester.startPage(DashboardPage.class);
 	}
 	
@@ -56,7 +55,7 @@ public class SkillNameSuggestionTest extends HasLearntItBaseWicketIT {
         autocompleteIsTriggeredOn("newSkillForm:newSkillForm:name");
         //then
         tester.assertContainsNot("Jacoco");
-        verify(entryRepository, never()).loadByNamePrefix(anyString());
+        verify(entryRepository, never()).loadSkillNameByNamePrefix(anyString());
     }
 
 	private void autocompleteIsTriggeredOn(String inputPath) {

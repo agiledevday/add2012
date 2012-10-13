@@ -51,10 +51,12 @@ When user types skill name, he sees a suggestions based on existing skills.
     When I am typing following skill details 'ja'
     Then I should see following skills suggestions 'Jabber;Jacoco;Jamaica;Jango;Java'
 
-  @pending
-  Scenario: Display distinct skill names
-    Given users have already learned
-      | Java;Jacoco;Java |
-    When I am typing following skill details 'ja'
-    Then I should see
-      | Jacoco;Java |
+  Scenario Outline: Display distinct skill names
+    Given users have already learned '<existing skills>'
+    When I am typing following skill details '<skill typed>'
+    Then I should see following skills suggestions '<suggestions>'
+
+  Examples:
+    | existing skills    | skill typed | suggestions        |
+    | Java;Jacoco;Java   | ja          | Jacoco;Java        |
+    | Java;Java;Java     | ja          | Java    |

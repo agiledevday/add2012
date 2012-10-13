@@ -6,6 +6,7 @@ import java.util.List;
 import org.hibernate.SessionFactory;
 import org.hibernate.classic.Session;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -36,15 +37,16 @@ public class HibernateEntryRepository implements EntryRepository {
     @Transactional(readOnly = true)
     @SuppressWarnings("unchecked")
     @Override
-    public List<Entry> loadByNamePrefix(String namePrefix) {
+    public List<String> loadSkillNameByNamePrefix(String namePrefix) {
         return Collections.unmodifiableList(session()
                 .createCriteria(Entry.class)
+                .setProjection(Projections.distinct(Projections.property("name")))
                 .add(Restrictions.ilike("name", namePrefix + "%"))
                 .addOrder(Order.asc("name"))
                 .setMaxResults(MAX_SUGGESTIONS_RESULTS)
                 .list());
     }
-    
+
     private Session session() {
         return sessionFactory.getCurrentSession();
     }
