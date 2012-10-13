@@ -7,6 +7,7 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
+import com.google.common.annotations.VisibleForTesting;
 import org.apache.wicket.extensions.ajax.markup.html.autocomplete.DefaultCssAutoCompleteTextField;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.RequiredTextField;
@@ -21,6 +22,9 @@ import add.haslearntit.domain.entry.EntryRepository;
 public class NewEntryPanel extends Panel {
 
     private static final long serialVersionUID = 2627832833454321010L;
+
+    @VisibleForTesting
+    static final int MINIMAL_REQUIRED_LETTER_TO_SUGGEST = 2;
 
     private Model<String> nameModel = Model.of();
     private Model<String> difficultyModel = Model.of();
@@ -63,19 +67,19 @@ public class NewEntryPanel extends Panel {
     private TextField<String> createSkillNamesAutoCompleteTextField() {
         DefaultCssAutoCompleteTextField<String> skillNamesAutoCompleteTextField =
                 new DefaultCssAutoCompleteTextField<String>("name", nameModel) {
-            private static final long serialVersionUID = 2326158862363900977L;
+                    private static final long serialVersionUID = 2326158862363900977L;
 
-            @Override
-            protected Iterator<String> getChoices(String input) {
-                if (input == null) {
-                    Collections.emptyList().iterator();
-                }
-                List<Entry> skills = entryRepository.loadByNamePrefix(input);
-                List<String> names = extract(skills, on(Entry.class).getName());
-                return names.iterator();
-            }
-        };
+                    @Override
+                    protected Iterator<String> getChoices(String input) {
+                        if (input == null || input.length() < MINIMAL_REQUIRED_LETTER_TO_SUGGEST) {
+                            return Collections.<String>emptyList().iterator();
+                        }
+                        List<Entry> skills = entryRepository.loadByNamePrefix(input);
+                        List<String> names = extract(skills, on(Entry.class).getName());
+                        return names.iterator();
+                    }
+                };
         return (TextField<String>) skillNamesAutoCompleteTextField.setRequired(true);
     }
-    
+
 }

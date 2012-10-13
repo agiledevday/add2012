@@ -16,7 +16,6 @@ When user types skill name, he sees a suggestions based on existing skills.
     | jacoco;java     | ja          | jacoco;java |
     | jacoco;java     | foo         |             |
 
-  @pending
   Scenario: Don't display matching skills for less than two letters is given
     Given users have already learned 'Jacoco'
     When I am typing following skill details 'j'
