@@ -470,3 +470,11 @@ header .label {
     width: 190px;
     height: 55px;
 }
+
+#trends-list {
+	margin-left: 15px
+}
+
+#trends-list span {
+	margin-top: 5px;
+}
