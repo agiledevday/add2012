@@ -1,10 +1,14 @@
 package add.haslearntit.application.entry;
 
+import static org.fest.assertions.Assertions.assertThat;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Matchers.argThat;
 import static org.mockito.Mockito.verify;
 
+import java.util.List;
+
+import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.util.tester.FormTester;
 import org.hamcrest.BaseMatcher;
 import org.hamcrest.Description;
@@ -15,6 +19,7 @@ import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import add.haslearntit.HasLearntItBaseWicketIT;
+import add.haslearntit.domain.entry.Difficulty;
 import add.haslearntit.domain.entry.Entry;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -70,7 +75,7 @@ public class NewEntryPanelTest extends HasLearntItBaseWicketIT {
 
         // given:
         String name = "testing components using WicketTester";
-        String difficulty = "challenging";
+        String difficulty = difficultyChoiceValue(Difficulty.MEDIUM);
         String time = "10";
 
         formTester.setValue("name", name);
@@ -81,9 +86,8 @@ public class NewEntryPanelTest extends HasLearntItBaseWicketIT {
         formTester.submit();
 
         // then:
-        verify(entryRepository).store(argThat(
-                hasSameMessageAs(
-                aEntry(name, difficulty, time))));
+        verify(entryRepository).store(
+                argThat(hasSameMessageAs(aEntry(name, Difficulty.MEDIUM.name(), time))));
     }
 
     @Test
@@ -98,20 +102,6 @@ public class NewEntryPanelTest extends HasLearntItBaseWicketIT {
 
         // then:
         tester.assertErrorMessages("You have to provide skill description!");
-    }
-
-    @Test
-    public void shouldValidateSkillDifficultyIsRequired() throws Exception {
-
-        // given:
-        validForm();
-        formTester.setValue("difficulty", "");
-
-        // when:
-        formTester.submit();
-
-        // then:
-        tester.assertErrorMessages("You have to say how difficult it was!");
     }
 
     @Test
@@ -130,7 +120,6 @@ public class NewEntryPanelTest extends HasLearntItBaseWicketIT {
 
     @Test
     public void shouldClearFormAfterSubmit() throws Exception {
-
         // given:
         validForm();
 
@@ -139,8 +128,28 @@ public class NewEntryPanelTest extends HasLearntItBaseWicketIT {
 
         // then:
         assertThat(formTester.getTextComponentValue("name"), equalTo(""));
-        assertThat(formTester.getTextComponentValue("difficulty"), equalTo(""));
+        assertThat(getDifficultyDropDown().getValue(), equalTo(String.valueOf(getDifficultyChoices().indexOf(Difficulty.MEDIUM.name()))));
         assertThat(formTester.getTextComponentValue("time"), equalTo(""));
+    }
+
+    @Test
+    public void shouldListDifficultiesLevels() {
+        // given:
+
+        // when:
+
+        // then:
+        assertThat(getDifficultyChoices()).containsExactly("EASY", "MEDIUM", "HARD");
+    }
+
+    @SuppressWarnings("unchecked")
+    private DropDownChoice<String> getDifficultyDropDown() {
+        return (DropDownChoice<String>) tester.getComponentFromLastRenderedPage("newSkillPanel:newSkillForm:difficulty");
+    }
+
+    @SuppressWarnings("unchecked")
+    private List<String> getDifficultyChoices() {
+        return (List<String>) getDifficultyDropDown().getChoices();
     }
 
     // --
@@ -172,4 +181,9 @@ public class NewEntryPanelTest extends HasLearntItBaseWicketIT {
             }
         };
     }
+
+    private String difficultyChoiceValue(Difficulty difficulty) {
+        return String.valueOf(getDifficultyChoices().indexOf(difficulty.name()));
+    }
+
 }

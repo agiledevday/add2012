@@ -1,6 +1,6 @@
 package add.haslearntit.infrastructure.transients.entry;
 
-import static ch.lambdaj.Lambda.filter;
+import static ch.lambdaj.Lambda.*;
 import static org.hamcrest.text.StringStartsWith.startsWith;
 
 import java.util.ArrayList;
@@ -32,7 +32,11 @@ public class TransientEntryRepository implements EntryRepository{
 	
     @Override
     public List<Entry> loadByNamePrefix(String namePrefix) {
-        return Collections.unmodifiableList(filter(startsWith(namePrefix), storage));
+        final List<Entry> entries = filter(having(on(Entry.class).getName(), startsWith(namePrefix)), storage);
+        final List<Entry> sortedEntries = sort(entries, on(Entry.class).getName());
+        final int toIndex = sortedEntries.size() < EntryRepository.MAX_SUGGESTIONS_RESULTS ?
+                sortedEntries.size() : EntryRepository.MAX_SUGGESTIONS_RESULTS;
+        return Collections.unmodifiableList(sortedEntries.subList(0, toIndex));
     }
 
 }
