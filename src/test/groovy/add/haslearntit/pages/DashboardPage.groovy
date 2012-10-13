@@ -17,6 +17,7 @@ class DashboardPage extends Page {
         messages { module MessagesModule}
         skillSuggestionsDiv(required: false) { $("div", class: "wicket-aa") }
         skillSuggestions(required: false) { skillSuggestionsDiv().find("ul li") }
+        difficulty { $("form").find("input.difficulty") }
     }
 
     def recentlyLearntSkill = {
@@ -36,10 +37,10 @@ class DashboardPage extends Page {
     def fillNewSkillForm = { skill, difficult, time ->
 
         $("form").name = skill;
-        $("form").difficulty = difficult;
         $("form").time = time;
+        waitFor { $("form .difficulty").present }
+        $("form").difficulty = difficult;
     }
-
     def learntSkills = {
         return  learntSkill*.text();
     }
@@ -54,14 +55,14 @@ class DashboardPage extends Page {
         return $(".encouragementMessage").size() > 0;
     }
 
-    def typeSkillPart(typedSkillPart) {
+    def typeSkillPart = { typedSkillPart ->
         $("form").name = typedSkillPart;
     }
 
-	def difficulty = {
-		return $("form").difficulty;
-	}
-	
+    def difficulty = {
+        return $("form").difficulty;
+    }
+
     def displayedSkillSuggestions = {
         waitFor { skillSuggestionsDiv.present }
         return skillSuggestions()*.text()

@@ -67,13 +67,12 @@ public class Entry {
         return name;
     }
 
+    public Difficulty getDifficulty() {
+        return Difficulty.valueOf(difficultyLevel.toUpperCase());
+    }
+
     @Override
     public String toString() {
-        return "Entry{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", difficultyLevel='" + difficultyLevel + '\'' +
-                ", timeSpent='" + timeSpent + '\'' +
-                '}';
+        return "Entry{" + "id=" + id + ", name='" + name + '\'' + ", difficultyLevel='" + difficultyLevel + '\'' + ", timeSpent='" + timeSpent + '\'' + '}';
     }
 }

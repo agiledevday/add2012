@@ -72,7 +72,7 @@ public class NewEntryPanel extends Panel {
     }
 
     private TextField<String> createSkillNamesAutoCompleteTextField() {
-        DefaultCssAutoCompleteTextField<String> skillNamesAutoCompleteTextField = new DefaultCssAutoCompleteTextField<String>("name", nameModel) {
+        TextField<String> skillNamesAutoCompleteTextField = new DefaultCssAutoCompleteTextField<String>("name", nameModel) {
 
             @Override
             protected Iterator<String> getChoices(String input) {

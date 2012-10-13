@@ -1,7 +1,5 @@
 package add.haslearntit.steps
 
-import geb.Browser
-import add.haslearntit.infrastructure.transients.entry.TransientEntryRepository;
 import add.haslearntit.pages.*
 import cucumber.table.DataTable
 

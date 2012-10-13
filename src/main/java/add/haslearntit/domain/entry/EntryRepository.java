@@ -11,4 +11,6 @@ public interface EntryRepository {
 	public List<Entry> loadByNamePrefix(String namePrefix);
 
     public Difficulty getMostCommonDifficultyBySkillName(String skillName);
+
+    public List<Entry> loadByName(String skillName);
 }

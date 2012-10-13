@@ -1,9 +1,9 @@
 package add.haslearntit.infrastructure.hibernate.entry;
 
+import java.io.Serializable;
 import java.util.Collections;
 import java.util.List;
 
-import org.apache.commons.lang.NotImplementedException;
 import org.hibernate.SessionFactory;
 import org.hibernate.classic.Session;
 import org.hibernate.criterion.Restrictions;
@@ -13,7 +13,7 @@ import add.haslearntit.domain.entry.Difficulty;
 import add.haslearntit.domain.entry.Entry;
 import add.haslearntit.domain.entry.EntryRepository;
 
-public class HibernateEntryRepository implements EntryRepository {
+public class HibernateEntryRepository implements EntryRepository, Serializable {
 
     private final SessionFactory sessionFactory;
 
@@ -49,8 +49,18 @@ public class HibernateEntryRepository implements EntryRepository {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Difficulty getMostCommonDifficultyBySkillName(String skillName) {
-        throw new NotImplementedException();
+        return new MostCommonDifficulty().selectMostCommonDifficultyFrom(loadByName(skillName));
+    }
+
+
+
+    @Transactional(readOnly = true)
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<Entry> loadByName(String skillName) {
+        return Collections.unmodifiableList(session().createCriteria(Entry.class).add(Restrictions.eq("name", skillName)).list());
     }
 
 }
