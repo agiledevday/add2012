@@ -14,7 +14,7 @@ Run application in embedded server:
 ~~~ sh
 mvn jetty:run
 ~~~
-
+  
 
 Continous deployment
 --------
