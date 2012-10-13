@@ -1,13 +1,20 @@
 package add.haslearntit.domain.entry;
 
+import static ch.lambdaj.Lambda.convert;
 import static org.fest.assertions.Assertions.assertThat;
-import static org.junit.Assert.assertThat;
 import static org.junit.matchers.JUnitMatchers.hasItem;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 
 import org.fest.assertions.Assertions;
+import org.hamcrest.MatcherAssert;
 import org.junit.Test;
+
+import ch.lambdaj.function.convert.PropertyExtractor;
 
 public abstract class EntryRepositoryContractTest {
 
@@ -21,7 +28,7 @@ public abstract class EntryRepositoryContractTest {
         // when:
         repository.store(entry);
         // then:
-        assertThat(repository.loadAll(), hasItem(entry));
+        MatcherAssert.assertThat(repository.loadAll(), hasItem(entry));
     }
 
     @Test(expected = UnsupportedOperationException.class)
@@ -33,13 +40,120 @@ public abstract class EntryRepositoryContractTest {
         // then:
     }
 
-    // --
+    @Test
+    public void shouldReturnsSkillsOrderedAlphabetically() {
 
-    private Entry anEntry() {
-        return new Entry("entry", "difficultyLevel", "timeConsumed");
+        //given
+        List<Entry> skills = generateEntriesWithPrefix("Ja", 3);
+        storeSkills(skills);
+        //when
+        final List<String> result = repository.loadSkillNameByNamePrefix("Ja");
+        //then
+        List<String> skillsNames = convertSkillsToSkillNames(skills);
+        Collections.sort(skillsNames);
+        assertThat(result).containsExactly(skillsNames.toArray());
     }
 
-    
+    @Test
+    public void shouldReturnDistinctElements() {
+        //given
+        List<Entry> skills = generateTheSameEntriesWithPrefix("Ja", 2);
+        skills.add(anEntry("Jacoco"));
+        storeSkills(skills);
+        //when
+        final List<String> result = repository.loadSkillNameByNamePrefix("Ja");
+        //then
+        assertThat(result).containsExactly("Ja", "Jacoco");
+    }
+
+    @Test
+    public void shouldReturnDistinctElementsEvenWhenNumberGreaterThanLimit() {
+        //given
+        List<Entry> jaSkills = generateTheSameEntriesWithPrefix("Ja", EntryRepository.MAX_SUGGESTIONS_RESULTS);
+        List<Entry> jacocoSkills = generateTheSameEntriesWithPrefix("Jacoco", 2);
+        storeSkills(jaSkills);
+        storeSkills(jacocoSkills);
+        //when
+        final List<String> result = repository.loadSkillNameByNamePrefix("Ja");
+        //then
+        assertThat(result).containsExactly("Ja", "Jacoco");
+    }
+
+    @Test
+    public void shouldLimitSkillResults() {
+        //given
+        List<Entry> skills = generateEntriesWithPrefix("Ja", 6);
+        storeSkills(skills);
+        //when
+        final List<String> result = repository.loadSkillNameByNamePrefix("Ja");
+        //then
+        Collections.sort(skills, createBySkillNameComparator());
+        final List<Entry> limitedSkills = skills.subList(0, EntryRepository.MAX_SUGGESTIONS_RESULTS);
+        assertThat(result).containsExactly(
+                convertSkillsToSkillNames(limitedSkills).toArray(new String[limitedSkills.size()]));
+    }
+
+    @Test
+    public void shouldNotFailWhenThereIsNoElements() {
+        //given
+        List<Entry> skills = generateEntriesWithPrefix("Any", 0);
+        storeSkills(skills);
+        //when
+        final List<String> result = repository.loadSkillNameByNamePrefix("Ja");
+        //then
+        assertThat(result).isNotNull().isEmpty();
+    }
+
+    @Test
+    public void shouldNotFailWhenThereIsLessResultsThatLimit() {
+        //given
+        List<Entry> skills = generateEntriesWithPrefix("Ja", 1);
+        storeSkills(skills);
+        //when
+        final List<String> result = repository.loadSkillNameByNamePrefix("Ja");
+        //then
+        assertThat(result).containsExactly(convertSkillsToSkillNames(skills).toArray());
+    }
+
+    // --
+
+    @SuppressWarnings("unchecked")
+    private List<String> convertSkillsToSkillNames(List<Entry> skills) {
+        return convert(skills, new PropertyExtractor("name"));
+    }
+
+    private List<Entry> generateEntriesWithPrefix(String prefix, int numOfElements) {
+        List<Entry> generatedElements = new ArrayList<Entry>();
+        for (int i = 0; i < numOfElements; i++) {
+            generatedElements.add(anEntry(prefix + i));
+        }
+        return generatedElements;
+    }
+
+    //TODO: Remove duplication
+    private List<Entry> generateTheSameEntriesWithPrefix(String prefix, int numOfElements) {
+        List<Entry> generatedElements = new ArrayList<Entry>();
+        for (int i = 0; i < numOfElements; i++) {
+            generatedElements.add(anEntry(prefix));
+        }
+        return generatedElements;
+    }
+
+
+    private Entry anEntry() {
+        return anEntry("entry");
+    }
+
+    private Entry anEntry(String skill) {
+        return new Entry(skill, "difficultyLevel", "timeConsumed", new Date());
+    }
+
+    private void storeSkills(List<Entry> skills) {
+        for (Entry s : skills) {
+            repository.store(s);
+        }
+    }
+
     @Test
     public void shouldReturnEmptyListOfEntryPopularityWhenNoEntries() {
     	Assertions.assertThat(repository.getTopTenList()).isEmpty();
@@ -63,7 +177,7 @@ public abstract class EntryRepositoryContractTest {
     }
 
 	private void storeEntry(String name) {
-		repository.store(new Entry(name, "foo", "40"));
+		repository.store(new Entry(name, "foo", "40",new Date()));
 	}
 
 	private EntryPopularity entryPopularity(String name, Long count) {
@@ -79,5 +193,15 @@ public abstract class EntryRepositoryContractTest {
     	}
     	
     	Assertions.assertThat(repository.getTopTenList()).hasSize(10);
+    }
+
+
+    private Comparator<Entry> createBySkillNameComparator() {
+        return new Comparator<Entry>() {
+            @Override
+            public int compare(Entry o1, Entry o2) {
+                return o1.getName().compareTo(o2.getName());
+            }
+        };
     }
 }

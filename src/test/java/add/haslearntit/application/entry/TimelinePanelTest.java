@@ -1,7 +1,11 @@
 package add.haslearntit.application.entry;
 
 import static java.util.Arrays.asList;
+import static org.junit.Assert.*;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.wicket.model.util.ListModel;
@@ -12,7 +16,10 @@ import add.haslearntit.domain.entry.Entry;
 
 public class TimelinePanelTest extends HasLearntItBaseWicketIT {
 
-    @Test
+    private static final String LEARNT_SKILL_LIST_ID = "learntSkillList";
+	private static final String FIRST_SKILL_PREFIX = LEARNT_SKILL_LIST_ID + ":list:0:";
+
+	@Test
     public void shouldDisplayAllLearntSkills() throws Exception {
 
         // given:
@@ -54,14 +61,27 @@ public class TimelinePanelTest extends HasLearntItBaseWicketIT {
     @Test
     public void shouldDisplayLearnPoints() {
         // given
-        Entry someEntry = new Entry("java programming", "EASY", "1");
+        Entry someEntry = new Entry("java programming", "EASY", "1", new Date());
 
         // when
-        tester.startComponentInPage(new TimelinePanel("learntSkillsList", modelContainingSkills(someEntry)));
+        tester.startComponentInPage(new TimelinePanel(LEARNT_SKILL_LIST_ID, modelContainingSkills(someEntry)));
 
         // then
-        tester.assertLabel("learntSkillsList:list:0:skillPoints", Integer.toString(someEntry.getEarnedPoints()));
+        tester.assertLabel(FIRST_SKILL_PREFIX + "skillPoints", Integer.toString(someEntry.getEarnedPoints()));
     }
+    
+    @Test
+	public void shouldDisplayCreationDate() throws Exception {
+    	// given
+    	String dateString = "2012-10-13 13:00:01";
+		Entry entry = new Entry("java", "EASY", "1", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(dateString));
+    	
+		// when
+    	tester.startComponentInPage(new TimelinePanel(LEARNT_SKILL_LIST_ID, modelContainingSkills(entry)));
+    	
+    	// then
+    	tester.assertLabel(FIRST_SKILL_PREFIX + "creationDate", dateString);
+	}
 
     // --
 
@@ -70,7 +90,7 @@ public class TimelinePanelTest extends HasLearntItBaseWicketIT {
     }
 
     private Entry aEntry(String name) {
-        return new Entry(name, "easy", "1 minute");
+        return new Entry(name, "easy", "1", new Date());
     }
 
     public class StaticTimelineModel extends ListModel<Entry> implements TimelineModel {

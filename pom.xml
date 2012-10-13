@@ -205,6 +205,12 @@
             <version>${selenium.version}</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+        	<groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-support</artifactId>
+            <version>${selenium.version}</version>
+            <scope>test</scope>
+        </dependency>
 
         <!-- JUNIT DEPENDENCY FOR TESTING -->
         <dependency>
@@ -247,6 +253,12 @@
             <groupId>net.sf.appinfo</groupId>
             <artifactId>appinfo</artifactId>
             <version>0.5.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>13.0.1</version>
         </dependency>
 
     </dependencies>

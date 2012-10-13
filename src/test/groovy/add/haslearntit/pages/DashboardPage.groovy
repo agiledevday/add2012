@@ -46,9 +46,12 @@ class DashboardPage extends Page {
     }
 
     def learntSkillsPoints = {
-
         return $("div", class:"points")*.text();
     }
+	
+	def learntSkillDate = {
+		return $("div", class:"entry-date")*.text();
+	}
 
     def encouragementIsPresent = {
 
@@ -67,5 +70,9 @@ class DashboardPage extends Page {
 	
 	def getTrends = {
 		trends
+    }
+	
+	def displayedDifficultyNames = {
+		$("form").find("select").find("option")*.text();
 	}
 }

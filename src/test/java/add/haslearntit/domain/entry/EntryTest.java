@@ -3,15 +3,17 @@ package add.haslearntit.domain.entry;
 import static junitparams.JUnitParamsRunner.$;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
+
+import java.util.Date;
+
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 
 import org.hamcrest.Matcher;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
-import add.haslearntit.domain.entry.Difficulty;
-import add.haslearntit.domain.entry.Entry;
 
 @RunWith(JUnitParamsRunner.class)
 public class EntryTest {
@@ -22,9 +24,9 @@ public class EntryTest {
 		// given:
 		String name = "writing tests in JUnit";
 		String difficulty = "easy";
-		String time = "15 minutes";
+		String time = "15";
 
-		Entry entry = aEntry(name, difficulty, time);
+		Entry entry = aEntry(name, difficulty, time, new Date());
 
 		// when:
 		String message = entry.asMessage();
@@ -32,7 +34,7 @@ public class EntryTest {
 		// then:
 		assertThat(
 				message,
-				equalTo("A User has learnt writing tests in JUnit, which was pretty easy, and it took him 15 minutes."));
+				equalTo("A User has learnt writing tests in JUnit, which was pretty easy, and it took him 15 hours."));
 	}
 
 	@Test
@@ -94,6 +96,12 @@ public class EntryTest {
 		// then:
 		assertThat(hashAreEqual, isTrue());
 	}
+	
+	@Test
+	public void shouldCreateDateNotEmpty() throws Exception {
+		Entry entry = aEntry();
+		assertNotNull(entry.getCreationDate());
+	}
 
 	@Test
 	@Parameters(method="earnedPoints")
@@ -109,7 +117,7 @@ public class EntryTest {
 	@Test
 	public void shouldThrow() {
 		// given:
-		Entry someEntry = aEntry("someSkill", "wrong_value", "1");
+		Entry someEntry = aEntry("someSkill", "wrong_value", "1", new Date());
 		// when:
 		int earnedPoints = someEntry.getEarnedPoints();
 		// then:
@@ -120,20 +128,20 @@ public class EntryTest {
 	private Object[] earnedPoints() {
 		return $(
 				$(Difficulty.EASY, 1, 1),
-				$(Difficulty.MODERATE, 1, 2),
+				$(Difficulty.MEDIUM, 1, 2),
 				$(Difficulty.HARD, 1, 5),
-				$(Difficulty.MODERATE, 10, 20)
+				$(Difficulty.MEDIUM, 10, 20)
 				);
 	}
 	
 	// --
 
 	private Entry aEntry() {
-		return aEntry("someSkill", "someDifficulty", "someTime");
+		return aEntry("someSkill", "someDifficulty", "someTime", new Date());
 	}
 
-	private Entry aEntry(String name, String difficulty, String time) {
-		return new Entry(name, difficulty, time);
+	private Entry aEntry(String name, String difficulty, String time, Date creationDate) {
+		return new Entry(name, difficulty, time, creationDate);
 	}
 
 	private Matcher<Boolean> isFalse() {
@@ -146,6 +154,6 @@ public class EntryTest {
 
 
 	private Entry aEntry(String name, Difficulty difficulty, int durationHours) {
-		return new Entry(name, difficulty.name(), Integer.toString(durationHours));
+		return new Entry(name, difficulty.name(), Integer.toString(durationHours), new Date());
 	}
 }

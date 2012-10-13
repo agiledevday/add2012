@@ -1,9 +1,7 @@
 package add.haslearntit.steps
 
 import add.haslearntit.domain.EntryDomain
-import add.haslearntit.pages.*
 import add.haslearntit.ui.DashboardUi
-import add.haslearntit.ui.LoginUi
 
 this.metaClass.mixin(cucumber.runtime.groovy.Hooks)
 this.metaClass.mixin(cucumber.runtime.groovy.EN)
@@ -17,26 +15,34 @@ this.metaClass.mixin(cucumber.runtime.groovy.EN)
     }
 
     Given(~'^users have already learned \'(.*)\'$') { String skillsAsList ->
-    
+
         List<String> skillsList = splitListPassedAsStringWithSemicolons(skillsAsList)
-    
+
         skillsList.each { skill ->
-            entryDomain.createEntry(skill, "easy", "1");
+            entryDomain.createEntry(skill, "easy", "1", new Date());
         }
-        
+
     }
-    
+
     When(~'^I am typing following skill details \'(.*)\'$') { String typedSkillPart ->
 
         dashboardUi.startTypingEntryName(typedSkillPart);
     }
-    
+
     Then(~'^I should see following skills suggestions \'(.*)\'$') { String suggestionsAsList ->
-        
+
         suggestionsList = splitListPassedAsStringWithSemicolons(suggestionsAsList)
-        assert dashboardUi.displayedSkillSuggestions() == suggestionsList.sort()
+        assert dashboardUi.displayedSkillSuggestions() == suggestionsList
     }
-    
-    List<String> splitListPassedAsStringWithSemicolons(String listAsString) {
+
+    Then(~'^I should see no suggestions$') { ->
+        assert dashboardUi.displayedSkillSuggestions().isEmpty()
+    }
+
+    Given(~'users have already learned nothing'){ ->
+        //nothing to do :)
+    }
+
+List<String> splitListPassedAsStringWithSemicolons(String listAsString) {
         (listAsString == null || listAsString.isEmpty()) ? [] : listAsString.split(";")
     }

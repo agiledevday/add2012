@@ -14,3 +14,5 @@ target/
 *.war
 *.ear
 bin
+/add2012 cl inst.launch
+/add2012 Jetty run.launch

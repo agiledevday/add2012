@@ -34,7 +34,7 @@ Then(~'^empty list should appear$') { ->
 
 Given(~'^Entry list contains less than TEN unique skills during last week$') { DataTable data ->
 	data.asMaps().each { raw ->
-		entryDomain.createEntry(raw['what'], "easy", "1");
+		entryDomain.createEntry(raw['what'], "easy", "1", new Date());
 	}
 	
 }
@@ -63,7 +63,7 @@ Given(~'^Entry list contains more than TEN unique skills during last week$') { D
 	data.asMaps().each { raw ->
 		
 		(raw['count'] as int).times {
-			entryDomain.createEntry(raw['what'], "easy", "1");
+			entryDomain.createEntry(raw['what'], "easy", "1", new Date());
 		}
 		
 	}

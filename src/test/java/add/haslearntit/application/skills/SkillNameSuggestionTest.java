@@ -1,8 +1,12 @@
 package add.haslearntit.application.skills;
 
+import static org.mockito.Matchers.anyString;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.Arrays;
+import java.util.Date;
 
 import org.apache.wicket.extensions.ajax.markup.html.autocomplete.AbstractAutoCompleteBehavior;
 import org.apache.wicket.extensions.ajax.markup.html.autocomplete.AutoCompleteSettings;
@@ -14,15 +18,14 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import add.haslearntit.HasLearntItBaseWicketIT;
 import add.haslearntit.application.entry.DashboardPage;
-import add.haslearntit.domain.entry.Entry;
 
 @RunWith(MockitoJUnitRunner.class)
 public class SkillNameSuggestionTest extends HasLearntItBaseWicketIT {
 
 	@Before
 	public void skillsInRepository() {
-		when(entryRepository.loadByNamePrefix("ja")).thenReturn(Arrays.asList(new Entry("Jacoco", null, null)));
-		tester.startPage(DashboardPage.class);
+        when(entryRepository.loadSkillNameByNamePrefix("ja")).thenReturn(Arrays.asList("Jacoco"));
+        tester.startPage(DashboardPage.class);
 	}
 	
 	@Test
@@ -43,7 +46,18 @@ public class SkillNameSuggestionTest extends HasLearntItBaseWicketIT {
 		autocompleteIsTriggeredOn("newSkillForm:newSkillForm:name");
 		//then
 		tester.assertContainsNot("Jacoco");
-	}
+    }
+
+    @Test
+    public void shouldNotShowNameWhenLessThanTwoLetters() {
+        //given
+        userEntersSkillNamPart("j");
+        //when
+        autocompleteIsTriggeredOn("newSkillForm:newSkillForm:name");
+        //then
+        tester.assertContainsNot("Jacoco");
+        verify(entryRepository, never()).loadSkillNameByNamePrefix(anyString());
+    }
 
 	private void autocompleteIsTriggeredOn(String inputPath) {
 		AbstractAutoCompleteBehavior behavior = (AbstractAutoCompleteBehavior) WicketTesterHelper.

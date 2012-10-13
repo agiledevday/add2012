@@ -12,7 +12,7 @@
         <property name="name" column="NAME" />
         <property name="difficultyLevel" column="DIFF_LVL" />
         <property name="timeSpent" column="TIME_SPENT" />
-
+		<property name="creationDate" column="CREATION_DATE" />
     </class>
 
 </hibernate-mapping>
