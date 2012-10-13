@@ -1,5 +1,7 @@
 package add.haslearntit.application.topten;
 
+import java.util.List;
+
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
@@ -18,13 +20,19 @@ public class TopTenPanel extends Panel {
 
 	public TopTenPanel(String id) {
 		super(id);
-		add(new ListView<EntryPopularity>("trendsList",
-				new ListModel<EntryPopularity>(entryRepository.getTopTenList())) {
+		ListModel<EntryPopularity> listModel = new ListModel<EntryPopularity>() {
+
+			public List<EntryPopularity> getObject() {
+				return entryRepository.getTopTenList();
+			};
+		};
+		add(new ListView<EntryPopularity>("trendsList", listModel) {
 
 			@Override
 			protected void populateItem(ListItem<EntryPopularity> listItem) {
 				EntryPopularity entryPopularity = listItem.getModelObject();
-				listItem.add(new Label("listElement", entryPopularity.toString()));
+				listItem.add(new Label("listElement", entryPopularity
+						.toString()));
 			}
 
 		});
