@@ -3,11 +3,13 @@ package add.haslearntit.infrastructure.hibernate.entry;
 import java.util.Collections;
 import java.util.List;
 
+import org.apache.commons.lang.NotImplementedException;
 import org.hibernate.SessionFactory;
 import org.hibernate.classic.Session;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.transaction.annotation.Transactional;
 
+import add.haslearntit.domain.entry.Difficulty;
 import add.haslearntit.domain.entry.Entry;
 import add.haslearntit.domain.entry.EntryRepository;
 
@@ -44,6 +46,11 @@ public class HibernateEntryRepository implements EntryRepository {
     
     private Session session() {
         return sessionFactory.getCurrentSession();
+    }
+
+    @Override
+    public Difficulty getMostCommonDifficultyBySkillName(String skillName) {
+        throw new NotImplementedException();
     }
 
 }

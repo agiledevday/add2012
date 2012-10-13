@@ -1,9 +1,9 @@
 package add.haslearntit.application.entry;
 
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.junit.Assert.assertThat;
-import static org.mockito.Matchers.argThat;
-import static org.mockito.Mockito.verify;
+import static org.hamcrest.CoreMatchers.*;
+import static org.junit.Assert.*;
+import static org.mockito.Matchers.*;
+import static org.mockito.Mockito.*;
 
 import org.apache.wicket.util.tester.FormTester;
 import org.hamcrest.BaseMatcher;
@@ -15,18 +15,22 @@ import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import add.haslearntit.HasLearntItBaseWicketIT;
-import add.haslearntit.application.entry.NewEntryPanel;
+import add.haslearntit.domain.entry.Difficulty;
 import add.haslearntit.domain.entry.Entry;
+
+import com.google.common.collect.Lists;
 
 @RunWith(MockitoJUnitRunner.class)
 public class NewEntryPanelTest extends HasLearntItBaseWicketIT {
 
 	private FormTester formTester;
+    private NewEntryPanel newEntryPanel;
 
 	@Before
 	public void setUp()
 	{
-		tester.startComponentInPage(new NewEntryPanel("newSkillPanel"));
+        newEntryPanel = new NewEntryPanel("newSkillPanel");
+        tester.startComponentInPage(newEntryPanel);
 		formTester = tester.newFormTester("newSkillPanel:newSkillForm");
 	}
 	
@@ -107,6 +111,37 @@ public class NewEntryPanelTest extends HasLearntItBaseWicketIT {
 		assertThat(formTester.getTextComponentValue("difficulty"), equalTo(""));
 		assertThat(formTester.getTextComponentValue("time"), equalTo(""));
 	}
+	
+	@Test
+	public void shouldSuggestMostCommonDifficultyGivenSkillName() throws Exception {
+        assertDifficultySuggestion(Difficulty.HARD, "hard");
+	}
+
+
+    @Test
+    public void shouldSuggestNothing() throws Exception {
+        assertDifficultySuggestion(null, "");
+    }
+
+    private void assertDifficultySuggestion(Difficulty myNull, String operand) {
+        String name = "scala";
+        when(entryRepository.getMostCommonDifficultyBySkillName(name)).thenReturn(myNull);
+
+        // when
+        formTester.setValue("name", name);
+        tester.executeAjaxEvent(newEntryPanel.skillNameTextField, "onchange");
+
+        // then
+        assertThat(formTester.getTextComponentValue("difficulty"), equalTo(operand));
+    }
+	
+	@Test
+	public void learningTest() throws Exception {
+		System.out.println(entryRepository.loadAll());
+		when(entryRepository.loadAll()).thenReturn(Lists.<Entry>newArrayList(mock(Entry.class)));
+		System.out.println(entryRepository.loadAll());
+	}
+	
 	// --
 
 	private void validForm() {

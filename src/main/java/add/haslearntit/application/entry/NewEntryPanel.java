@@ -1,11 +1,13 @@
 package add.haslearntit.application.entry;
 
-import static ch.lambdaj.Lambda.convert;
+import static ch.lambdaj.Lambda.*;
 
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
+import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.ajax.form.OnChangeAjaxBehavior;
 import org.apache.wicket.extensions.ajax.markup.html.autocomplete.DefaultCssAutoCompleteTextField;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.RequiredTextField;
@@ -14,6 +16,7 @@ import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
+import add.haslearntit.domain.entry.Difficulty;
 import add.haslearntit.domain.entry.Entry;
 import add.haslearntit.domain.entry.EntryRepository;
 import ch.lambdaj.function.convert.StringPropertyExtractor;
@@ -28,6 +31,8 @@ public class NewEntryPanel extends Panel {
 
     @SpringBean
     private EntryRepository entryRepository;
+    RequiredTextField<String> difficultyTextField;
+    TextField<String> skillNameTextField;
 
     public NewEntryPanel(String id) {
 
@@ -35,7 +40,10 @@ public class NewEntryPanel extends Panel {
         add(new NewEntryForm("newSkillForm"));
     }
 
+
     private class NewEntryForm extends Form<Void> {
+
+
 
         public NewEntryForm(String id) {
             super(id);
@@ -43,8 +51,12 @@ public class NewEntryPanel extends Panel {
         }
 
         private void initializeComponents() {
-            add(createSkillNamesAutoCompleteTextField());
-            add(new RequiredTextField<String>("difficulty", difficultyModel));
+            skillNameTextField = createSkillNamesAutoCompleteTextField();
+            difficultyTextField = new RequiredTextField<String>("difficulty", difficultyModel);
+            difficultyTextField.setOutputMarkupId(true);
+            
+            add(skillNameTextField);
+            add(difficultyTextField);
             add(new RequiredTextField<String>("time", timeModel));
         }
 
@@ -60,8 +72,8 @@ public class NewEntryPanel extends Panel {
     }
 
     private TextField<String> createSkillNamesAutoCompleteTextField() {
-        DefaultCssAutoCompleteTextField<String> skillNamesAutoCompleteTextField =
-                new DefaultCssAutoCompleteTextField<String>("name", nameModel) {
+        DefaultCssAutoCompleteTextField<String> skillNamesAutoCompleteTextField = new DefaultCssAutoCompleteTextField<String>("name", nameModel) {
+
             @Override
             protected Iterator<String> getChoices(String input) {
                 if (input == null) {
@@ -69,10 +81,28 @@ public class NewEntryPanel extends Panel {
                 }
                 List<Entry> skills = entryRepository.loadByNamePrefix(input);
                 List<String> names = convert(skills, new StringPropertyExtractor<Entry>("name"));
+
                 return names.iterator();
             }
         };
+        skillNamesAutoCompleteTextField.add(new OnChangeAjaxBehavior() {
+            @Override
+            protected void onUpdate(AjaxRequestTarget target) {
+                Difficulty suggestedDifficulty = entryRepository.getMostCommonDifficultyBySkillName((String) nameModel.getObject());
+                difficultyModel.setObject(emptyIfNull(suggestedDifficulty).toLowerCase());
+                target.add(difficultyTextField);
+            }
+
+        });
         return (TextField<String>) skillNamesAutoCompleteTextField.setRequired(true);
     }
-    
+
+    protected String emptyIfNull(Difficulty suggestedDifficulty) {
+        if (suggestedDifficulty == null) {
+            return "";
+        } else {
+            return suggestedDifficulty.toString();
+        }
+    }
+
 }
