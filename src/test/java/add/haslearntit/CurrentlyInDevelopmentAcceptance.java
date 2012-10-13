@@ -10,7 +10,7 @@ import cucumber.junit.Cucumber.Options;
 @RunWith(Cucumber.class)
 @Options(features = {"src/test/resources/features", "src/test/resources/currentlyInDevelopment"},
         monochrome = true,
-        tags = { "@currentlyInDevelopment" },
+        tags = { "@currentlyInDevelopment", "~@pending" },
         format = { "pretty", "html:target/cucumber-html-report" })
 public class CurrentlyInDevelopmentAcceptance {
 

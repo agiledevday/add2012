@@ -34,23 +34,25 @@ When user types skill name, he sees a suggestions based on existing skills.
   Examples:
     | existing skills | skill typed | suggestions |
     | Jacoco          | ja          | Jacoco      |
-    | Jacoco;JAVA     | JA          | Jacoco;JAVA |
+    | Jacoco;JAVA     | JA          | JAVA;Jacoco |
+
 
   @pending
-  Scenario: Display matching skills in alphabetical order
-    Given users have already learned
-      | Java;Jacoco;Jabber |
-      | Java2;Java1        |
-    When I am typing following skill details 'ja'
-    Then I should see
-      | Jabber;Jacoco;Java |
-      | Java1;Java2        |
+  Scenario Outline: Display matching skills in alphabetical order
+    Given users have already learned '<existing skills>'
+    When I am typing following skill details '<skill typed>'
+    Then I should see following skills suggestions '<suggestions>'
+
+  Examples:
+    | existing skills    | skill typed | suggestions        |
+    | Java;Jacoco;Jabber | ja          | Jabber;Jacoco;Java |
+    | Java2;Java1        | ja          | Java1;Java2        |
 
   @pending
   Scenario: Display up to 5 skill suggestions
     Given users have already learned 'Jacoco;Java;JavaScript;Jabber;Jamaica;Jango'
     When I am typing following skill details 'ja'
-    Then I should see 'Jacoco;Java;JavaScript;Jabber;Jamaica'
+    Then I should see following skills suggestions 'Jacoco;Java;JavaScript;Jabber;Jamaica'
 
   @pending
   Scenario: Display distinct skill names

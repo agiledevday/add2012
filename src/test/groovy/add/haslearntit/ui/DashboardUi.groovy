@@ -89,7 +89,7 @@ class DashboardUi {
     }
 
     public List<String> displayedSkillSuggestions(){
-
-        return page().displayedSkillSuggestions().sort();
+        
+        return page().displayedSkillSuggestions();
     }
 }
