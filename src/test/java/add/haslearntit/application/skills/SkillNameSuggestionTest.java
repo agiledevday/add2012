@@ -46,7 +46,6 @@ public class SkillNameSuggestionTest extends HasLearntItBaseWicketIT {
 		autocompleteIsTriggeredOn("newSkillForm:newSkillForm:name");
 		//then
 		tester.assertContainsNot("Jacoco");
-        verify(entryRepository, never()).loadByNamePrefix(anyString());
     }
 
     @Test
