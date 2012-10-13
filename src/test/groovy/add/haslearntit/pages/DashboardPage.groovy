@@ -15,6 +15,7 @@ class DashboardPage extends Page {
         learntSkill { $("ul").find("li").find("div",class:"skill") }
         loggedInAs { module LoggedInUserModule }
         messages { module MessagesModule}
+		trends { $("#trends-list") }
         skillSuggestionsDiv(required: false) { $("div", class: "wicket-aa") }
         skillSuggestions(required: false) { skillSuggestionsDiv().find("ul li") }
     }
@@ -62,4 +63,9 @@ class DashboardPage extends Page {
         waitFor { skillSuggestionsDiv.present }
         return skillSuggestions()*.text()
     }
+	
+	
+	def getTrends = {
+		trends
+	}
 }

@@ -6,6 +6,7 @@ import add.haslearntit.domain.EntryDomain
 import add.haslearntit.domain.UserDomain
 import add.haslearntit.ui.DashboardUi;
 import add.haslearntit.ui.LoginUi
+import add.haslearntit.ui.Top10Ui;
 
 this.metaClass.mixin(cucumber.runtime.groovy.Hooks)
 this.metaClass.mixin(cucumber.runtime.groovy.EN)
@@ -25,7 +26,7 @@ this.metaClass.mixin(cucumber.runtime.groovy.EN)
     
     World {
         
-        HasLearntItWorld.mixin EntryDomain, UserDomain, LoginUi, DashboardUi
+        HasLearntItWorld.mixin EntryDomain, UserDomain, LoginUi, DashboardUi, Top10Ui
         return new HasLearntItWorld();
     }
 

@@ -9,4 +9,6 @@ public interface EntryRepository {
 	public List<Entry> loadAll();
 
 	public List<Entry> loadByNamePrefix(String namePrefix);
+
+	public List<EntryPopularity> getTopTenList();
 }

@@ -7,6 +7,7 @@ import org.apache.wicket.markup.html.panel.FeedbackPanel;
 
 import add.haslearntit.application.login.LoginStatusPanel;
 import add.haslearntit.application.login.SessionCurrentUserModel;
+import add.haslearntit.application.topten.TopTenPanel;
 
 public class TemplatePage extends WebPage {
     private static final long serialVersionUID = -943763663071297928L;
@@ -23,6 +24,7 @@ public class TemplatePage extends WebPage {
 		
 		add(new LoginStatusPanel(new SessionCurrentUserModel(Application.get())));
         add(new AppInfoPanel("appInfo"));
+        add(new TopTenPanel("topTen"));
 	}
 
 }

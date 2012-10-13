@@ -9,7 +9,6 @@ import org.junit.Before;
 import add.haslearntit.domain.entry.Entry;
 import add.haslearntit.domain.entry.EntryRepositoryContractTest;
 import add.haslearntit.infrastructure.hibernate.HibernateTestConfiguration;
-import add.haslearntit.infrastructure.hibernate.entry.HibernateEntryRepository;
 
 public class HibernateEntryRepositoryIT extends EntryRepositoryContractTest {
 
@@ -57,4 +56,5 @@ public class HibernateEntryRepositoryIT extends EntryRepositoryContractTest {
         session.getTransaction().rollback();
         session = null;
     }
+
 }

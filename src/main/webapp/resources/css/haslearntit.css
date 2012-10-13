@@ -274,7 +274,6 @@ header .label {
 }
 
 #right-sidebar {
-    visibility: hidden;
     margin: 0 auto;
     overflow: hidden;
     position: absolute;
