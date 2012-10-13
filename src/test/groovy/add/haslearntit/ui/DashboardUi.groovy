@@ -94,7 +94,6 @@ class DashboardUi {
 	}
 
 	public startTypingEntryName(String partialName){
-
 		enter();
 		page().typeSkillPart(partialName);
 	}

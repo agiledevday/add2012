@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.classic.Session;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -38,8 +39,10 @@ public class HibernateEntryRepository implements EntryRepository {
     public List<Entry> loadByNamePrefix(String namePrefix) {
         return Collections.unmodifiableList(session()
                 .createCriteria(Entry.class)
-                .add(Restrictions.ilike("name", namePrefix + "%")
-                ).list());
+                .add(Restrictions.ilike("name", namePrefix + "%"))
+                .addOrder(Order.asc("name"))
+                .setMaxResults(MAX_SUGGESTIONS_RESULTS)
+                .list());
     }
     
     private Session session() {

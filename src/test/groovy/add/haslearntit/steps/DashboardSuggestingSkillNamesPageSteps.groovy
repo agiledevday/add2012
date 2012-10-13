@@ -15,28 +15,32 @@ this.metaClass.mixin(cucumber.runtime.groovy.EN)
     }
 
     Given(~'^users have already learned \'(.*)\'$') { String skillsAsList ->
-    
+
         List<String> skillsList = splitListPassedAsStringWithSemicolons(skillsAsList)
-    
+
         skillsList.each { skill ->
             entryDomain.createEntry(skill, "easy", "1", new Date());
         }
-        
+
     }
-    
+
     When(~'^I am typing following skill details \'(.*)\'$') { String typedSkillPart ->
 
         dashboardUi.startTypingEntryName(typedSkillPart);
     }
-    
+
     Then(~'^I should see following skills suggestions \'(.*)\'$') { String suggestionsAsList ->
-        
+
         suggestionsList = splitListPassedAsStringWithSemicolons(suggestionsAsList)
-        assert dashboardUi.displayedSkillSuggestions() == suggestionsList.sort()
+        assert dashboardUi.displayedSkillSuggestions() == suggestionsList
     }
 
     Then(~'^I should see no suggestions$') { ->
         assert dashboardUi.displayedSkillSuggestions().isEmpty()
+    }
+
+    Given(~'users have already learned nothing'){ ->
+        //nothing to do :)
     }
 
 List<String> splitListPassedAsStringWithSemicolons(String listAsString) {

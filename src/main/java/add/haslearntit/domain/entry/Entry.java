@@ -6,6 +6,8 @@ import java.util.UUID;
 public class Entry {
 
     public static final int POINTS_FOR_UNKNOWN_DIFFICULTY = 0;
+    public static final int MIN_TIME_SPENT = 1;
+    public static final int MAX_TIME_SPENT = 8760;
 
     private UUID id = UUID.randomUUID();
 

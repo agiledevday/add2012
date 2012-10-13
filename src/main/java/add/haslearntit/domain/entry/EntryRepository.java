@@ -4,9 +4,11 @@ import java.util.List;
 
 public interface EntryRepository {
 
-	public void store(Entry entry);
+    int MAX_SUGGESTIONS_RESULTS = 5;
 
-	public List<Entry> loadAll();
+    void store(Entry entry);
 
-	public List<Entry> loadByNamePrefix(String namePrefix);
+    List<Entry> loadAll();
+
+    List<Entry> loadByNamePrefix(String namePrefix);
 }
