@@ -14,3 +14,8 @@ Scenario: Display what have I learnt
 	Given I have learnt new skill lately
 	When I enter my home page
 	Then I should see skill I have learnt
+	
+Scenario: Creation date should appear after recording new skill
+	Given I have learnt new skill lately
+	When I enter my home page
+	Then I should see skill creation date

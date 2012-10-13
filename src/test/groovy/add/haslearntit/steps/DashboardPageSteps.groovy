@@ -3,7 +3,9 @@ package add.haslearntit.steps
 import org.fest.assertions.AssertExtension;
 import static org.fest.assertions.Assertions.*;
 
+import add.haslearntit.application.skills.SkillNameSuggestionTest;
 import add.haslearntit.domain.UserDomain
+import add.haslearntit.domain.entry.Entry;
 import add.haslearntit.pages.*
 import add.haslearntit.ui.DashboardUi
 import add.haslearntit.ui.LoginUi
@@ -111,3 +113,8 @@ this.metaClass.mixin(cucumber.runtime.groovy.EN)
         
         dashboardUi.assertNewEntryFormContainError(error);
     }
+	
+	 
+	Then(~'^I should see skill creation date$') { ->
+		dashboardUi.assertNewEntryCreateDateNotNull();
+	}
