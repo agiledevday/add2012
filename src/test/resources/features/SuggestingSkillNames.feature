@@ -46,11 +46,10 @@ When user types skill name, he sees a suggestions based on existing skills.
     | Java;Jacoco;Jabber | ja          | Jabber;Jacoco;Java |
     | Java2;Java1        | ja          | Java1;Java2        |
 
-  @pending
   Scenario: Display up to 5 skill suggestions
     Given users have already learned 'Jacoco;Java;JavaScript;Jabber;Jamaica;Jango'
     When I am typing following skill details 'ja'
-    Then I should see following skills suggestions 'Jacoco;Java;JavaScript;Jabber;Jamaica'
+    Then I should see following skills suggestions 'Jabber;Jacoco;Jamaica;Jango;Java'
 
   @pending
   Scenario: Display distinct skill names

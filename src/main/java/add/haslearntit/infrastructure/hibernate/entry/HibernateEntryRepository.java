@@ -41,6 +41,7 @@ public class HibernateEntryRepository implements EntryRepository {
                 .createCriteria(Entry.class)
                 .add(Restrictions.ilike("name", namePrefix + "%"))
                 .addOrder(Order.asc("name"))
+                .setMaxResults(MAX_SUGGESTIONS_RESULTS)
                 .list());
     }
     

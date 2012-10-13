@@ -33,20 +33,32 @@ public abstract class EntryRepositoryContractTest {
         repository.loadAll().add(anEntry());
         // then:
     }
-    
-      @Test
-      public void shouldReturnsSkillsOrderedAlphabetically() {
 
-          //given
-          Entry[] skills = new Entry[] { anEntry("Java"), anEntry("Jacoco"), anEntry("Jabber") };
-          storeSkills(skills);
-          //when
-          final List<Entry> result = repository.loadByNamePrefix("Ja");
-          //then
-          Arrays.sort(skills, createBySkillNameComparator());
-          assertThat(result).containsExactly(skills);
-      }
+    @Test
+    public void shouldReturnsSkillsOrderedAlphabetically() {
 
+        //given
+        Entry[] skills = new Entry[]{anEntry("Java"), anEntry("Jacoco"), anEntry("Jabber")};
+        storeSkills(skills);
+        //when
+        final List<Entry> result = repository.loadByNamePrefix("Ja");
+        //then
+        Arrays.sort(skills, createBySkillNameComparator());
+        assertThat(result).containsExactly(skills);
+    }
+
+    @Test
+    public void shouldLimitSkillResults() {
+        //given
+        Entry[] skills = new Entry[]{anEntry("Java"), anEntry("Jacoco"), anEntry("Jabber"), anEntry("Java-GWT"),
+                anEntry("Java-AppEngine"),anEntry("Java-Python")};
+        storeSkills(skills);
+        //when
+        final List<Entry> result = repository.loadByNamePrefix("Ja");
+        //then
+        Arrays.sort(skills, createBySkillNameComparator());
+        assertThat(result).containsExactly(Arrays.copyOfRange(skills, 0, EntryRepository.MAX_SUGGESTIONS_RESULTS));
+    }
 
     // --           
 
@@ -59,7 +71,7 @@ public abstract class EntryRepositoryContractTest {
     }
 
     private void storeSkills(Entry[] skills) {
-        for(Entry s: skills) {
+        for (Entry s : skills) {
             repository.store(s);
         }
     }
