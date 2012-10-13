@@ -58,6 +58,10 @@ class DashboardPage extends Page {
         $("form").name = typedSkillPart;
     }
 
+	def difficulty = {
+		return $("form").difficulty;
+	}
+	
     def displayedSkillSuggestions = {
         waitFor { skillSuggestionsDiv.present }
         return skillSuggestions()*.text()
