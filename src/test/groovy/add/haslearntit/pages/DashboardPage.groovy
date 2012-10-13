@@ -62,4 +62,8 @@ class DashboardPage extends Page {
         waitFor { skillSuggestionsDiv.present }
         return skillSuggestions()*.text()
     }
+	
+	def displayedDifficultyNames = {
+		$("form").find("select").find("option")*.text();
+	}
 }

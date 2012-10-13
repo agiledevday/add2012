@@ -1,5 +1,8 @@
 package add.haslearntit.ui
 
+
+import geb.Browser;
+import add.haslearntit.domain.entry.Difficulty;
 import add.haslearntit.pages.DashboardPage
 
 
@@ -12,7 +15,7 @@ class DashboardUi {
     public recordNewSkill(){
 
         newSkillName = "how to bind cucumber features to groovy steps";
-        newSkillDifficulty = "easy";
+        newSkillDifficulty = Difficulty.EASY.name();
         newSkillTime = "2";
 
         recordSkill(newSkillName, newSkillDifficulty, newSkillTime);
@@ -45,7 +48,11 @@ class DashboardUi {
         assert page().recentlyLearntSkill().contains(newSkillDifficulty);
         assert page().recentlyLearntSkill().contains(newSkillTime);
     }
-
+	
+	def displayedDifficultyNames={
+		return page().displayedDifficultyNames();
+	}
+    
 
     def displayedEntries={
 
