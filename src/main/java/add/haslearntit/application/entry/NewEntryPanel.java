@@ -15,6 +15,7 @@ import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
+import add.haslearntit.application.entry.validators.TimeValidator;
 import add.haslearntit.domain.entry.Entry;
 import add.haslearntit.domain.entry.EntryRepository;
 
@@ -46,7 +47,7 @@ public class NewEntryPanel extends Panel {
         private void initializeComponents() {
             add(createSkillNamesAutoCompleteTextField());
             add(new RequiredTextField<String>("difficulty", difficultyModel));
-            add(new RequiredTextField<String>("time", timeModel));
+            add(new RequiredTextField<String>("time", timeModel).add(new TimeValidator()));
         }
 
         @Override
@@ -63,19 +64,19 @@ public class NewEntryPanel extends Panel {
     private TextField<String> createSkillNamesAutoCompleteTextField() {
         DefaultCssAutoCompleteTextField<String> skillNamesAutoCompleteTextField =
                 new DefaultCssAutoCompleteTextField<String>("name", nameModel) {
-            private static final long serialVersionUID = 2326158862363900977L;
+                    private static final long serialVersionUID = 2326158862363900977L;
 
-            @Override
-            protected Iterator<String> getChoices(String input) {
-                if (input == null) {
-                    Collections.emptyList().iterator();
-                }
-                List<Entry> skills = entryRepository.loadByNamePrefix(input);
-                List<String> names = extract(skills, on(Entry.class).getName());
-                return names.iterator();
-            }
-        };
+                    @Override
+                    protected Iterator<String> getChoices(String input) {
+                        if (input == null) {
+                            Collections.emptyList().iterator();
+                        }
+                        List<Entry> skills = entryRepository.loadByNamePrefix(input);
+                        List<String> names = extract(skills, on(Entry.class).getName());
+                        return names.iterator();
+                    }
+                };
         return (TextField<String>) skillNamesAutoCompleteTextField.setRequired(true);
     }
-    
+
 }
