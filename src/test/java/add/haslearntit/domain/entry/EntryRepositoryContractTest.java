@@ -1,9 +1,14 @@
 package add.haslearntit.domain.entry;
 
-import static org.junit.Assert.assertThat;
+import static org.fest.assertions.Assertions.assertThat;
 import static org.junit.matchers.JUnitMatchers.hasItem;
 
+import org.hamcrest.MatcherAssert;
 import org.junit.Test;
+
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
 
 public abstract class EntryRepositoryContractTest {
 
@@ -17,7 +22,7 @@ public abstract class EntryRepositoryContractTest {
         // when:
         repository.store(entry);
         // then:
-        assertThat(repository.loadAll(), hasItem(entry));
+        MatcherAssert.assertThat(repository.loadAll(), hasItem(entry));
     }
 
     @Test(expected = UnsupportedOperationException.class)
@@ -28,11 +33,43 @@ public abstract class EntryRepositoryContractTest {
         repository.loadAll().add(anEntry());
         // then:
     }
+    
+      @Test
+      public void shouldReturnsSkillsOrderedAlphabetically() {
 
-    // --
+          //given
+          Entry[] skills = new Entry[] { anEntry("Java"), anEntry("Jacoco"), anEntry("Jabber") };
+          storeSkills(skills);
+          //when
+          final List<Entry> result = repository.loadByNamePrefix("Ja");
+          //then
+          Arrays.sort(skills, createBySkillNameComparator());
+          assertThat(result).containsExactly(skills);
+      }
+
+
+    // --           
 
     private Entry anEntry() {
         return new Entry("entry", "difficultyLevel", "timeConsumed");
     }
 
+    private Entry anEntry(String skill) {
+        return new Entry(skill, "difficultyLevel", "timeConsumed");
+    }
+
+    private void storeSkills(Entry[] skills) {
+        for(Entry s: skills) {
+            repository.store(s);
+        }
+    }
+
+    private Comparator<Entry> createBySkillNameComparator() {
+        return new Comparator<Entry>() {
+            @Override
+            public int compare(Entry o1, Entry o2) {
+                return o1.getName().compareTo(o2.getName());
+            }
+        };
+    }
 }

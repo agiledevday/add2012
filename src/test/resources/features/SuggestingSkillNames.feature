@@ -36,8 +36,6 @@ When user types skill name, he sees a suggestions based on existing skills.
     | Jacoco          | ja          | Jacoco      |
     | Jacoco;JAVA     | JA          | JAVA;Jacoco |
 
-
-  @pending
   Scenario Outline: Display matching skills in alphabetical order
     Given users have already learned '<existing skills>'
     When I am typing following skill details '<skill typed>'
