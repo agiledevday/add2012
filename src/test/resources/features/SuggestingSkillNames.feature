@@ -1,5 +1,3 @@
-#only this feature should be run (when tags property in CucumberAcceptanceIT is uncommented)
-@currentlyInDevelopment
 Feature: Skill name suggestion
 
 When user types skill name, he sees a suggestions based on existing skills.
